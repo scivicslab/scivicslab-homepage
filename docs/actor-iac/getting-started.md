@@ -183,6 +183,5 @@ java -jar actor-IaC.jar workflow -w main-workflow.yaml
 
 ## Next Steps
 
-- Learn about [Workflow Patterns](./workflow-patterns)
-- Explore [Overlay System](./overlays)
-- Check [CLI Reference](./cli-reference)
+- Check the [actor-IaC Javadoc](https://scivicslab.github.io/actor-IaC/) for API details
+- Explore the [GitHub repository](https://github.com/scivicslab/actor-IaC) for examples

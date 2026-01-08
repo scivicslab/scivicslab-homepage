@@ -157,6 +157,5 @@ public class WorkflowExample {
 
 ## Next Steps
 
-- Learn about [Actor Communication](./actor-communication)
-- Explore [Workflow Patterns](./workflow-patterns)
-- Check the [API Reference](./api-reference)
+- Check the [POJO-actor Javadoc](https://scivicslab.github.io/POJO-actor/) for API details
+- Explore the [GitHub repository](https://github.com/scivicslab/POJO-actor) for examples
