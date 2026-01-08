@@ -42,6 +42,10 @@ const config: Config = {
           editUrl:
             'https://github.com/scivicslab/scivics-lab-homepage/tree/main/',
         },
+        gtag: {
+          trackingID: 'G-MK0GHMG9LS',
+          anonymizeIP: true,
+        },
         blog: {
           showReadingTime: true,
           feedOptions: {
