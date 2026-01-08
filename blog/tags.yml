@@ -1,19 +1,24 @@
-facebook:
-  label: Facebook
-  permalink: /facebook
-  description: Facebook tag description
+announcement:
+  label: Announcement
+  permalink: /announcement
+  description: Project announcements and news
 
-hello:
-  label: Hello
-  permalink: /hello
-  description: Hello tag description
+pojo-actor:
+  label: POJO-actor
+  permalink: /pojo-actor
+  description: Posts about POJO-actor library
 
-docusaurus:
-  label: Docusaurus
-  permalink: /docusaurus
-  description: Docusaurus tag description
+actor-iac:
+  label: actor-IaC
+  permalink: /actor-iac
+  description: Posts about actor-IaC
 
-hola:
-  label: Hola
-  permalink: /hola
-  description: Hola tag description
+tutorial:
+  label: Tutorial
+  permalink: /tutorial
+  description: Tutorials and guides
+
+release:
+  label: Release
+  permalink: /release
+  description: Release notes and updates
