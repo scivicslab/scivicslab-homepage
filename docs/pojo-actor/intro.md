@@ -51,7 +51,7 @@ POJO-actor implements a simplified actor model using modern Java features (JDK21
 The original core of POJO-actor (v1.0.0) was intentionally designed as a
 compact implementation of approximately **800 lines of code**, capturing
 only the essential mechanics of the actor model.(The README for the original v1.0.0 release 
-[README for the original ver1.0.0 release](https://coderlegion.com/8748/pojo-actor-v1-0-a-lightweight-actor-model-library-for-java) is available on Coders Legion.)
+[README for the original ver1.0.0 release](https://coderlegion.com/8748/pojo-actor-v1-0-a-lightweight-actor-model-library-for-java) is available on CoderLegion.)
 
 This minimal core established the architectural foundation for clarity,
 performance, and debuggability, while allowing the project to evolve
