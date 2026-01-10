@@ -110,7 +110,7 @@ const config: Config = {
             },
             {
               label: 'actor-IaC',
-              to: '/docs/actor-iac/intro',
+              to: '/docs/actor-IaC/introduction',
             },
             {
               label: 'POJO-actor Javadoc',
