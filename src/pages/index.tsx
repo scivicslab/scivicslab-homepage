@@ -102,7 +102,7 @@ function DocsSection() {
               <span className={styles.docLink}>Read the docs →</span>
             </div>
           </Link>
-          <Link to="/docs/actor-iac/intro" className={styles.docCard}>
+          <Link to="/docs/actor-IaC/introduction" className={styles.docCard}>
             <div className={styles.docIcon}>🔧</div>
             <div className={styles.docContent}>
               <h3>actor-IaC</h3>
@@ -195,7 +195,7 @@ function WorkflowSection() {
               <li>Overlay system for environment customization</li>
               <li>Idempotent operations by design</li>
             </ul>
-            <Link className={styles.primaryBtn} to="/docs/actor-iac/intro">
+            <Link className={styles.primaryBtn} to="/docs/actor-IaC/introduction">
               Learn actor-IaC
             </Link>
           </div>
