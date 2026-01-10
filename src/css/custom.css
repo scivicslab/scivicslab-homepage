@@ -4,7 +4,7 @@
  */
 
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
   /* Primary color - Deep Blue */
@@ -17,9 +17,9 @@
   --ifm-color-primary-lightest: #bfdbfe;
 
   /* Typography */
-  --ifm-font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
+  --ifm-font-family-base: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
   --ifm-font-family-monospace: 'JetBrains Mono', 'Fira Code', monospace;
-  --ifm-heading-font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --ifm-heading-font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
   --ifm-heading-font-weight: 600;
 
   /* Code */
