@@ -1,23 +1,23 @@
 <svg width="1200" height="210" viewBox="0 0 1200 210" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="bg-gradient-wf" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0d9488"/>
-      <stop offset="50%" style="stop-color:#14b8a6"/>
-      <stop offset="100%" style="stop-color:#2dd4bf"/>
+      <stop offset="0%" style="stop-color:#0f766e"/>
+      <stop offset="50%" style="stop-color:#0d9488"/>
+      <stop offset="100%" style="stop-color:#14b8a6"/>
     </linearGradient>
   </defs>
 
-  <!-- Background - Blue (same as pojo-actor) -->
+  <!-- Background - Dark Teal (same as pojo-actor) -->
   <rect width="1200" height="210" fill="url(#bg-gradient-wf)"/>
 
   <!-- Grid pattern -->
-  <g opacity="0.06">
+  <g opacity="0.15">
     <line x1="0" y1="70" x2="1200" y2="70" stroke="white" stroke-width="1"/>
     <line x1="0" y1="140" x2="1200" y2="140" stroke="white" stroke-width="1"/>
   </g>
 
   <!-- Turing Machine Tape -->
-  <g opacity="0.25">
+  <g opacity="0.45">
     <!-- Tape cells -->
     <rect x="100" y="80" width="50" height="50" rx="4" fill="none" stroke="white" stroke-width="2"/>
     <rect x="150" y="80" width="50" height="50" rx="4" fill="none" stroke="white" stroke-width="2"/>
@@ -31,26 +31,26 @@
   </g>
 
   <!-- Current cell highlight (read/write head position) -->
-  <rect x="300" y="80" width="50" height="50" rx="4" fill="white" opacity="0.15"/>
+  <rect x="300" y="80" width="50" height="50" rx="4" fill="white" opacity="0.3"/>
 
   <!-- Read/Write Head -->
-  <g opacity="0.3">
+  <g opacity="0.5">
     <polygon points="325,65 335,50 315,50" fill="white"/>
     <rect x="320" y="45" width="10" height="20" fill="white"/>
   </g>
 
   <!-- State Machine (right side) -->
   <!-- States as circles -->
-  <circle cx="700" cy="60" r="28" fill="white" opacity="0.2"/>
-  <circle cx="850" cy="60" r="28" fill="white" opacity="0.2"/>
-  <circle cx="1000" cy="60" r="28" fill="white" opacity="0.2"/>
-  <circle cx="775" cy="150" r="28" fill="white" opacity="0.2"/>
-  <circle cx="925" cy="150" r="28" fill="white" opacity="0.2"/>
+  <circle cx="700" cy="60" r="28" fill="white" opacity="0.4"/>
+  <circle cx="850" cy="60" r="28" fill="white" opacity="0.4"/>
+  <circle cx="1000" cy="60" r="28" fill="white" opacity="0.4"/>
+  <circle cx="775" cy="150" r="28" fill="white" opacity="0.4"/>
+  <circle cx="925" cy="150" r="28" fill="white" opacity="0.4"/>
 
   <!-- State transitions (arrows) -->
-  <g stroke="white" stroke-width="2" opacity="0.15">
+  <g stroke="white" stroke-width="2.5" opacity="0.35">
     <!-- Curved arrows between states -->
-    <path d="M 728 60 Q 775 40, 822 60" fill="none" marker-end="url(#arrowhead)"/>
+    <path d="M 728 60 Q 775 40, 822 60" fill="none"/>
     <path d="M 878 60 Q 925 40, 972 60" fill="none"/>
     <path d="M 700 88 Q 700 120, 750 145" fill="none"/>
     <path d="M 850 88 Q 850 120, 800 145" fill="none"/>
@@ -59,7 +59,7 @@
   </g>
 
   <!-- Arrow heads on transitions -->
-  <g fill="white" opacity="0.2">
+  <g fill="white" opacity="0.4">
     <polygon points="820,55 810,60 810,50" transform="rotate(10 815 55)"/>
     <polygon points="970,55 960,60 960,50" transform="rotate(10 965 55)"/>
     <polygon points="750,140 745,150 755,150" transform="rotate(-30 750 145)"/>
@@ -67,5 +67,5 @@
   </g>
 
   <!-- Self-loop on a state -->
-  <ellipse cx="700" cy="35" rx="15" ry="12" fill="none" stroke="white" stroke-width="2" opacity="0.12"/>
+  <ellipse cx="700" cy="35" rx="15" ry="12" fill="none" stroke="white" stroke-width="2" opacity="0.3"/>
 </svg>
