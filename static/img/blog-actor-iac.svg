@@ -1,0 +1,56 @@
+<svg width="1200" height="210" viewBox="0 0 1200 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-gradient-iac" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed"/>
+      <stop offset="50%" style="stop-color:#a855f7"/>
+      <stop offset="100%" style="stop-color:#c084fc"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background - Purple -->
+  <rect width="1200" height="210" fill="url(#bg-gradient-iac)"/>
+
+  <!-- Grid pattern -->
+  <g opacity="0.08">
+    <line x1="0" y1="70" x2="1200" y2="70" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="140" x2="1200" y2="140" stroke="white" stroke-width="1"/>
+    <line x1="200" y1="0" x2="200" y2="210" stroke="white" stroke-width="1"/>
+    <line x1="400" y1="0" x2="400" y2="210" stroke="white" stroke-width="1"/>
+    <line x1="600" y1="0" x2="600" y2="210" stroke="white" stroke-width="1"/>
+    <line x1="800" y1="0" x2="800" y2="210" stroke="white" stroke-width="1"/>
+    <line x1="1000" y1="0" x2="1000" y2="210" stroke="white" stroke-width="1"/>
+  </g>
+
+  <!-- Infrastructure nodes (server icons) -->
+  <g opacity="0.2">
+    <rect x="80" y="40" width="50" height="35" rx="5" fill="white"/>
+    <rect x="80" y="90" width="50" height="35" rx="5" fill="white"/>
+    <rect x="80" y="140" width="50" height="35" rx="5" fill="white"/>
+    <rect x="280" y="65" width="50" height="35" rx="5" fill="white"/>
+    <rect x="280" y="115" width="50" height="35" rx="5" fill="white"/>
+    <rect x="500" y="50" width="50" height="35" rx="5" fill="white"/>
+    <rect x="500" y="100" width="50" height="35" rx="5" fill="white"/>
+    <rect x="500" y="150" width="50" height="35" rx="5" fill="white"/>
+    <rect x="720" y="70" width="50" height="35" rx="5" fill="white"/>
+    <rect x="720" y="120" width="50" height="35" rx="5" fill="white"/>
+    <rect x="920" y="40" width="50" height="35" rx="5" fill="white"/>
+    <rect x="920" y="90" width="50" height="35" rx="5" fill="white"/>
+    <rect x="920" y="140" width="50" height="35" rx="5" fill="white"/>
+    <rect x="1070" y="65" width="50" height="35" rx="5" fill="white"/>
+    <rect x="1070" y="115" width="50" height="35" rx="5" fill="white"/>
+  </g>
+
+  <!-- Connection lines (workflow paths) -->
+  <g stroke="white" stroke-width="1.5" opacity="0.12" stroke-dasharray="6,3">
+    <path d="M 130 57 Q 200 50, 280 82"/>
+    <path d="M 130 107 Q 200 105, 280 132"/>
+    <path d="M 330 82 Q 400 70, 500 67"/>
+    <path d="M 330 132 Q 400 130, 500 117"/>
+    <path d="M 550 67 Q 620 60, 720 87"/>
+    <path d="M 550 117 Q 620 120, 720 137"/>
+    <path d="M 770 87 Q 840 70, 920 57"/>
+    <path d="M 770 137 Q 840 140, 920 107"/>
+    <path d="M 970 57 Q 1020 50, 1070 82"/>
+    <path d="M 970 107 Q 1020 110, 1070 132"/>
+  </g>
+</svg>

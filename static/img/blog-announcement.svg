@@ -1,0 +1,38 @@
+<svg width="1200" height="210" viewBox="0 0 1200 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-gradient-ann" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0ea5e9"/>
+      <stop offset="50%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#1d4ed8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background - Green/Emerald -->
+  <rect width="1200" height="210" fill="url(#bg-gradient-ann)"/>
+
+  <!-- Decorative circles -->
+  <g opacity="0.12">
+    <circle cx="50" cy="30" r="80" fill="white"/>
+    <circle cx="1150" cy="180" r="100" fill="white"/>
+    <circle cx="150" cy="190" r="60" fill="white"/>
+    <circle cx="1050" cy="20" r="70" fill="white"/>
+    <circle cx="600" cy="105" r="50" fill="white"/>
+  </g>
+
+  <!-- Grid pattern -->
+  <g opacity="0.06">
+    <line x1="0" y1="70" x2="1200" y2="70" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="140" x2="1200" y2="140" stroke="white" stroke-width="1"/>
+    <line x1="300" y1="0" x2="300" y2="210" stroke="white" stroke-width="1"/>
+    <line x1="600" y1="0" x2="600" y2="210" stroke="white" stroke-width="1"/>
+    <line x1="900" y1="0" x2="900" y2="210" stroke="white" stroke-width="1"/>
+  </g>
+
+  <!-- Abstract shapes -->
+  <g opacity="0.15">
+    <rect x="200" y="60" width="80" height="80" rx="10" fill="white" transform="rotate(15 240 100)"/>
+    <rect x="400" y="80" width="60" height="60" rx="8" fill="white" transform="rotate(-10 430 110)"/>
+    <rect x="700" y="50" width="70" height="70" rx="10" fill="white" transform="rotate(20 735 85)"/>
+    <rect x="900" y="90" width="55" height="55" rx="8" fill="white" transform="rotate(-15 927 117)"/>
+  </g>
+</svg>

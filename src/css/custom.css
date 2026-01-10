@@ -250,6 +250,33 @@ th {
   background: var(--ifm-color-emphasis-400);
 }
 
+/* Blog List - Moderate titles for better readability */
+.blog-list-page article header h2 {
+  font-size: 2rem;
+  line-height: 1.35;
+  margin-bottom: 0.5rem;
+}
+
+.blog-list-page article header h2 a {
+  font-weight: 600;
+}
+
+/* Blog post preview cards */
+article[class*="blogPost"] h2 {
+  font-size: 2rem;
+  line-height: 1.35;
+}
+
+/* Blog sidebar recent posts */
+.blog-sidebar h3 {
+  font-size: 1.1rem;
+}
+
+/* Individual blog post page title */
+.blog-post-page header h1 {
+  font-size: 2.25rem;
+}
+
 /* Animations */
 @keyframes fadeIn {
   from {
