@@ -49,7 +49,7 @@ function HeroSection() {
             correctly—no more debugging AI-generated playbooks.
           </p>
           <div className={styles.heroCta}>
-            <Link className={styles.primaryBtn} to="/docs/pojo-actor/intro">
+            <Link className={styles.primaryBtn} to="/docs/pojo-actor/introduction">
               Get Started
             </Link>
             <Link className={styles.secondaryBtn} to="https://github.com/scivicslab">
@@ -89,7 +89,7 @@ function DocsSection() {
           </p>
         </div>
         <div className={styles.docsGrid}>
-          <Link to="/docs/pojo-actor/intro" className={styles.docCard}>
+          <Link to="/docs/pojo-actor/introduction" className={styles.docCard}>
             <div className={styles.docIcon}>📦</div>
             <div className={styles.docContent}>
               <h3>POJO-actor</h3>

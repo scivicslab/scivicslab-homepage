@@ -106,7 +106,7 @@ const config: Config = {
           items: [
             {
               label: 'POJO-actor',
-              to: '/docs/pojo-actor/intro',
+              to: '/docs/pojo-actor/introduction',
             },
             {
               label: 'actor-IaC',

@@ -3,11 +3,20 @@ sidebar_position: 1
 title: Introduction
 ---
 
-# Introduction
+# actor-IaC: AI-Native Infrastructure Automation
 
-actor-IaC is an Infrastructure as Code (IaC) workflow automation tool built on the POJO-actor framework. It enables you to define infrastructure operations as declarative YAML workflows and execute them across multiple remote nodes via SSH. Unlike traditional IaC tools that focus on state management, actor-IaC emphasizes orchestrating sequences of operations with full logging and traceability.
+This document is the official manual and reference for **actor-IaC**.
+It currently documents version 2.11.0.
 
-The tool is designed for scenarios where you need to run coordinated operations across a fleet of servers, such as deploying applications, collecting system information, or performing maintenance tasks. Each workflow execution is recorded in an H2 database, allowing you to search and analyze logs across sessions and nodes.
+---
+
+Most IaC tools are either too simple for complex logic or too complex for AI agents to generate reliably. actor-IaC solves this with **state machine-based workflows**—a minimal YAML format that's both Turing-complete and AI-friendly.
+
+Traditional playbooks struggle with conditional branching: "if deployment fails on node A, rollback A but continue with node B" requires awkward workarounds. actor-IaC handles this naturally because workflows are state machines. Each step defines state transitions, enabling arbitrarily complex control flow without special syntax.
+
+At the same time, the format is deliberately simple. No deep nesting, no implicit behavior, no magic variables. When you ask an AI agent to generate a workflow, it produces correct YAML on the first try—because there's only one obvious way to express each operation.
+
+actor-IaC executes workflows across remote nodes via SSH, with every action logged to an H2 database for full traceability. It's built on the POJO-actor framework, designed for scenarios where you need coordinated operations across a fleet of servers with detailed audit trails.
 
 ## Key Features
 
