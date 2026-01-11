@@ -146,8 +146,8 @@ function FeaturesSection() {
           </div>
           <div className={styles.featureItem}>
             <div className={styles.featureIcon}>&#x1F916;</div>
-            <h3>AI-Friendly Syntax</h3>
-            <p>Minimal YAML that LLMs generate correctly. No more debugging AI-generated code.</p>
+            <h3>Automaton-Based Workflows</h3>
+            <p>Simple enough to get right the first time—by humans or machines.</p>
           </div>
           <div className={styles.featureItem}>
             <div className={styles.featureIcon}>&#x1F504;</div>
