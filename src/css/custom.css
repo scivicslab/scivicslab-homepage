@@ -235,6 +235,15 @@ th {
   background: var(--ifm-color-emphasis-100);
 }
 
+/* Mobile Navbar Sidebar Fix */
+.navbar-sidebar {
+  height: 100vh !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 100 !important;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
