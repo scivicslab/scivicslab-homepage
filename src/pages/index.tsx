@@ -150,9 +150,9 @@ function FeaturesSection() {
             <p>Simple enough to get right the first time—by humans or machines.</p>
           </div>
           <div className={styles.featureItem}>
-            <div className={styles.featureIcon}>&#x1F504;</div>
-            <h3>State Machine Semantics</h3>
-            <p>Turing-complete workflows with natural conditional branching based on system state.</p>
+            <div className={styles.featureIcon}>&#x1F310;</div>
+            <h3>Distributed Actor System</h3>
+            <p>Scale across multiple nodes with location-transparent messaging. (Coming Soon)</p>
           </div>
         </div>
         <div className={styles.featureCta}>
