@@ -41,12 +41,12 @@ function HeroSection() {
           <span className={styles.badge}>Open Source</span>
           <Heading as="h1" className={styles.heroTitle}>
             Lightweight Actor Model{' '}
-            <span className={styles.gradient}>with AI-Native Workflows</span>
+            <span className={styles.gradient}>with State Machine Workflows</span>
           </Heading>
           <p className={styles.heroSubtitle}>
             Turn any Plain Old Java Object into a concurrent actor.
-            Define complex workflows in minimal YAML—state machine semantics
-            that AI agents can generate correctly on the first try.
+            Define workflows in minimal YAML with natural conditional branching—simple
+            enough that AI agents generate correct code on the first try.
           </p>
           <div className={styles.heroCta}>
             <Link className={styles.primaryBtn} to="/docs/pojo-actor/introduction">
@@ -146,8 +146,8 @@ function FeaturesSection() {
           </div>
           <div className={styles.featureItem}>
             <div className={styles.featureIcon}>&#x1F916;</div>
-            <h3>AI-Native Workflows</h3>
-            <p>Minimal YAML syntax that LLMs generate correctly. No more debugging AI-generated code.</p>
+            <h3>AI-Friendly Syntax</h3>
+            <p>Minimal YAML that LLMs generate correctly. No more debugging AI-generated code.</p>
           </div>
           <div className={styles.featureItem}>
             <div className={styles.featureIcon}>&#x1F504;</div>
