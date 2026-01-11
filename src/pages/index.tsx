@@ -40,19 +40,19 @@ function HeroSection() {
         <div className={styles.heroText}>
           <span className={styles.badge}>Open Source</span>
           <Heading as="h1" className={styles.heroTitle}>
-            Infrastructure as Code,{' '}
-            <span className={styles.gradient}>Powered by Actors</span>
+            Lightweight Actor Model{' '}
+            <span className={styles.gradient}>with AI-Native Workflows</span>
           </Heading>
           <p className={styles.heroSubtitle}>
-            Build concurrent, distributed applications with plain Java objects.
-            Declarative YAML workflows simple enough for AI agents to generate
-            correctly—no more debugging AI-generated playbooks.
+            Turn any Plain Old Java Object into a concurrent actor.
+            Define complex workflows in minimal YAML—state machine semantics
+            that AI agents can generate correctly on the first try.
           </p>
           <div className={styles.heroCta}>
             <Link className={styles.primaryBtn} to="/docs/pojo-actor/introduction">
               Get Started
             </Link>
-            <Link className={styles.secondaryBtn} to="https://github.com/scivicslab">
+            <Link className={styles.secondaryBtn} to="https://github.com/scivicslab/POJO-actor">
               View on GitHub
             </Link>
           </div>
@@ -141,19 +141,24 @@ function FeaturesSection() {
           </div>
           <div className={styles.featureItem}>
             <div className={styles.featureIcon}>&#x26A1;</div>
-            <h3>Type-safe Messaging</h3>
-            <p>Compile-time type checking with Java generics. No casting, no runtime surprises.</p>
+            <h3>Virtual Thread Native</h3>
+            <p>Built for Java 21+. Each actor runs on its own virtual thread for massive concurrency.</p>
+          </div>
+          <div className={styles.featureItem}>
+            <div className={styles.featureIcon}>&#x1F916;</div>
+            <h3>AI-Native Workflows</h3>
+            <p>Minimal YAML syntax that LLMs generate correctly. No more debugging AI-generated code.</p>
           </div>
           <div className={styles.featureItem}>
             <div className={styles.featureIcon}>&#x1F504;</div>
-            <h3>Built-in Workflows</h3>
-            <p>Define state machines in YAML. The interpreter handles transitions automatically.</p>
+            <h3>State Machine Semantics</h3>
+            <p>Turing-complete workflows with natural conditional branching based on system state.</p>
           </div>
-          <div className={styles.featureItem}>
-            <div className={styles.featureIcon}>&#x1F310;</div>
-            <h3>Multi-node Ready</h3>
-            <p>Execute commands across distributed nodes. Each node is an independent actor.</p>
-          </div>
+        </div>
+        <div className={styles.featureCta}>
+          <Link className={styles.primaryBtn} to="/docs/pojo-actor/introduction">
+            Learn POJO-actor
+          </Link>
         </div>
       </div>
     </section>
@@ -179,21 +184,20 @@ function WorkflowSection() {
             </div>
           </div>
           <div className={styles.workflowText}>
-            <span className={styles.sectionBadge}>actor-IaC</span>
+            <span className={styles.sectionBadge}>Built on POJO-actor</span>
             <Heading as="h2" className={styles.sectionTitle}>
-              Declarative Infrastructure Workflows
+              actor-IaC: Infrastructure Automation
             </Heading>
             <p className={styles.workflowDesc}>
-              Define your infrastructure operations in YAML. State machine semantics
-              ensure reliable execution with automatic error handling and recovery.
-              The minimal syntax is ideal for AI-assisted development—LLMs generate
-              correct workflows without the trial-and-error of complex DSLs.
+              Apply POJO-actor's workflow engine to infrastructure automation.
+              Execute commands across distributed nodes via SSH, with every action
+              logged to an H2 database for full traceability.
             </p>
             <ul className={styles.workflowList}>
-              <li>Parallel execution across nodes</li>
-              <li>Built-in logging to H2 database</li>
+              <li>SSH-based remote execution with Ansible-compatible inventory</li>
+              <li>Parallel execution across node groups</li>
               <li>Overlay system for environment customization</li>
-              <li>Idempotent operations by design</li>
+              <li>Full audit trail with structured logging</li>
             </ul>
             <Link className={styles.primaryBtn} to="/docs/actor-IaC/introduction">
               Learn actor-IaC
