@@ -122,21 +122,11 @@ const config: Config = {
           label: 'POJO-actor',
         },
         {
-          type: 'docsVersionDropdown',
-          docsPluginId: 'pojo-actor',
-          position: 'left',
-        },
-        {
           type: 'doc',
           docId: 'introduction',
           docsPluginId: 'actor-iac',
           position: 'left',
           label: 'actor-IaC',
-        },
-        {
-          type: 'docsVersionDropdown',
-          docsPluginId: 'actor-iac',
-          position: 'left',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
