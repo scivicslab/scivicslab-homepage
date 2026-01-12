@@ -119,7 +119,7 @@ This means you can:
 
 
 
-## Virtual Threads and Work-Stealing Pools
+## Virtual Threads and Managed Thread Pools
 
 ### The Problem with Traditional Actor Libraries
 
@@ -145,7 +145,7 @@ for (int i = 0; i < 10_000; i++) {
 
 Virtual threads excel at lightweight operations (message passing, state updates, I/O waiting), but they **should not perform heavy CPU computations directly**. Blocking a virtual thread with CPU-bound work defeats its purpose.
 
-For CPU-intensive tasks, POJO-actor provides **work-stealing pools**:
+For CPU-intensive tasks, POJO-actor provides **managed thread pools**:
 
 ```java
 ActorSystem system = new ActorSystem("system", 4); // 4 CPU threads
@@ -153,10 +153,10 @@ ActorSystem system = new ActorSystem("system", 4); // 4 CPU threads
 // Light operation → virtual thread (default)
 actor.tell(a -> a.updateCounter());
 
-// Heavy computation → work-stealing pool
+// Heavy computation → managed thread pool
 CompletableFuture<Double> result = actor.ask(
     a -> a.performMatrixMultiplication(),
-    system.getWorkStealingPool()
+    system.getManagedThreadPool()
 );
 ```
 
@@ -165,7 +165,7 @@ CompletableFuture<Double> result = actor.ask(
 | Operation Type | Use | Example |
 |----------------|-----|---------|
 | Light (state changes, messaging) | Virtual threads (default) | `tell()`, `ask()` |
-| Heavy (CPU-bound computation) | Work-stealing pool | `ask(..., getWorkStealingPool())` |
+| Heavy (CPU-bound computation) | Managed thread pool | `ask(..., getManagedThreadPool())` |
 
 This separation keeps your actor system responsive while still enabling parallel computation when needed.
 
