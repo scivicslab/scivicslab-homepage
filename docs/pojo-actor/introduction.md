@@ -76,26 +76,100 @@ The core components are:
   The implementation relies exclusively on standard JDK APIs, making it compatible with GraalVM native-image.
 
 
+## Any POJO Can Become an Actor
 
-## Quick Example
+One of POJO-actor’s biggest advantages is that you don’t need to design your code specifically for the actor model from the beginning. Any existing Java object can instantly become an actor, including standard library classes:
+
+```
+import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
+
+// Turn a standard ArrayList into an actor - no modifications needed!
+ActorSystem system = new ActorSystem("listSystem");
+ActorRef<ArrayList<String>> listActor = system.actorOf("myList", new ArrayList<String>());
+
+// Send messages to the ArrayList actor
+listActor.tell(list -> list.add("Hello"));
+listActor.tell(list -> list.add("World"));
+listActor.tell(list -> list.add("from"));
+listActor.tell(list -> list.add("POJO-actor"));
+
+// Query the list size
+CompletableFuture<Integer> sizeResult = listActor.ask(list -> list.size());
+System.out.println("List size: " + sizeResult.get()); // Prints: List size: 4
+
+// Get specific elements
+CompletableFuture<String> firstElement = listActor.ask(list -> list.get(0));
+System.out.println("First element: " + firstElement.get()); // Prints: First element: Hello
+
+// Even complex operations work
+CompletableFuture<String> joinedResult = listActor.ask(list ->
+    String.join(" ", list));
+System.out.println(joinedResult.get()); // Prints: Hello World from POJO-actor
+
+system.terminate();
+```
+
+This means you can:
+
+- Retrofit existing codebases without architectural changes
+- Protect any object with actor-based thread safety
+- Scale incrementally by converting objects to actors as needed
+- Reuse existing POJOs without any modifications
+
+
+
+## Virtual Threads and Work-Stealing Pools
+
+### The Problem with Traditional Actor Libraries
+
+Traditional actor libraries map each actor to an OS thread. Since OS threads are expensive resources (typically limited to a few thousand), the number of actors was effectively capped by the number of available CPU cores. Creating 10,000 actors was simply impractical.
+
+### POJO-actor's Solution: Virtual Threads
+
+POJO-actor leverages **JDK 21+ virtual threads**—lightweight threads managed by the JVM rather than the OS. This enables:
+
+- **Tens of thousands of actors** on ordinary hardware
+- **Minimal memory overhead** per actor
+- **Fast context switching** without OS involvement
 
 ```java
-// Define a simple actor as a POJO
-public class GreetingActor {
-    public String greet(String name) {
-        return "Hello, " + name + "!";
-    }
+// Create 10,000 actors effortlessly
+ActorSystem system = new ActorSystem("massiveSystem");
+for (int i = 0; i < 10_000; i++) {
+    system.actorOf("counter-" + i, new Counter());
 }
-
-// Create actor reference and use it
-IIActorSystem system = new IIActorSystem();
-GreetingActor actor = new GreetingActor();
-IIActorRef<GreetingActor> ref = new IIActorRef<>("greeter", actor, system);
-
-// Call actor method
-String result = ref.ask(a -> a.greet("World")).get();
-System.out.println(result); // "Hello, World!"
 ```
+
+### The Caveat: CPU-Intensive Work
+
+Virtual threads excel at lightweight operations (message passing, state updates, I/O waiting), but they **should not perform heavy CPU computations directly**. Blocking a virtual thread with CPU-bound work defeats its purpose.
+
+For CPU-intensive tasks, POJO-actor provides **work-stealing pools**:
+
+```java
+ActorSystem system = new ActorSystem("system", 4); // 4 CPU threads
+
+// Light operation → virtual thread (default)
+actor.tell(a -> a.updateCounter());
+
+// Heavy computation → work-stealing pool
+CompletableFuture<Double> result = actor.ask(
+    a -> a.performMatrixMultiplication(),
+    system.getWorkStealingPool()
+);
+```
+
+### Summary
+
+| Operation Type | Use | Example |
+|----------------|-----|---------|
+| Light (state changes, messaging) | Virtual threads (default) | `tell()`, `ask()` |
+| Heavy (CPU-bound computation) | Work-stealing pool | `ask(..., getWorkStealingPool())` |
+
+This separation keeps your actor system responsive while still enabling parallel computation when needed.
+
+
 
 ## Workflow Definition
 
@@ -115,9 +189,7 @@ steps:
         method: log
 ```
 
-## Getting Started
 
-Check out the [Getting Started](./getting-started) guide to begin building with POJO-actor.
 
 ## Use Cases
 
