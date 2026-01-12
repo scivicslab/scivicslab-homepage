@@ -210,5 +210,5 @@ Verbose mode increases the log level to FINE, showing detailed information about
 Now that you have run your first workflow, explore these topics:
 
 - [Architecture](./architecture) - Understand how actor-IaC works internally
-- [Commands](./commands/) - Reference for all CLI commands
+- [Commands](./commands) - Reference for all CLI commands
 - [Workflow Overlay](/docs/pojo-actor/workflow-framework/workflow-overlay) - Learn how to customize workflows for different environments
