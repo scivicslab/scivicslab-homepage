@@ -311,4 +311,6 @@ For complete workflow examples, see the [actor-WF-examples](https://github.com/s
 - [Getting Started](./getting-started) — Installation and first steps
 - [Core Components](./core-components/actor-system) — Detailed API documentation
 - [Workflow Framework](./workflow-framework/interpreter) — Workflow engine reference
+- [Javadoc](https://scivicslab.github.io/POJO-actor/) — API reference
 - [GitHub Repository](https://github.com/scivicslab/POJO-actor) — Source code and examples
+- [Design Background](https://coderlegion.com/8748/pojo-actor-v1-0-a-lightweight-actor-model-library-for-java) — The core ideas behind POJO-actor (CoderLegion)
