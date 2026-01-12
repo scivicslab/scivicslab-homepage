@@ -48,8 +48,6 @@ const config: Config = {
           path: 'docs-pojo-actor',
           routeBasePath: 'docs/pojo-actor',
           sidebarPath: './sidebars-pojo-actor.ts',
-          editUrl:
-            'https://github.com/scivicslab/scivics-lab-homepage/tree/main/',
           lastVersion: 'current',
           versions: {
             current: {
@@ -70,8 +68,6 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          editUrl:
-            'https://github.com/scivicslab/scivics-lab-homepage/tree/main/',
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -92,8 +88,6 @@ const config: Config = {
         path: 'docs-actor-iac',
         routeBasePath: 'docs/actor-iac',
         sidebarPath: './sidebars-actor-iac.ts',
-        editUrl:
-          'https://github.com/scivicslab/scivics-lab-homepage/tree/main/',
         lastVersion: 'current',
         versions: {
           current: {
