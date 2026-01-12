@@ -42,10 +42,20 @@ const config: Config = {
     [
       'classic',
       {
+        // POJO-actor docs (main docs instance)
         docs: {
-          sidebarPath: './sidebars.ts',
+          id: 'pojo-actor',
+          path: 'docs-pojo-actor',
+          routeBasePath: 'docs/pojo-actor',
+          sidebarPath: './sidebars-pojo-actor.ts',
           editUrl:
             'https://github.com/scivicslab/scivics-lab-homepage/tree/main/',
+          lastVersion: 'current',
+          versions: {
+            current: {
+              label: '2.12.0',
+            },
+          },
         },
         gtag: {
           trackingID: 'G-MK0GHMG9LS',
@@ -70,6 +80,27 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    // actor-IaC docs (separate plugin instance)
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'actor-iac',
+        path: 'docs-actor-iac',
+        routeBasePath: 'docs/actor-iac',
+        sidebarPath: './sidebars-actor-iac.ts',
+        editUrl:
+          'https://github.com/scivicslab/scivics-lab-homepage/tree/main/',
+        lastVersion: 'current',
+        versions: {
+          current: {
+            label: '2.12.0',
+          },
+        },
+      },
+    ],
+  ],
+
   themeConfig: {
     image: 'img/scivics-social-card.jpg',
     colorMode: {
@@ -84,16 +115,28 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'pojoActorSidebar',
+          type: 'doc',
+          docId: 'introduction',
+          docsPluginId: 'pojo-actor',
           position: 'left',
           label: 'POJO-actor',
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'actorIacSidebar',
+          type: 'docsVersionDropdown',
+          docsPluginId: 'pojo-actor',
+          position: 'left',
+        },
+        {
+          type: 'doc',
+          docId: 'introduction',
+          docsPluginId: 'actor-iac',
           position: 'left',
           label: 'actor-IaC',
+        },
+        {
+          type: 'docsVersionDropdown',
+          docsPluginId: 'actor-iac',
+          position: 'left',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
@@ -115,7 +158,7 @@ const config: Config = {
             },
             {
               label: 'actor-IaC',
-              to: '/docs/actor-IaC/introduction',
+              to: '/docs/actor-iac/introduction',
             },
             {
               label: 'POJO-actor Javadoc',
