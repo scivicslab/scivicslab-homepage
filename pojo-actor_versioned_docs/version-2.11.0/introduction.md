@@ -204,29 +204,118 @@ This separation keeps your actor system responsive while still enabling parallel
 
 
 
-## Workflow Definition
+## Workflow Engine: From Actor to Agent
 
-Define workflows in YAML that orchestrate actor interactions:
+In the traditional actor model, actors are passive entities—they wait for messages and react to them. While this simplifies concurrent programming by eliminating locks, actors themselves don't decide what to do next; they only respond to external stimuli.
+
+POJO-actor's workflow engine changes this paradigm. By attaching a workflow to an actor, you give it complex behavioral patterns: conditional branching, loops, and state-driven decisions. The actor transforms into an **agent**—an autonomous entity that observes its environment and acts according to its own logic.
+
+With Virtual Threads since JDK 21, you can create tens of thousands of such autonomous agents. This combination—complex behavior per actor, massive scale—was impractical before and opens up new applications: large-scale agent-based simulations, infrastructure platforms that monitor and self-repair, and more.
+
+> An agent is anything that can be viewed as perceiving its environment through sensors and acting upon that environment through actuators.
+> — Russell & Norvig, "Artificial Intelligence: A Modern Approach"
+
+### Workflow Format
+
+Because the workflow is essentially a Turing machine, conditional branching and loops are expressed as state transitions. And because this is POJO-actor, each step is simply "send this message to this actor"—just three elements: `actor`, `method`, and `arguments`:
 
 ```yaml
-name: example-workflow
-steps:
-  - states: ["0", "1"]
-    actions:
-      - actor: greeter
-        method: greet
-        arguments: "World"
-  - states: ["1", "end"]
-    actions:
-      - actor: logger
-        method: log
+- states: ["start", "processed"]
+  actions:
+    - actor: dataProcessor    # actor name
+      method: process         # method name
+      arguments: "data.csv"   # arguments
 ```
 
+This follows the same mental model as `tell()`/`ask()` in Java code. The combination allows complex logic that traditional YAML-based workflow languages struggle with—without introducing custom syntax.
+
+### Workflow Example: Turing Machine
+
+The following is a Turing machine that outputs an irrational number. It outputs 001011011101111011111...
+
+Using POJO-actor's workflow format:
+
+```yaml
+name: turing87
+steps:
+- states: ["0", "100"]
+  actions:
+  - {actor: turing, method: initMachine}
+- states: ["100", "1"]
+  actions:
+  - {actor: turing, method: printTape}
+- states: ["1", "2"]
+  actions:
+  - {actor: turing, method: put, arguments: "e"}
+  - {actor: turing, method: move, arguments: "R"}
+  - {actor: turing, method: put, arguments: "e"}
+  - {actor: turing, method: move, arguments: "R"}
+  - {actor: turing, method: put, arguments: "0"}
+  - {actor: turing, method: move, arguments: "R"}
+  - {actor: turing, method: move, arguments: "R"}
+  - {actor: turing, method: put, arguments: "0"}
+  - {actor: turing, method: move, arguments: "L"}
+  - {actor: turing, method: move, arguments: "L"}
+# ... (full workflow continues)
+```
+
+This example demonstrates conditional branching using multiple transitions with the same from-state:
+
+```yaml
+# From state 2: if current value is "1", stay in state 2
+- states: ["2", "2"]
+  actions:
+    - actor: turing
+      method: matchCurrentValue
+      arguments: "1"
+    # ... subsequent actions
+
+# From state 2: if current value is "0", go to state 3
+- states: ["2", "3"]
+  actions:
+    - actor: turing
+      method: matchCurrentValue
+      arguments: "0"
+```
+
+- If `matchCurrentValue("1")` returns true → Execute first transition, remain in state 2
+- If `matchCurrentValue("1")` returns false → Abort this transition, try next transition
+- If `matchCurrentValue("0")` returns true → Transition to state 3
+
+POJO-actor's workflow engine is based on the same design philosophy as Turing machines. Any complexity of processing can be expressed through combinations of state transitions and actions.
+
+For complete workflow examples, see the [actor-WF-examples](https://github.com/scivicslab/actor-WF-examples) repository.
 
 
-## Use Cases
+## Feature Overview
 
-- **Microservice Orchestration**: Coordinate multiple services with workflow definitions
-- **Event-driven Systems**: Build reactive applications with actor-based message passing
-- **Distributed Processing**: Scale across multiple nodes with the actor model
-- **Infrastructure Automation**: Combined with actor-IaC for infrastructure management
+### Core
+- **POJO Actor Model** — Turn any Java object into an actor
+- **Virtual Threads** — Massive actor scalability with lightweight virtual threads
+- **Work-Stealing Pool** — Dedicated thread pool for CPU-intensive tasks
+- **Job Cancellation** — Cancel pending jobs per actor
+- **Immediate Execution** — Bypass message queues with tellNow/askNow
+- **Actor Hierarchies** — Parent-child relationships for actor supervision
+
+### Distributed
+- **Distributed Actor System** — Inter-node communication via HTTP
+- **Remote Actor Reference** — Transparent access to actors on remote nodes
+- **Node Discovery** — Auto-detection for Slurm/Kubernetes/Grid Engine environments
+
+### Workflow Engine
+- **YAML Workflow** — Define workflows in YAML format
+- **Subworkflows** — Split and reuse workflow definitions
+- **YAML Overlay** — Environment-specific configuration (dev/staging/prod)
+
+### Extensibility
+- **Dynamic Actor Loading** — Load actors from external JARs at runtime
+- **Plugin Architecture** — Register plugins via ServiceLoader
+- **GraalVM Native Image** — Full support for native image compilation
+
+
+## Next Steps
+
+- [Getting Started](./getting-started) — Installation and first steps
+- [Core Components](./core-components/actor-system) — Detailed API documentation
+- [Workflow Framework](./workflow-framework/interpreter) — Workflow engine reference
+- [GitHub Repository](https://github.com/scivicslab/POJO-actor) — Source code and examples
