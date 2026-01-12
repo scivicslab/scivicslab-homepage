@@ -1,11 +1,11 @@
 ---
 sidebar_position: 3
-title: tell, ask, and Work-Stealing Pool
+title: tell, ask, and Managed Thread Pool
 ---
 
-# tell, ask, and Work-Stealing Pool
+# tell, ask, and Managed Thread Pool
 
-The `tell()` and `ask()` methods are the primary communication mechanisms in POJO-actor. They provide type-safe, asynchronous message passing using Java lambdas, allowing you to invoke methods on actors while maintaining the thread-safety guarantees of the actor model. This page explains how these methods work, when to use each one, and how to leverage work-stealing pools for CPU-intensive operations.
+The `tell()` and `ask()` methods are the primary communication mechanisms in POJO-actor. They provide type-safe, asynchronous message passing using Java lambdas, allowing you to invoke methods on actors while maintaining the thread-safety guarantees of the actor model. This page explains how these methods work, when to use each one, and how to leverage managed thread pools for CPU-intensive operations.
 
 ## tell() - Fire and Forget
 
@@ -131,17 +131,17 @@ tell(setValue)    tell(increment)    ask(getValue)
               (processes sequentially)
 ```
 
-## Using Work-Stealing Pool for CPU-Intensive Tasks
+## Using Managed Thread Pool for CPU-Intensive Tasks
 
 While the actor's virtual thread is excellent for coordination and state management, it's not ideal for CPU-intensive operations. If an actor performs a heavy computation, it blocks its message queue, preventing other messages from being processed until the computation completes.
 
-To solve this problem, POJO-actor provides work-stealing pools that can execute heavy operations without blocking the actor's message queue. When you pass a pool to `tell()` or `ask()`, the operation is executed on the pool's threads instead of the actor's virtual thread.
+To solve this problem, POJO-actor provides managed thread pools that can execute heavy operations without blocking the actor's message queue. When you pass a pool to `tell()` or `ask()`, the operation is executed on the pool's threads instead of the actor's virtual thread.
 
-### When to Use Work-Stealing Pool
+### When to Use Managed Thread Pool
 
-Use the work-stealing pool when your actor needs to perform operations that take significant CPU time or might block. The table below provides guidance for common scenarios.
+Use the managed thread pool when your actor needs to perform operations that take significant CPU time or might block. The table below provides guidance for common scenarios.
 
-| Scenario | Use Regular tell/ask | Use Work-Stealing Pool |
+| Scenario | Use Regular tell/ask | Use Managed Thread Pool |
 |----------|---------------------|----------------------|
 | Simple state updates (e.g., incrementing a counter) | Yes | No |
 | Quick queries (e.g., getting a value) | Yes | No |
@@ -151,10 +151,10 @@ Use the work-stealing pool when your actor needs to perform operations that take
 
 ### Getting the Pool
 
-The work-stealing pool is accessed through the ActorSystem. Each system has at least one pool created by default.
+The managed thread pool is accessed through the ActorSystem. Each system has at least one pool created by default.
 
 ```java
-ExecutorService pool = system.getWorkStealingPool();
+ExecutorService pool = system.getManagedThreadPool();
 ```
 
 ### Using the Pool with tell() and ask()
@@ -162,7 +162,7 @@ ExecutorService pool = system.getWorkStealingPool();
 Both `tell()` and `ask()` have overloaded versions that accept an ExecutorService as a second parameter. When you use these versions, the operation runs on the pool instead of the actor's virtual thread.
 
 ```java
-// Execute a CPU-intensive operation on the work-stealing pool.
+// Execute a CPU-intensive operation on the managed thread pool.
 // This frees up the actor's message queue to process other messages.
 counter.tell(c -> c.heavyComputation(), pool);
 
@@ -173,7 +173,7 @@ String result = counter.ask(c -> c.expensiveCalculation(), pool).join();
 
 ### Example: Matrix Multiplication
 
-Here's a concrete example showing when to use the work-stealing pool. Matrix multiplication is CPU-intensive and can take significant time, so it should be offloaded to the pool.
+Here's a concrete example showing when to use the managed thread pool. Matrix multiplication is CPU-intensive and can take significant time, so it should be offloaded to the pool.
 
 ```java
 class MatrixActor {
@@ -188,7 +188,7 @@ class MatrixActor {
 }
 
 ActorRef<MatrixActor> actor = system.actorOf("matrix", new MatrixActor());
-ExecutorService pool = system.getWorkStealingPool();
+ExecutorService pool = system.getManagedThreadPool();
 
 // By passing the pool, the multiplication runs on a pool thread
 // while the actor can continue processing other messages.
@@ -229,14 +229,14 @@ int value = counter.ask(c -> {
 
 ## Complete Example
 
-The following example demonstrates the key concepts covered in this page: using `tell()` for fire-and-forget operations, using `ask()` for queries, chaining operations with CompletableFuture, and offloading heavy work to the work-stealing pool.
+The following example demonstrates the key concepts covered in this page: using `tell()` for fire-and-forget operations, using `ask()` for queries, chaining operations with CompletableFuture, and offloading heavy work to the managed thread pool.
 
 ```java
 public class TellAskExample {
     public static void main(String[] args) throws Exception {
-        // Create an actor system with 4 threads in the work-stealing pool.
+        // Create an actor system with 4 threads in the managed thread pool.
         ActorSystem system = new ActorSystem("example", 4);
-        ExecutorService pool = system.getWorkStealingPool();
+        ExecutorService pool = system.getManagedThreadPool();
 
         // Create a data processing actor.
         ActorRef<DataProcessor> processor =
@@ -251,7 +251,7 @@ public class TellAskExample {
         int rowCount = processor.ask(DataProcessor::getRowCount).join();
         System.out.println("Loaded " + rowCount + " rows");
 
-        // Compute statistics on the work-stealing pool.
+        // Compute statistics on the managed thread pool.
         // This is CPU-intensive, so we offload it to avoid blocking.
         double[] stats = processor.ask(p -> p.computeStatistics(), pool).join();
         System.out.println("Mean: " + stats[0] + ", StdDev: " + stats[1]);
