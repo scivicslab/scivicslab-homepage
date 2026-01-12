@@ -148,7 +148,7 @@ for (int i = 0; i < 10_000; i++) {
 
 Virtual threads excel at lightweight operations (message passing, state updates, I/O waiting), but they **should not perform heavy CPU computations directly**. Blocking a virtual thread with CPU-bound work defeats its purpose.
 
-For CPU-intensive tasks, POJO-actor provides **managed thread pools**:
+For CPU-intensive tasks, POJO-actor provides **work-stealing thread pools**:
 
 ```java
 ActorSystem system = new ActorSystem("system", 4); // 4 CPU threads
@@ -156,19 +156,49 @@ ActorSystem system = new ActorSystem("system", 4); // 4 CPU threads
 // Light operation → virtual thread (default)
 actor.tell(a -> a.updateCounter());
 
-// Heavy computation → managed thread pool
+// Heavy computation → work-stealing pool
 CompletableFuture<Double> result = actor.ask(
     a -> a.performMatrixMultiplication(),
-    system.getManagedThreadPool()
+    system.getWorkStealingPool()
 );
 ```
 
-### Summary
+### tell() and ask()
 
-| Operation Type | Use | Example |
-|----------------|-----|---------|
-| Light (state changes, messaging) | Virtual threads (default) | `tell()`, `ask()` |
-| Heavy (CPU-bound computation) | Managed thread pool | `ask(..., getManagedThreadPool())` |
+POJO-actor provides two messaging patterns:
+
+- **`tell(action)`**: Fire-and-forget message. The sender does not wait for a response. Returns `CompletableFuture<Void>`.
+- **`ask(action)`**: Request-response message. The sender receives a result. Returns `CompletableFuture<R>`.
+
+Both methods have two variants:
+
+| Method | Execution | Use Case |
+|--------|-----------|----------|
+| `tell(action)` | Virtual thread | Light operations (state changes, I/O) |
+| `tell(action, executorService)` | Specified thread pool | CPU-bound operations |
+| `ask(action)` | Virtual thread | Light operations with return value |
+| `ask(action, executorService)` | Specified thread pool | CPU-bound operations with return value |
+
+### Example: Using Work-Stealing Pool for Heavy Computation
+
+```java
+ActorSystem system = new ActorSystem("system", 4); // 4 CPU threads
+
+// Light operation → virtual thread (default)
+actor.tell(a -> a.updateCounter());
+
+// Heavy computation → work-stealing pool
+CompletableFuture<Double> result = actor.ask(
+    a -> a.performMatrixMultiplication(),
+    system.getWorkStealingPool()
+);
+
+// Fire-and-forget heavy operation
+actor.tell(
+    a -> a.processLargeDataset(),
+    system.getWorkStealingPool()
+);
+```
 
 This separation keeps your actor system responsive while still enabling parallel computation when needed.
 
