@@ -150,7 +150,7 @@ description: |
 
 steps:
   - states: ["0", "1"]
-    vertexName: validate
+    label: validate
     description: |
       Verify that all prerequisites are met before starting deployment.
       Checks disk space, required services, and configuration files.

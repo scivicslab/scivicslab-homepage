@@ -105,7 +105,7 @@ Work-stealing pools are particularly useful when your actors need to perform hea
 If your application has different types of workloads that should be isolated from each other, you can create additional work-stealing pools. For example, you might want separate pools for image processing tasks and data analysis tasks.
 
 ```java
-system.addWorkStealingPool(8);
+system.addManagedThreadPool(8);
 ```
 
 ### Accessing Pools
@@ -113,8 +113,8 @@ system.addWorkStealingPool(8);
 To use a work-stealing pool with your actor operations, retrieve it from the system. The default pool is always at index 0. If you've added additional pools, they're assigned sequential indices starting from 1.
 
 ```java
-ExecutorService defaultPool = system.getWorkStealingPool();
-ExecutorService customPool = system.getWorkStealingPool(1);
+ExecutorService defaultPool = system.getManagedThreadPool();
+ExecutorService customPool = system.getManagedThreadPool(1);
 ```
 
 ## Lifecycle Management

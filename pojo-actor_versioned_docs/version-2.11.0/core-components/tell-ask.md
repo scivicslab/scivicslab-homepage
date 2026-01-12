@@ -158,7 +158,7 @@ Use the work-stealing pool when your actor needs to perform operations that take
 The work-stealing pool is accessed through the ActorSystem. Each system has at least one pool created by default.
 
 ```java
-ExecutorService pool = system.getWorkStealingPool();
+ExecutorService pool = system.getManagedThreadPool();
 ```
 
 ### Using the Pool with tell() and ask()
@@ -192,7 +192,7 @@ class MatrixActor {
 }
 
 ActorRef<MatrixActor> actor = system.actorOf("matrix", new MatrixActor());
-ExecutorService pool = system.getWorkStealingPool();
+ExecutorService pool = system.getManagedThreadPool();
 
 // By passing the pool, the multiplication runs on a pool thread
 // while the actor can continue processing other messages.
@@ -240,7 +240,7 @@ public class TellAskExample {
     public static void main(String[] args) throws Exception {
         // Create an actor system with 4 threads in the work-stealing pool.
         ActorSystem system = new ActorSystem("example", 4);
-        ExecutorService pool = system.getWorkStealingPool();
+        ExecutorService pool = system.getManagedThreadPool();
 
         // Create a data processing actor.
         ActorRef<DataProcessor> processor =

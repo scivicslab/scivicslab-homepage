@@ -116,7 +116,7 @@ name: collect-node-info
 steps:
   # Initialize the accumulator
   - states: ["0", "1"]
-    vertexName: init
+    label: init
     actions:
       - actor: this
         method: print
@@ -125,7 +125,7 @@ steps:
   # Apply getCpuInfo action to all child nodes
   # Each node reports its CPU to the accumulator
   - states: ["1", "2"]
-    vertexName: collect-cpu
+    label: collect-cpu
     actions:
       - actor: this
         method: apply
@@ -136,7 +136,7 @@ steps:
 
   # Apply getMemoryInfo action to all child nodes
   - states: ["2", "3"]
-    vertexName: collect-memory
+    label: collect-memory
     actions:
       - actor: this
         method: apply
@@ -147,14 +147,14 @@ steps:
 
   # Get and display the summary
   - states: ["3", "4"]
-    vertexName: show-results
+    label: show-results
     actions:
       - actor: accumulator
         method: getSummary
 
   # Print completion message
   - states: ["4", "end"]
-    vertexName: done
+    label: done
     actions:
       - actor: this
         method: print

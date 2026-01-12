@@ -151,7 +151,7 @@ actor.tell(a -> a.updateCounter());
 // Heavy computation → work-stealing pool
 CompletableFuture<Double> result = actor.ask(
     a -> a.performMatrixMultiplication(),
-    system.getWorkStealingPool()
+    system.getManagedThreadPool()
 );
 ```
 
@@ -182,13 +182,13 @@ actor.tell(a -> a.updateCounter());
 // Heavy computation → work-stealing pool
 CompletableFuture<Double> result = actor.ask(
     a -> a.performMatrixMultiplication(),
-    system.getWorkStealingPool()
+    system.getManagedThreadPool()
 );
 
 // Fire-and-forget heavy operation
 actor.tell(
     a -> a.processLargeDataset(),
-    system.getWorkStealingPool()
+    system.getManagedThreadPool()
 );
 ```
 

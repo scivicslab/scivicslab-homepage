@@ -97,11 +97,11 @@ interpreter.readYaml(
 
 ## Strategic Merge Patches
 
-Patches modify base workflows using strategic merge logic. The key concept is the `vertexName` field, which identifies which workflow step should be modified.
+Patches modify base workflows using strategic merge logic. The key concept is the `label` field, which identifies which workflow step should be modified.
 
 ### Modifying Existing Steps
 
-To modify an existing step, create a patch with the same `vertexName`. The patch's content will be merged with the base step.
+To modify an existing step, create a patch with the same `label`. The patch's content will be merged with the base step.
 
 **Base workflow (base/deploy.yaml):**
 
@@ -109,7 +109,7 @@ To modify an existing step, create a patch with the same `vertexName`. The patch
 name: deploy-workflow
 steps:
   - states: ["0", "1"]
-    vertexName: setup
+    label: setup
     actions:
       - actor: deployer
         method: prepare
@@ -117,7 +117,7 @@ steps:
           timeout: 10000
 
   - states: ["1", "end"]
-    vertexName: deploy
+    label: deploy
     actions:
       - actor: deployer
         method: deploy
@@ -128,7 +128,7 @@ steps:
 ```yaml
 name: deploy-workflow
 steps:
-  - vertexName: setup
+  - label: setup
     actions:
       - actor: deployer
         method: prepare
@@ -143,7 +143,7 @@ steps:
 name: deploy-workflow
 steps:
   - states: ["0", "1"]
-    vertexName: setup
+    label: setup
     actions:
       - actor: deployer
         method: prepare
@@ -152,7 +152,7 @@ steps:
           retries: 5          # Added
 
   - states: ["1", "end"]
-    vertexName: deploy
+    label: deploy
     actions:
       - actor: deployer
         method: deploy
@@ -160,23 +160,23 @@ steps:
 
 ### Adding New Steps
 
-To add a new step, include it in the patch after a step with an existing `vertexName` (called an anchor). The new step will be inserted immediately after the anchor.
+To add a new step, include it in the patch after a step with an existing `label` (called an anchor). The new step will be inserted immediately after the anchor.
 
 **Patch with new step:**
 
 ```yaml
 name: deploy-workflow
 steps:
-  - vertexName: setup           # Anchor: this step exists in base
+  - label: setup           # Anchor: this step exists in base
     # No changes to setup itself
 
-  - vertexName: validate        # New step: inserted after setup
+  - label: validate        # New step: inserted after setup
     states: ["1", "2"]
     actions:
       - actor: validator
         method: validateConfig
 
-  - vertexName: deploy
+  - label: deploy
     states: ["2", "end"]        # Updated states to accommodate new step
 ```
 
@@ -187,7 +187,7 @@ To delete a step from the base workflow, add `$delete: true` to the patch:
 ```yaml
 name: deploy-workflow
 steps:
-  - vertexName: optional-step
+  - label: optional-step
     $delete: true
 ```
 
@@ -224,7 +224,7 @@ vars:
 name: api-workflow
 steps:
   - states: ["0", "1"]
-    vertexName: call-api
+    label: call-api
     actions:
       - actor: api-client
         method: call
@@ -240,7 +240,7 @@ steps:
 name: api-workflow
 steps:
   - states: ["0", "1"]
-    vertexName: call-api
+    label: call-api
     actions:
       - actor: api-client
         method: call
@@ -284,7 +284,7 @@ nameSuffix: -v2
 name: deploy-workflow
 steps:
   - states: ["0", "1"]
-    vertexName: prepare
+    label: prepare
     actions:
       - actor: deployer
         method: prepare
@@ -293,7 +293,7 @@ steps:
           timeout: ${timeout}
 
   - states: ["1", "2"]
-    vertexName: deploy
+    label: deploy
     actions:
       - actor: deployer
         method: deploy
@@ -301,7 +301,7 @@ steps:
           target: "${deployTarget}"
 
   - states: ["2", "end"]
-    vertexName: verify
+    label: verify
     actions:
       - actor: deployer
         method: verify
@@ -332,10 +332,10 @@ namePrefix: prod-
 ```yaml
 name: deploy-workflow
 steps:
-  - vertexName: prepare
+  - label: prepare
     # No changes, just acts as anchor
 
-  - vertexName: backup
+  - label: backup
     states: ["1", "1.5"]
     actions:
       - actor: backup-service
@@ -343,7 +343,7 @@ steps:
         arguments:
           retention: 30
 
-  - vertexName: deploy
+  - label: deploy
     states: ["1.5", "2"]
     # States updated for new backup step
 ```
@@ -365,24 +365,24 @@ System.out.println(yaml);
 
 ## Error Handling
 
-### Orphan Vertex Exception
+### Orphan Transition Exception
 
-If a patch contains new steps without any anchor steps (existing steps with matching vertexName), the kustomizer throws an `OrphanVertexException`. This prevents accidentally adding steps to the wrong position.
+If a patch contains new steps without any anchor steps (existing steps with matching label), the kustomizer throws an `OrphanTransitionException`. This prevents accidentally adding steps to the wrong position.
 
 ```java
 try {
     kustomizer.build(overlayDir);
-} catch (OrphanVertexException e) {
-    System.err.println("Patch has no anchor: " + e.getVertexName());
+} catch (OrphanTransitionException e) {
+    System.err.println("Patch has no anchor: " + e.getLabel());
     System.err.println("In file: " + e.getPatchFile());
 }
 ```
 
-To fix this, ensure your patch includes at least one step with a vertexName that exists in the base workflow.
+To fix this, ensure your patch includes at least one step with a label that exists in the base workflow.
 
 ## Best Practices
 
-1. **Use meaningful vertexNames**: Give each step in your base workflow a descriptive vertexName. This makes patches more maintainable and self-documenting.
+1. **Use meaningful labels**: Give each step in your base workflow a descriptive label. This makes patches more maintainable and self-documenting.
 
 2. **Keep bases generic**: Design base workflows to be environment-agnostic. Use variables for any values that might differ between environments.
 
