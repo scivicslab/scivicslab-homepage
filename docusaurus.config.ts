@@ -60,10 +60,10 @@ const config: Config = {
             },
           },
         },
-        // gtag: {
-        //   trackingID: 'G-MK0GHMG9LS',
-        //   anonymizeIP: true,
-        // },
+        gtag: {
+          trackingID: 'G-MK0GHMG9LS',
+          anonymizeIP: true,
+        },
         blog: {
           showReadingTime: true,
           feedOptions: {
@@ -134,7 +134,7 @@ const config: Config = {
           position: 'left',
           label: 'actor-IaC',
         },
-        {to: '/blog', label: 'Blog', position: 'right'},
+        {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/scivicslab',
           label: 'GitHub',
