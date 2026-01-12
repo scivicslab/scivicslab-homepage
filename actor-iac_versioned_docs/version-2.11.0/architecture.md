@@ -105,7 +105,7 @@ The log database contains three main tables:
 
 **logs** contains individual log entries:
 - Timestamp, node ID, log level, message
-- Optional label and action name for context
+- Optional vertex name and action name for context
 - Exit code and duration for command executions
 
 **node_results** tracks the final status of each node in a session:

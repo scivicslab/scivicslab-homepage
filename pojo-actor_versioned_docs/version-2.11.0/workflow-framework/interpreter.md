@@ -389,7 +389,7 @@ You can query and manipulate the Interpreter's state programmatically.
 String state = interpreter.getCurrentState();
 
 // Get the index of the current step in the workflow matrix.
-int index = interpreter.getCurrentTransitionIndex();
+int index = interpreter.getCurrentVertexIndex();
 
 // Check whether a workflow has been loaded.
 if (interpreter.hasCodeLoaded()) {
