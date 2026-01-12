@@ -55,6 +55,9 @@ const config: Config = {
             current: {
               label: '2.12.0',
             },
+            '2.11.0': {
+              banner: 'none',
+            },
           },
         },
         gtag: {
@@ -95,6 +98,9 @@ const config: Config = {
         versions: {
           current: {
             label: '2.12.0',
+          },
+          '2.11.0': {
+            banner: 'none',
           },
         },
       },
