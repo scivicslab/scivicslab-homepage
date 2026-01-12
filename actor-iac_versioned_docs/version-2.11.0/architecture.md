@@ -3,6 +3,10 @@ sidebar_position: 3
 title: Architecture
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.11.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 # Architecture
 
 This page explains how actor-IaC is structured internally and how its components work together to execute workflows across remote nodes. Understanding the architecture helps you write more effective workflows and troubleshoot issues when they arise.

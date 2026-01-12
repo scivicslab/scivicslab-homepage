@@ -3,6 +3,10 @@ sidebar_position: 4
 title: tellNow and askNow
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.11.0. [See the latest version](/docs/pojo-actor/introduction).
+:::
+
 # tellNow and askNow
 
 While `tell()` and `ask()` provide safe, queued message processing, there are situations where you need to interact with an actor immediately without waiting for queued messages to complete. The `tellNow()` and `askNow()` methods provide this capability by executing actions directly on a separate virtual thread, bypassing the message queue entirely.

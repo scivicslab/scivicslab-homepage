@@ -3,6 +3,10 @@ sidebar_position: 6
 title: Accumulator
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.11.0. [See the latest version](/docs/pojo-actor/introduction).
+:::
+
 # Accumulator
 
 The `Accumulator` interface provides a standardized way to collect and aggregate results from multiple sources. This is particularly useful in distributed workflows where you need to gather data from multiple actors or nodes and present it in a unified format. For example, when querying system information from a cluster of servers, each server reports its CPU, memory, and other details, and the Accumulator consolidates all these responses into a single summary.

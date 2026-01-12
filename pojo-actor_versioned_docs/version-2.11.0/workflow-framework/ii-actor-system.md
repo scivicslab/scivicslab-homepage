@@ -3,6 +3,10 @@ sidebar_position: 1
 title: IIActorSystem
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.11.0. [See the latest version](/docs/pojo-actor/introduction).
+:::
+
 # IIActorSystem
 
 The `IIActorSystem` (Interpreter-Interfaced Actor System) extends the base `ActorSystem` to support workflow execution. While the standard ActorSystem manages actors that communicate via type-safe Java lambdas, IIActorSystem adds the capability to manage actors that can be invoked by string-based action names. This string-based invocation is essential for workflow interpreters that read action definitions from YAML or JSON files at runtime.

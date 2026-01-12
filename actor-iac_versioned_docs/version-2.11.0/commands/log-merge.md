@@ -3,6 +3,10 @@ sidebar_position: 6
 title: log-merge
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.11.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 # log-merge
 
 The `log-merge` command consolidates multiple log databases into a single database. This is useful for combining logs from scattered workflow executions into one queryable database.

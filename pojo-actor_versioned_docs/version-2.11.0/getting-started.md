@@ -3,6 +3,10 @@ sidebar_position: 2
 title: Getting Started
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.11.0. [See the latest version](/docs/pojo-actor/introduction).
+:::
+
 # Getting Started with POJO-actor
 
 This guide will help you set up POJO-actor and create your first actor-based application.

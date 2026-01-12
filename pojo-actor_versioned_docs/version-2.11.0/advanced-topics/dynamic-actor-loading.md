@@ -3,6 +3,10 @@ sidebar_position: 1
 title: Dynamic Actor Loading
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.11.0. [See the latest version](/docs/pojo-actor/introduction).
+:::
+
 # Dynamic Actor Loading
 
 :::info Coming Soon

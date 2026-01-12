@@ -3,6 +3,10 @@ sidebar_position: 2
 title: IIActorRef
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.11.0. [See the latest version](/docs/pojo-actor/introduction).
+:::
+
 # IIActorRef
 
 The `IIActorRef<T>` (Interpreter-Interfaced Actor Reference) is an abstract class that bridges the gap between POJO-actor's type-safe lambda-based communication and the string-based action invocation needed by workflow interpreters. While a standard `ActorRef<T>` lets you call methods using Java lambdas that are checked at compile time, `IIActorRef<T>` adds the ability to invoke methods by their string names, which is essential for executing workflows defined in YAML or JSON files.

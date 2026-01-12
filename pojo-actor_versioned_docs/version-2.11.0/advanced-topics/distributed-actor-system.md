@@ -3,6 +3,10 @@ sidebar_position: 2
 title: Distributed Actor System
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.11.0. [See the latest version](/docs/pojo-actor/introduction).
+:::
+
 # Distributed Actor System
 
 :::info Coming Soon

@@ -3,6 +3,10 @@ sidebar_position: 2
 title: ActorRef
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.11.0. [See the latest version](/docs/pojo-actor/introduction).
+:::
+
 # ActorRef
 
 The `ActorRef<T>` class is a reference handle that wraps your plain Java object (POJO) and provides the actor model's message-passing semantics. When you create an ActorRef, it sets up the infrastructure needed for safe concurrent access to your object: a message queue for incoming requests, a dedicated virtual thread for processing those requests, and methods for sending messages to the actor.

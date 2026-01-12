@@ -3,6 +3,10 @@ sidebar_position: 5
 title: log-serve
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.11.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 # log-serve
 
 The `log-serve` command starts an H2 TCP server for centralized workflow logging. This enables multiple actor-IaC processes to write to a single shared log database.

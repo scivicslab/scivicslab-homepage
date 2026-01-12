@@ -3,6 +3,10 @@ sidebar_position: 4
 title: log-search
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.11.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 # log-search
 
 The `log-search` command queries workflow execution logs stored in an H2 database. This enables you to review past executions, analyze failures, and audit what happened on each node.

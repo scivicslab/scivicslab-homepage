@@ -3,6 +3,10 @@ sidebar_position: 3
 title: describe
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.11.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 # describe
 
 The `describe` command displays the description and structure of a workflow. This helps you understand what a workflow does before running it.

@@ -3,6 +3,10 @@ sidebar_position: 4
 title: Workflow Accumulator
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.11.0. [See the latest version](/docs/pojo-actor/introduction).
+:::
+
 # Workflow Accumulator
 
 The `AccumulatorIIAR` class provides an IIActorRef wrapper for the Accumulator interface, enabling Accumulators to be used in YAML-based workflows. This allows workflow definitions to collect results from multiple actors or nodes and aggregate them without writing any Java code for the accumulation logic.

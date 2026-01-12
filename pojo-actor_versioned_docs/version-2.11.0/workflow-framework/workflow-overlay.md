@@ -3,6 +3,10 @@ sidebar_position: 5
 title: Workflow Overlay
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.11.0. [See the latest version](/docs/pojo-actor/introduction).
+:::
+
 # Workflow Overlay
 
 The `WorkflowKustomizer` class implements a Kustomize-like overlay system for POJO-actor workflows. It allows you to create base workflow definitions that can be customized for different environments (development, staging, production) without duplicating code. This approach keeps your workflows DRY (Don't Repeat Yourself) while enabling environment-specific variations.

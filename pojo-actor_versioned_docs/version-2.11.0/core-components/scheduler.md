@@ -3,6 +3,10 @@ sidebar_position: 5
 title: Scheduler
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.11.0. [See the latest version](/docs/pojo-actor/introduction).
+:::
+
 # Scheduler
 
 The `Scheduler` class provides periodic task execution for actors in POJO-actor. It allows you to schedule recurring tasks that execute at fixed intervals or with fixed delays between executions. All scheduled tasks are executed via `ActorRef.ask()`, which ensures that the tasks go through the actor's message queue and maintain thread-safe access to actor state.

@@ -3,6 +3,10 @@ sidebar_position: 1
 title: Introduction
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.11.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 # actor-IaC: AI-Native Infrastructure Automation
 
 This document is the official manual and reference for **actor-IaC**.

@@ -3,6 +3,10 @@ sidebar_position: 1
 title: ActorSystem
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.11.0. [See the latest version](/docs/pojo-actor/introduction).
+:::
+
 # ActorSystem
 
 The `ActorSystem` class serves as the foundation of any POJO-actor application. It acts as a container that manages the lifecycle of all actors, coordinates their communication, and provides shared resources such as thread pools. Every actor in your application must be registered with an ActorSystem, which ensures proper resource management and enables actors to discover and communicate with each other.

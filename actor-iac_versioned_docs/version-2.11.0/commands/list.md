@@ -3,6 +3,10 @@ sidebar_position: 2
 title: list
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.11.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 # list
 
 The `list` command displays all workflow files discovered in a directory. This helps you see which workflows are available before running them.
