@@ -150,14 +150,14 @@ The user executes the following command in the directory `~/actor-IaC` to build 
 mvn clean install
 ```
 
-Maven generates an uber JAR at the file `~/actor-IaC/target/actor-IaC-2.12.0.jar` after the build completes.
+Maven generates an uber JAR at the file `~/actor-IaC/target/actor-IaC-2.11.0.jar` after the build completes.
 
 :::note[What is an uber JAR?]
 An uber JAR (also called a fat JAR) is an executable JAR that bundles the application itself and all dependency libraries into a single JAR file. The user can execute the uber JAR directly with the `java -jar` command. There is no need to install dependency libraries separately.
 :::
 
 :::note[About Version Numbers]
-This tutorial uses version `2.12.0` as an example. The actual version number differs depending on the release at the time of building. The user checks the JAR file name in the `target/` directory and uses the appropriate version number.
+This tutorial uses version `2.11.0` as an example. The actual version number differs depending on the release at the time of building. The user checks the JAR file name in the `target/` directory and uses the appropriate version number.
 :::
 
 ---
@@ -168,7 +168,7 @@ actor-IaC has three execution methods. The user can choose the execution method 
 
 | Method | Command Example | Characteristics |
 |--------|-----------------|-----------------|
-| Direct JAR Execution | `java -jar actor-IaC-2.12.0.jar` | Works with JDK only. The simplest method. The JAR file is built with `mvn install`. |
+| Direct JAR Execution | `java -jar actor-IaC-2.11.0.jar` | Works with JDK only. The simplest method. The JAR file is built with `mvn install`. |
 | JBang Launcher | `./actor_iac.java` | Automatically resolves the JAR file path. Convenient during development. The `actor_iac.java` file is included when git clone is performed. |
 | Native Binary | `./actor-iac` | Fast startup. JDK not required. For production environments. The `actor-iac` file is created by building with native-image. (described later) |
 
@@ -176,22 +176,20 @@ actor-IaC has three execution methods. The user can choose the execution method 
 
 ## Method 1: Direct JAR Execution (Basic)
 
-The user can execute actor-IaC using the uber JAR file `~/actor-IaC/target/actor-IaC-2.12.0.jar` built by Maven.
+The user can execute actor-IaC using the uber JAR file `~/actor-IaC/target/actor-IaC-2.11.0.jar` built by Maven.
 
 The user executes the following command in the directory `~/actor-IaC` to display the actor-IaC help:
 
 ```bash
-java -jar ~/actor-IaC/target/actor-IaC-2.12.0.jar --help
+java -jar ~/actor-IaC/target/actor-IaC-2.11.0.jar --help
 ```
 
 actor-IaC displays output similar to the following:
 
 ```
-actor-IaC 2.12.0
-Usage: java -jar actor-IaC-2.12.0.jar [COMMAND]   (JAR)
-      ./actor_iac.java [COMMAND]                 (JBang)
-      ./actor-iac [COMMAND]                      (Native)
-AI-native Infrastructure as Code workflow automation tool.
+actor-IaC 2.10.0
+Usage: actor-iac [COMMAND]
+Infrastructure as Code workflow automation tool.
   -h, --help      Show this help message and exit.
   -V, --version   Print version information and exit.
 Commands:
@@ -210,13 +208,13 @@ The user can display detailed help for each subcommand by appending the `--help`
 The user executes the following command to display the help for the `run` subcommand:
 
 ```bash
-java -jar ~/actor-IaC/target/actor-IaC-2.12.0.jar run --help
+java -jar ~/actor-IaC/target/actor-IaC-2.11.0.jar run --help
 ```
 
 actor-IaC displays output similar to the following (excerpt):
 
 ```
-Usage: actor-iac run [-hkLqvV] [--embedded] [--no-db-log] [--no-log]
+Usage: actor-iac run [-hkLqvV] [--embedded] [--no-log-db] [--no-log]
                      -d=<workflowDir> ...
 Execute actor-IaC workflows defined in YAML, JSON, or XML format.
   -d, --dir=<workflowDir>    Directory containing workflow files
@@ -226,7 +224,7 @@ Execute actor-IaC workflows defined in YAML, JSON, or XML format.
                              Path to Ansible inventory file
   -o, --overlay=<overlayDir> Overlay directory for environment-specific config
   -v, --verbose              Enable verbose output
-  -q, --quiet, --no-console-log
+  -q, --quiet
                              Suppress all console output
   ...
 ```
@@ -303,11 +301,11 @@ The user executes the following command to build the uber JAR:
 mvn clean package
 ```
 
-The user executes the following command to build the native binary `~/actor-IaC/actor-iac` from the JAR file `~/actor-IaC/target/actor-IaC-2.12.0.jar`:
+The user executes the following command to build the native binary `~/actor-IaC/actor-iac` from the JAR file `~/actor-IaC/target/actor-IaC-2.11.0.jar`:
 
 ```bash
 native-image \
-  -jar target/actor-IaC-2.12.0.jar \
+  -jar target/actor-IaC-2.11.0.jar \
   -o actor-iac \
   --no-fallback \
   -H:+ReportExceptionStackTraces \
@@ -376,7 +374,7 @@ The user executes one of the following commands in the workflow directory (`~/my
 **For direct JAR execution**, the user executes the following command:
 
 ```bash
-java -jar ~/actor-IaC/target/actor-IaC-2.12.0.jar run -d . -w hello-world
+java -jar ~/actor-IaC/target/actor-IaC-2.11.0.jar run -d . -w hello-world
 ```
 
 **For the JBang launcher**, the user needs to have copied `actor_iac.java` beforehand (see Method 2). The user executes the following command:
@@ -403,4 +401,4 @@ Hello, actor-IaC!
 Workflow completed successfully
 ```
 
-The actor-IaC process creates a log file `actor-iac-YYYYMMDDHHmm.log` and a log database `actor-iac-logs.mv.db` in the current directory after execution.
+The actor-IaC process creates a log file `actor-iac-YYYYMMDDHHmm.log` in the current directory and a log database `actor-iac-logs.mv.db` in the workflow directory (specified by the `-d` option) after execution.
