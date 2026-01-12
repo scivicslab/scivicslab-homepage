@@ -147,7 +147,7 @@ function FeaturesSection() {
           <div className={styles.featureItem}>
             <div className={styles.featureIcon}>&#x1F916;</div>
             <h3>Automaton-Based Workflows</h3>
-            <p>Simple enough to get right the first time—by humans or machines.</p>
+            <p>Simple enough to get right the first time—by humans or AI agents.</p>
           </div>
           <div className={styles.featureItem}>
             <div className={styles.featureIcon}>&#x1F310;</div>
