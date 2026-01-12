@@ -21,15 +21,15 @@ Add the following dependency to your `pom.xml`:
 ```xml
 <dependency>
     <groupId>com.scivicslab</groupId>
-    <artifactId>POJO-actor</artifactId>
-    <version>2.9.0</version>
+    <artifactId>pojo-actor</artifactId>
+    <version>2.11.0</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```groovy
-implementation 'com.scivicslab:POJO-actor:2.9.0'
+implementation 'com.scivicslab:pojo-actor:2.11.0'
 ```
 
 ## Creating Your First Actor
