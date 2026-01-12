@@ -233,6 +233,10 @@ This follows the same mental model as `tell()`/`ask()` in Java code. The combina
 
 The following is a Turing machine that outputs an irrational number. It outputs 001011011101111011111...
 
+![Turing Machine Diagram](/img/Turing87.jpg)
+
+> — Charles Petzold, "The Annotated Turing", Wiley Publishing, Inc. (2008) page 87.
+
 Using POJO-actor's workflow format:
 
 ```yaml
