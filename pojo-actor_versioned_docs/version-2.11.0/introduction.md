@@ -217,7 +217,7 @@ With Virtual Threads since JDK 21, you can create tens of thousands of such auto
 
 ### Workflow Format
 
-Because the workflow is essentially a Turing machine, conditional branching and loops are expressed as state transitions. And because this is POJO-actor, each step is simply "send this message to this actor"—just three elements: `actor`, `method`, and `arguments`:
+Because POJO-actor's workflow is essentially a Turing machine, conditional branching and loops are expressed as state transitions. And because this is POJO-actor, each step is simply "send this message to this actor"—just three elements: `actor`, `method`, and `arguments`:
 
 ```yaml
 - states: ["start", "processed"]
