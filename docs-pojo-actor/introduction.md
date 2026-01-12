@@ -37,14 +37,6 @@ Recent advancements in the JDK have fundamentally changed this situation.
 With virtual threads, even a typical developer machine can now support **tens of thousands of concurrent, lightweight execution contexts**, making a simpler and more direct actor-style design practical without heavy runtime machinery.
 
 
-## Project Repository
-
-The POJO-actor source code is available on GitHub:
-
-[https://github.com/scivicslab/POJO-actor](https://github.com/scivicslab/POJO-actor)
-
-
-
 ## Core Components
 
 POJO-actor implements a simplified actor model using modern Java features (JDK21+).
