@@ -6,7 +6,7 @@ title: Introduction
 # actor-IaC: AI-Native Infrastructure Automation
 
 This document is the official manual and reference for **actor-IaC**.
-It currently documents version 2.11.0.
+It currently documents version 2.12.0.
 
 ---
 
@@ -68,4 +68,4 @@ Remote nodes do not need any agent or special software installed. They only need
 
 ## Next Steps
 
-To get started with actor-IaC, proceed to the [Getting Started](./getting-started) guide, which walks you through installation and your first workflow execution. If you want to understand the internal architecture in more detail, see the [Architecture](./architecture) page.
+To get started with actor-IaC, proceed to the [Installation Guide](./tutorials/getting-started) in the Tutorials section, which walks you through installation and your first workflow execution. If you want to understand the internal architecture in more detail, see the [Architecture](./architecture) page.
