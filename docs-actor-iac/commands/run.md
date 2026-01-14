@@ -70,8 +70,8 @@ actor-IaC supports three independent log outputs. Each can be enabled/disabled s
 
 | Option | Description |
 |--------|-------------|
-| `--file-log, -l, --log <file>` | Custom log file path. By default, logs are written to `actor-iac-YYYYMMDDHHmm.log` in the current directory. |
-| `--no-file-log, --no-log` | Disable text file logging (*.log files). |
+| `--file-log, -l, --log <file>` | Enable text file logging and specify output path. Text logging is **disabled by default**; only database logging is used unless this option is specified. |
+| `--no-file-log, --no-log` | Explicitly disable text file logging. (Since text logging is disabled by default, this option is mainly useful for clarity in scripts.) |
 
 #### Database Logging (H2)
 
@@ -148,15 +148,15 @@ Connect to a shared log server for centralized logging:
 
 ### High-Performance Execution
 
-Disable console output and text file logging for maximum performance:
+Disable console output for maximum performance (text file logging is disabled by default):
 
 ```bash
-./actor_iac.java run -d ./workflows -w deploy -i inventory.ini --no-console-log --no-file-log
+./actor_iac.java run -d ./workflows -w deploy -i inventory.ini --no-console-log
 ```
 
 ### Minimal Logging
 
-Disable all logging outputs:
+Disable all logging outputs (console, text file, and database):
 
 ```bash
 ./actor_iac.java run -d ./workflows -w deploy -i inventory.ini --no-console-log --no-file-log --no-db-log
@@ -180,11 +180,14 @@ Render the overlay-applied workflow to see the final result without executing:
 
 ## Logging Behavior
 
-By default, the `run` command outputs to three destinations:
+By default, the `run` command outputs to two destinations:
 
 1. **Console**: Real-time output to stdout/stderr (disable with `--no-console-log` or `-q`)
-2. **Text file**: A timestamped log file in the current directory (e.g., `actor-iac-202601111030.log`). Disable with `--no-file-log`.
-3. **H2 database**: Structured logs in the current directory (e.g., `./actor-iac-logs.mv.db`). Disable with `--no-db-log`.
+2. **H2 database**: Structured logs in the current directory (e.g., `./actor-iac-logs.mv.db`). Disable with `--no-db-log`.
+
+Optionally, you can enable text file logging:
+
+3. **Text file**: Enable with `-l, --log <file>` to write logs to a text file. This is disabled by default to avoid creating many log files during batch execution.
 
 The database log enables structured querying with the `log-search` command. Each execution creates a new session with metadata about the workflow, overlay, inventory, and final status.
 

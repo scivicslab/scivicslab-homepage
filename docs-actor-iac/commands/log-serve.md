@@ -137,7 +137,7 @@ H2 Log Servers Found:
 ------------------------------------------------------------
   Port 29090: H2 Database Server
            HTTP API: http://localhost:28890/info
-           Version:  2.11.0
+           Version:  2.12.0
            Database: /home/user/project/logs/shared
            Sessions: 15
            Started:  2026-01-11T09:00:00+09:00
@@ -159,7 +159,7 @@ Response:
 ```json
 {
   "server": "actor-iac-log-server",
-  "version": "2.11.0",
+  "version": "2.12.0",
   "port": 29090,
   "db_path": "/home/user/project/logs/shared",
   "db_file": "/home/user/project/logs/shared.mv.db",

@@ -390,7 +390,6 @@ java -jar ~/actor-IaC/target/actor-IaC-2.12.0.jar run -d . -w hello-world
 The actor-IaC process displays output similar to the following:
 
 ```
-Logging to: actor-iac-202601121830.log
 Started background log server on port 29090
 Log database: localhost:29090 (TCP mode, auto-shutdown enabled)
 ...
@@ -399,4 +398,8 @@ Hello, actor-IaC!
 Workflow completed successfully
 ```
 
-The actor-IaC process creates a log file `actor-iac-YYYYMMDDHHmm.log` and a log database `actor-iac-logs.mv.db` in the current directory after execution.
+The actor-IaC process creates a log database `actor-iac-logs.mv.db` in the current directory after execution. To also create a text log file, use the `-l` option:
+
+```bash
+./actor_iac.java run -d . -w hello-world -l ./actor-iac.log
+```

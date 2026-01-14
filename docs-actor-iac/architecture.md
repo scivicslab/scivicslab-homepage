@@ -54,7 +54,7 @@ The architecture follows a hierarchical pattern where a single NodeGroupInterpre
 
 The IIActorSystem is the foundation that manages all actors in the workflow execution. It provides a work-stealing thread pool for CPU-bound operations and coordinates message passing between actors. When you start actor-IaC, it creates an IIActorSystem with a configurable number of worker threads (default is 4).
 
-The system maintains a registry of all actors, allowing workflows to reference actors by name. This enables the hierarchical path notation used in workflow definitions, such as `./node-*` to reference all child actors matching a pattern.
+The system maintains a registry of all actors, allowing workflows to reference actors by name. This enables the name-based notation used in workflow definitions, such as `node-*` to reference all child actors matching a pattern.
 
 ### NodeGroup and NodeGroupInterpreter
 
@@ -66,7 +66,7 @@ The NodeGroupInterpreter is the main workflow executor. It wraps a standard POJO
 - Routing actions to specific nodes based on path patterns
 - Collecting results from multiple nodes and aggregating them
 
-When you run a workflow with an inventory, the NodeGroupInterpreter reads the inventory file, creates a NodeIIAR for each target host, and then executes the workflow. Each workflow step can target specific nodes using path patterns like `./node-web-*` or all nodes with `./all`.
+When you run a workflow with an inventory, the NodeGroupInterpreter reads the inventory file, creates a NodeIIAR for each target host, and then executes the workflow. Each workflow step can target specific nodes using name patterns like `node-web-*` or all nodes with `node-*`.
 
 ### NodeIIAR
 
