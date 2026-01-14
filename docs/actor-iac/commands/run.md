@@ -82,6 +82,12 @@ actor-IaC supports three independent log outputs. Each can be enabled/disabled s
 | `--db-log-server, --log-serve <host:port>` | Connect to an H2 log server at the specified address. Enables multiple workflow processes to share a single log database. Falls back to embedded mode if the server is unreachable. |
 | `--embedded` | Force embedded H2 database mode instead of auto-detecting or starting a TCP server. |
 
+### Display
+
+| Option | Description |
+|--------|-------------|
+| `-c, --cowfile <name>` | Cowsay character to display at the beginning of each step. Use `--cowfile list` to show available characters. Defaults to `default`. See [Cowsay Characters](../tutorials/020-cowsay-characters) for details. |
+
 ### Other
 
 | Option | Description |
@@ -168,6 +174,20 @@ Render the overlay-applied workflow to see the final result without executing:
 
 ```bash
 ./actor_iac.java run -d ./workflows -o ./overlays/production --render-to ./rendered
+```
+
+### Custom Cowsay Character
+
+Use a different cowsay character for step display:
+
+```bash
+./actor_iac.java run -d ./workflows -w deploy -i inventory.ini --cowfile tux
+```
+
+List available cowsay characters:
+
+```bash
+./actor_iac.java run --cowfile list
 ```
 
 ## Exit Codes
