@@ -48,18 +48,9 @@ const config: Config = {
         // POJO-actor docs (main docs instance)
         docs: {
           id: 'pojo-actor',
-          path: 'docs-pojo-actor',
+          path: 'docs/pojo-actor',
           routeBasePath: 'docs/pojo-actor',
           sidebarPath: './sidebars-pojo-actor.ts',
-          lastVersion: 'current',
-          versions: {
-            current: {
-              label: '2.12.0',
-            },
-            '2.11.0': {
-              banner: 'none',
-            },
-          },
         },
         gtag: {
           trackingID: 'G-MK0GHMG9LS',
@@ -88,18 +79,9 @@ const config: Config = {
       '@docusaurus/plugin-content-docs',
       {
         id: 'actor-iac',
-        path: 'docs-actor-iac',
+        path: 'docs/actor-iac',
         routeBasePath: 'docs/actor-iac',
         sidebarPath: './sidebars-actor-iac.ts',
-        lastVersion: 'current',
-        versions: {
-          current: {
-            label: '2.12.0',
-          },
-          '2.11.0': {
-            banner: 'none',
-          },
-        },
       },
     ],
   ],
