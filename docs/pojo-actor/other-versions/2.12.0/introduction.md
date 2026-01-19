@@ -1,24 +1,12 @@
 ---
 sidebar_position: 1
-title: "POJO-actor: Lightweight Actor Model Library for Java"
-description: "POJO-actor is a lightweight Java actor model library using JDK 21+ virtual threads. Turn any POJO into an actor with zero reflection. Supports tens of thousands of concurrent actors, workflow engine, and distributed systems."
-keywords:
-  - POJO-actor
-  - Java actor model
-  - virtual threads
-  - JDK 21
-  - concurrent programming
-  - actor framework
-  - lightweight actor
-  - Java concurrency
-  - message passing
-  - workflow engine
+title: Introduction
 ---
 
 # POJO-actor: A Lightweight Actor Model for Java Using Virtual Threads
 
 This document is the official manual and reference for **POJO-actor**.
-It currently documents version 2.13.0.
+It currently documents version 2.12.0.
 
 
 ---

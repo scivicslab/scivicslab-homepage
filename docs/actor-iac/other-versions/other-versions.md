@@ -5,5 +5,6 @@ title: Other Versions
 
 # Other Versions
 
-- [2.12.0 Document (latest)](/docs/actor-iac/introduction)
-- [2.11.0 Document](/docs/actor-iac/2.11.0/introduction)
+- [2.13.0 Document (latest)](/docs/actor-iac/introduction)
+- [2.12.0 Document](/docs/actor-iac/other-versions/2.12.0/introduction)
+- [2.11.0 Document](/docs/actor-iac/other-versions/2.11.0/introduction)
