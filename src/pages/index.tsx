@@ -40,8 +40,8 @@ function HeroSection() {
         <div className={styles.heroText}>
           <span className={styles.badge}>Open Source</span>
           <Heading as="h1" className={styles.heroTitle}>
-            Lightweight Actor Model{' '}
-            <span className={styles.gradient}>with Automaton-Based Workflows</span>
+            POJO-actor:{' '}
+            <span className={styles.gradient}>Lightweight Actor Model for Java</span>
           </Heading>
           <p className={styles.heroSubtitle}>
             Turn any Plain Old Java Object into a concurrent actor.

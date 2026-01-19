@@ -6,8 +6,25 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Scivics Lab',
-  tagline: 'Actor-based Infrastructure as Code',
+  tagline: 'POJO-actor - Lightweight Actor Model for Java | actor-IaC - Infrastructure Automation',
   favicon: 'img/favicon.png',
+
+  headTags: [
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'keywords',
+        content: 'POJO-actor, actor-IaC, Java actor model, virtual threads, infrastructure as code, IaC, concurrent programming, workflow engine',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'author',
+        content: 'Scivics Lab',
+      },
+    },
+  ],
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {

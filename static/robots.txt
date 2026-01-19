@@ -1,0 +1,8 @@
+# robots.txt for scivicslab.com
+# Official website for POJO-actor and actor-IaC
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://scivicslab.com/sitemap.xml

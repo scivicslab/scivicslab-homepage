@@ -1,6 +1,19 @@
 ---
 sidebar_position: 1
-title: Introduction
+title: "actor-IaC: AI-Native Infrastructure as Code Tool"
+description: "actor-IaC is an AI-native infrastructure automation tool using state machine-based YAML workflows. Execute SSH commands across multiple nodes with full traceability via H2 database logging. Built on POJO-actor framework."
+keywords:
+  - actor-IaC
+  - infrastructure as code
+  - IaC
+  - infrastructure automation
+  - SSH automation
+  - YAML workflow
+  - state machine
+  - AI-native
+  - DevOps
+  - configuration management
+  - server automation
 ---
 
 # actor-IaC: AI-Native Infrastructure Automation
