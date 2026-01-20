@@ -3,6 +3,10 @@ sidebar_position: 1
 title: Introduction
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.12.0. [See the latest version](/docs/pojo-actor/introduction).
+:::
+
 # POJO-actor: A Lightweight Actor Model for Java Using Virtual Threads
 
 This document is the official manual and reference for **POJO-actor**.
@@ -351,6 +355,19 @@ For complete workflow examples, see the [actor-WF-examples](https://github.com/s
 - **Dynamic Actor Loading** — Load actors from external JARs at runtime
 - **Plugin Architecture** — Register plugins via ServiceLoader
 - **GraalVM Native Image** — Full support for native image compilation
+
+
+## Acknowledgments
+
+POJO-actor was inspired by Alexander Zakusylo's [`actr`](https://medium.com/@zakgof/type-safe-actor-model-for-java-7133857a9f72) library, which pioneered the POJO-based actor model approach in Java. While `actr` introduced many excellent concepts, POJO-actor extends and improves upon them with:
+
+- **Message ordering guarantee**: Unlike `actr`, POJO-actor ensures that messages sent to an actor are processed in the order they were sent
+- **Modern Java features**: Built with Java 21+ virtual threads and modern concurrency patterns
+- **Enhanced thread pool management**: `actr` used real threads for actors, limiting scalability to CPU core count and causing performance issues with heavy computations. POJO-actor uses virtual threads for actors and delegates heavy computations to configurable managed thread pools, allowing thousands of actors while controlling CPU core usage
+
+We acknowledge the foundational work done by the `actr` library team in making actor model programming more accessible to Java developers.
+
+We also acknowledge [`Comedy.js`](https://github.com/untu/comedy), a Node.js actor framework, which inspired POJO-actor's basic architecture design, particularly the **ActorSystem** and **ActorRef** concepts. While Comedy.js uses one process or one real thread per actor, POJO-actor leverages Java's virtual threads to enable thousands of lightweight actors.
 
 
 ## Next Steps

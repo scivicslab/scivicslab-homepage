@@ -3,6 +3,10 @@ sidebar_position: 3
 title: tell, ask, and Managed Thread Pool
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.12.0. [See the latest version](/docs/pojo-actor/introduction).
+:::
+
 # tell, ask, and Managed Thread Pool
 
 The `tell()` and `ask()` methods are the primary communication mechanisms in POJO-actor. They provide type-safe, asynchronous message passing using Java lambdas, allowing you to invoke methods on actors while maintaining the thread-safety guarantees of the actor model. This page explains how these methods work, when to use each one, and how to leverage managed thread pools for CPU-intensive operations.
