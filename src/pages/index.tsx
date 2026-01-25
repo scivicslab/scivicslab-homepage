@@ -211,11 +211,12 @@ function WorkflowSection() {
 
 const articles = [
   {
-    title: 'POJO-actor Tutorial Part 2 (Second Half): Creating Workflows',
-    url: 'https://coderlegion.com/9132/pojo-actor-tutorial-part-2-second-half-creating-workflows',
-    date: 'Dec 31, 2025',
-    description: 'Learn how to create and execute workflows using POJO-actor.',
+    title: 'POJO-actor and actor-IaC v2.13.0 Released',
+    url: '/blog/release-v2.13.0',
+    date: 'Jan 26, 2026',
+    description: 'Java plugin support, JSON State variable expansion fixes, and WorkflowReporter.',
     pattern: 'nodes',
+    isInternal: true,
   },
   {
     title: 'POJO-actor Tutorial Part 2 (First Half): Workflow Language Basics',
@@ -223,6 +224,7 @@ const articles = [
     date: 'Dec 31, 2025',
     description: 'Introduction to the workflow language and its core concepts.',
     pattern: 'grid',
+    isInternal: false,
   },
   {
     title: 'POJO-actor v1.0: A Lightweight Actor Model Library for Java',
@@ -230,6 +232,7 @@ const articles = [
     date: 'Dec 22, 2025',
     description: 'Announcing POJO-actor v1.0 and its key features.',
     pattern: 'waves',
+    isInternal: false,
   },
 ];
 
@@ -311,21 +314,37 @@ function ArticlesSection() {
         </div>
         <div className={styles.articlesGrid}>
           {articles.map((article, index) => (
-            <a
-              key={index}
-              href={article.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.articleCard}
-            >
-              <ArticlePattern pattern={article.pattern} />
-              <div className={styles.articleBody}>
-                <span className={styles.articleDate}>{article.date}</span>
-                <h3 className={styles.articleTitle}>{article.title}</h3>
-                <p className={styles.articleDesc}>{article.description}</p>
-                <span className={styles.articleLink}>Read on CoderLegion →</span>
-              </div>
-            </a>
+            article.isInternal ? (
+              <Link
+                key={index}
+                to={article.url}
+                className={styles.articleCard}
+              >
+                <ArticlePattern pattern={article.pattern} />
+                <div className={styles.articleBody}>
+                  <span className={styles.articleDate}>{article.date}</span>
+                  <h3 className={styles.articleTitle}>{article.title}</h3>
+                  <p className={styles.articleDesc}>{article.description}</p>
+                  <span className={styles.articleLink}>Read more →</span>
+                </div>
+              </Link>
+            ) : (
+              <a
+                key={index}
+                href={article.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.articleCard}
+              >
+                <ArticlePattern pattern={article.pattern} />
+                <div className={styles.articleBody}>
+                  <span className={styles.articleDate}>{article.date}</span>
+                  <h3 className={styles.articleTitle}>{article.title}</h3>
+                  <p className={styles.articleDesc}>{article.description}</p>
+                  <span className={styles.articleLink}>Read on CoderLegion →</span>
+                </div>
+              </a>
+            )
           ))}
         </div>
       </div>
