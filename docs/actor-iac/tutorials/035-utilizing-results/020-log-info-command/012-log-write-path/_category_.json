@@ -1,0 +1,8 @@
+{
+  "label": "Log Write Path",
+  "position": 12,
+  "link": {
+    "type": "generated-index",
+    "description": "Understand actor model log collection mechanism."
+  }
+}

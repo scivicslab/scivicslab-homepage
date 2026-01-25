@@ -1,205 +1,114 @@
 ---
 id: ssh-requirements
-title: "Tutorial: SSH Connection Requirements"
+title: SSH Connection with Public Key Authentication
 sidebar_position: 25
 ---
 
-actor-IaC sends commands to remote nodes via SSH. The SSH Connection Requirements tutorial explains the requirements and configuration methods for actor-IaC to connect to remote nodes.
+## Problem Definition
+
+**Goal:** Enable SSH connection from actor-IaC to remote nodes using public key authentication.
+
+actor-IaC supports two SSH authentication methods: public key authentication and password authentication. Public key authentication uses SSH key pairs and is recommended for security and convenience. This tutorial explains how to configure public key authentication.
 
 
-## Prerequisites: Operator Machine and Cluster Configuration
+## How to do it
 
-actor-IaC connects via SSH from the operator machine to each node within the cluster to execute commands. The operator machine refers to the machine where users execute actor-IaC.
+There are two aspects to configuring public key authentication.
 
-```mermaid
-flowchart LR
-    subgraph external[External Network]
-        operator[Operator Machine<br/>actor-IaC execution]
-    end
+1. **Network location**: The connection method differs depending on whether the operator terminal is inside or outside the cluster
+2. **Passphrase**: Additional configuration is required depending on whether the private key has a passphrase
 
-    subgraph cluster[Cluster 192.168.5.0/24]
-        gateway[Gateway<br/>192.168.5.1]
-        node13[node13<br/>.13]
-        node14[node14<br/>.14]
-        node15[node15<br/>.15]
-        node21[node21<br/>.21]
-    end
+### 1. ~/.ssh/config Configuration (Connection Method Based on Network Location)
 
-    operator -->|SSH| gateway
-    gateway -.->|Internal Network| node13
-    gateway -.->|Internal Network| node14
-    gateway -.->|Internal Network| node15
-    gateway -.->|Internal Network| node21
-```
+The connection method to compute nodes differs depending on the location of the operator terminal. If the operator terminal is inside the cluster, you can SSH directly to each node. If the operator terminal is outside the cluster, you need to SSH to each node via a gateway, using SSH's ProxyJump feature.
 
-The SSH Connection Requirements tutorial assumes the following configuration:
+actor-IaC reads the `~/.ssh/config` file on the operator terminal and automatically uses the connection settings. Depending on the location of the operator terminal, write one of the following configurations in `~/.ssh/config`.
 
-| Item | Value |
-|------|-------|
-| Gateway IP Address | 192.168.5.1 |
-| Compute Node IP Addresses | 192.168.5.13, .14, .15, .21, .22, .23 |
-| SSH Username | devteam |
+#### When Operator Terminal is Inside the Cluster (Direct Connection)
 
-The access method from the operator machine to cluster nodes varies depending on the network location of the operator machine:
-
-- **When the operator machine is within the cluster**: The operator machine can directly SSH connect to each compute node
-- **When the operator machine is outside the cluster**: The operator machine SSH connects to each compute node via the gateway (using ProxyJump feature)
-
-
-## SSH Authentication
-
-actor-IaC supports two authentication methods: public key authentication and password authentication.
-
-### Public Key Authentication
-
-In public key authentication, actor-IaC performs authentication using a pair of the private key on the operator machine and the public key registered in the `~/.ssh/authorized_keys` file on the remote node.
-
-**When using a key without passphrase**
-
-When no passphrase is set on the private key, users specify the key file path in the `~/.ssh/config` file on the operator machine. actor-IaC automatically reads and uses the key file specified in the `~/.ssh/config` file.
-
-**`~/.ssh/config` configuration example when the operator machine is within the cluster (direct connection):**
+If the operator terminal is inside the cluster, you can SSH directly to each compute node. Write the following content in `~/.ssh/config`.
 
 ```
 Host 192.168.5.*
-    User devteam
+    User youruser
     IdentityFile ~/.ssh/id_ed25519_cluster
 ```
 
-When users write the above content to the `~/.ssh/config` file on the operator machine, for SSH connections to hosts matching `192.168.5.*`, the SSH client uses the username `devteam` and the key file `~/.ssh/id_ed25519_cluster`.
+With this configuration, SSH connections to hosts matching `192.168.5.*` will use the username `youruser` and key file `~/.ssh/id_ed25519_cluster`.
 
-**`~/.ssh/config` configuration example when the operator machine is outside the cluster (via gateway):**
+#### When Operator Terminal is Outside the Cluster (Via Gateway)
+
+If the operator terminal is outside the cluster, you access each compute node via a gateway. Using SSH's ProxyJump feature, you can perform the connection to the gateway and the connection to the compute node in a single command. Write the following content in `~/.ssh/config`.
 
 ```
 Host gateway
     HostName 192.168.5.1
-    User devteam
+    User youruser
     IdentityFile ~/.ssh/id_ed25519_cluster
 
 Host 192.168.5.*
-    User devteam
+    User youruser
     IdentityFile ~/.ssh/id_ed25519_cluster
     ProxyJump gateway
 ```
 
-When users write the above content to the `~/.ssh/config` file on the operator machine, for SSH connections to hosts matching `192.168.5.*`, the SSH client first SSH connects to the gateway (192.168.5.1), then SSH connects from the gateway to the target compute node, performing a multi-hop connection. The `ProxyJump gateway` directive instructs the SSH client to perform multi-hop connection.
+In this configuration, first define the connection to the gateway using the host alias `gateway`. Then add the `ProxyJump gateway` directive to connections to `192.168.5.*`. This causes the SSH client to first connect to the gateway when connecting to `192.168.5.*`, then perform a multi-hop connection from there to the target node.
 
-**When using a key with passphrase**
 
-When a passphrase is set on the private key, users need to register the private key with the ssh-agent process in addition to configuring the `~/.ssh/config` file on the operator machine. ssh-agent is a daemon process that holds the passphrase entered by users once in memory. When the private key is registered with ssh-agent, actor-IaC can use the private key through ssh-agent, and users will not be prompted for the passphrase during actor-IaC execution.
+### 2. Registering Keys with ssh-agent (Configuration Based on Passphrase Presence)
 
-Users execute the following commands on the operator machine to start the ssh-agent process and register the private key:
+Additional configuration is required depending on whether a passphrase is set on the private key.
+
+#### Keys Without Passphrase
+
+If no passphrase is set on the private key, the `~/.ssh/config` configuration is sufficient. actor-IaC automatically reads and uses the key file specified in `~/.ssh/config`.
+
+#### Keys With Passphrase
+
+If a passphrase is set on the private key, in addition to the `~/.ssh/config` configuration, you need to register the private key with ssh-agent. ssh-agent is a daemon process that keeps the passphrase entered by the user in memory. By registering the private key with ssh-agent, actor-IaC can use the private key through ssh-agent, eliminating passphrase prompts during workflow execution.
+
+Execute the following commands on the operator terminal to start ssh-agent and register the private key. When executing the `ssh-add` command, you will be prompted to enter the passphrase.
 
 ```bash
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519_cluster
 ```
 
-When executing the `ssh-add` command, ssh-add prompts users for the passphrase. When users enter the passphrase, ssh-agent holds the private key in memory. After registration with ssh-agent, actor-IaC uses the private key through ssh-agent to connect to remote nodes.
-
 :::note
-Ed25519 format private keys require registration with ssh-agent regardless of whether a passphrase is set. If users execute actor-IaC without registering the Ed25519 format private key with ssh-agent, actor-IaC fails to connect to remote nodes. The reason Ed25519 format private keys require registration with ssh-agent is that the SSH library (JSch) used by actor-IaC does not support the functionality to directly read Ed25519 format private key files.
-:::
-
-### Password Authentication
-
-In password authentication, actor-IaC performs authentication using the user password of the remote node. When users specify the `--ask-pass` option at actor-IaC execution time, actor-IaC prompts users for the password only once at startup. actor-IaC uses the password entered by users for SSH connections to all nodes.
-
-```bash
-./actor_iac.java run -d ./sysinfo -w main-collect-sysinfo -i inventory.ini -g compute --ask-pass
-```
-
-:::note
-To use the `--ask-pass` option, users need to install the sshpass package on the operator machine. On Ubuntu/Debian, users can install the sshpass package with the following command:
-```bash
-sudo apt install sshpass
-```
+**Ed25519 keys require ssh-agent registration.** Regardless of passphrase presence, Ed25519 format private keys must be registered with ssh-agent. See the Under the hood section for the reason.
 :::
 
 
-## sudo Execution
+### Troubleshooting
 
-When executing commands that require root privileges within workflows, users use the `executeSudoCommand` method in the workflow YAML file. The `executeSudoCommand` method uses the password set in the environment variable `SUDO_PASSWORD` to automatically respond to sudo password prompts on remote nodes.
+#### Isolating SSH Connection Problems
 
-### 1. Set the sudo Password in Environment Variable
-
-Users set the sudo password for remote nodes in the environment variable `SUDO_PASSWORD` in the shell on the operator machine before executing actor-IaC. The actor-IaC process reads the environment variable `SUDO_PASSWORD` at startup and uses the sudo password when executing the `executeSudoCommand` method.
+If SSH connection errors occur when running actor-IaC, first test the connection to the remote node directly with the ssh command without going through actor-IaC. If the following command succeeds, the SSH configuration is correct and the problem may be actor-IaC specific. If it fails, there is a problem with the SSH configuration itself.
 
 ```bash
-export SUDO_PASSWORD="your-sudo-password"
+ssh -o BatchMode=yes youruser@192.168.5.13 "echo OK"
 ```
 
-### 2. Call the `executeSudoCommand` Method in the Workflow
+#### Error-Specific Remedies
 
-Users use the `executeSudoCommand` method instead of the regular `executeCommand` method in the workflow YAML file. The command string passed to the `executeSudoCommand` method does not need to include the `sudo` prefix. The `executeSudoCommand` method automatically executes the command received as an argument with sudo.
+The following shows main errors that occur when running actor-IaC and their remedies.
 
-```yaml
-steps:
-  - states: ["0", "end"]
-    actions:
-      - actor: this
-        method: executeSudoCommand
-        arguments:
-          - "apt update && apt upgrade -y"
-```
-
-### 3. Execute the Workflow
-
-Users execute actor-IaC normally with the environment variable `SUDO_PASSWORD` set.
-
-```bash
-./actor_iac.java run -d ./sysinfo -w main-collect-sysinfo -i inventory.ini -g compute
-```
-
-:::note
-If users execute actor-IaC without setting the environment variable `SUDO_PASSWORD` and the workflow calls the `executeSudoCommand` method, actor-IaC outputs the error message "SUDO_PASSWORD environment variable is not set" and aborts processing.
-:::
+| Error | Cause | Remedy |
+|-------|-------|--------|
+| `Connection refused` | SSH server not running | Execute `sudo systemctl start sshd` on remote |
+| `Permission denied` | SSH authentication failed | Check key registration with `ssh-add -l`, register with `ssh-add` if not registered |
 
 
-## Troubleshooting
+## Under the hood
 
-When SSH connection errors occur during actor-IaC execution, users identify the cause using the following steps.
+### How actor-IaC Reads ~/.ssh/config
 
-### Isolate SSH Connection Issues
+actor-IaC uses the JSch (Java Secure Channel) library for SSH connections. JSch parses the `~/.ssh/config` file and automatically applies host-specific connection settings (username, key file path, ProxyJump, etc.). If you write the settings in `~/.ssh/config`, you don't need to specify connection settings individually in actor-IaC inventory files or command line.
 
-Users test connection to remote nodes directly with the ssh command from the operator machine without going through actor-IaC. Connection testing with the ssh command allows users to isolate whether the problem is in SSH settings or an actor-IaC-specific issue.
+### Why Ed25519 Keys Require ssh-agent Registration
 
-```bash
-ssh -o BatchMode=yes devteam@192.168.5.13 "echo OK"
-```
+JSch does not support the ability to directly read Ed25519 format private key files. JSch can directly read RSA and DSA format key files, but does not support Ed25519 format. Therefore, when using Ed25519 keys, you need to register them with ssh-agent and use the keys through ssh-agent.
 
-The `-o BatchMode=yes` option instructs the ssh command to disable interactive password input. Since actor-IaC internally performs SSH connections in a mode equivalent to BatchMode, if users cannot connect with the ssh command with the `-o BatchMode=yes` option, actor-IaC also cannot connect.
+### About BatchMode
 
-### Resolution by Error Type
-
-**When `Connection refused` error is displayed**
-
-The `Connection refused` error indicates that the SSH server (sshd process) on the remote node is not running. Users log into the remote node via console or other means and start the SSH server with the following command:
-
-```bash
-sudo systemctl start sshd
-```
-
-**When `Permission denied` error is displayed**
-
-The `Permission denied` error indicates that SSH authentication failed. Users execute the following command on the operator machine to check whether the private key is registered with ssh-agent:
-
-```bash
-ssh-add -l
-```
-
-If no private key is displayed in the `ssh-add -l` command output, users register the private key with ssh-agent using the following command:
-
-```bash
-ssh-add ~/.ssh/id_ed25519_cluster
-```
-
-If users want to connect using password authentication instead of public key authentication, users specify the `--ask-pass` option when executing actor-IaC.
-
-**When `SUDO_PASSWORD environment variable is not set` error is displayed**
-
-The `SUDO_PASSWORD environment variable is not set` error indicates that the workflow YAML file uses the `executeSudoCommand` method but the environment variable `SUDO_PASSWORD` is not set. Users set the environment variable `SUDO_PASSWORD` in the shell on the operator machine before executing actor-IaC:
-
-```bash
-export SUDO_PASSWORD="your-sudo-password"
-```
+The `ssh -o BatchMode=yes` option used in troubleshooting instructs the ssh command to disable interactive password input. actor-IaC internally performs SSH connections in a mode equivalent to BatchMode. Therefore, if you cannot connect with the ssh command using this option, actor-IaC also cannot connect. Connection testing with BatchMode accurately simulates the actor-IaC operating environment.

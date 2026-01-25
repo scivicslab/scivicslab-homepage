@@ -1,10 +1,10 @@
 ---
-id: cowsay-characters
+id: cowsay-character
 title: Cowsay Characters
-sidebar_position: 20
+sidebar_position: 12
 ---
 
-actor-IaC displays cowsay-format ASCII art in log output to clearly mark the beginning of each step.
+actor-IaC displays cowsay-format ASCII art to mark the beginning of each step in log output.
 You can change the character with the `--cowfile` option.
 
 ```bash
@@ -32,7 +32,7 @@ three-eyes       turkey           turtle           tux
 udder            vader            vader-koala      www
 ```
 
-To check the list via CLI, execute the following command.
+To check the list via CLI, run the following command.
 
 ```bash
 ./actor_iac.java run --cowfile list
@@ -43,7 +43,7 @@ To check the list via CLI, execute the following command.
 
 ### tux (Linux Penguin)
 
-The Linux mascot character, perfect for server work.
+Linux mascot character, perfect for server work.
 
 ```
  ________________________
@@ -63,7 +63,7 @@ The Linux mascot character, perfect for server work.
 
 ### stegosaurus (Stegosaurus)
 
-A prehistoric character for dinosaur lovers.
+Prehistoric character for dinosaur enthusiasts.
 
 ```
  ________________________
@@ -88,7 +88,7 @@ A prehistoric character for dinosaur lovers.
 
 ### turtle (Turtle)
 
-Perfect for workflows that progress steadily.
+Perfect for steadily progressing workflows.
 
 ```
  ________________________
@@ -114,7 +114,7 @@ Perfect for workflows that progress steadily.
 
 ### elephant (Elephant)
 
-A simple and easy-to-see character.
+Simple and easy-to-see character.
 
 ```
  ________________________
@@ -135,7 +135,7 @@ A simple and easy-to-see character.
 
 ### meow (Cat)
 
-A character for cat lovers.
+Character for cat lovers.
 
 ```
  ________________________
