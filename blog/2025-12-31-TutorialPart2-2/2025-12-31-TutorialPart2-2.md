@@ -340,6 +340,6 @@ This structure separates business logic (POJO) from workflow control (YAML), all
 
 **Last updated**: 2025-12-31
 **Related documents**:
-- [Workflow Basics](../010_WorkflowBasics_241001_oo01/010_WorkflowBasics_241001_oo01_en.md)
-- [IIActorRef Specification](../../020_specs/020_workflow/025_IIActorRefSpecs_251231_oo01/)
+- [Tutorial Part 2 (First Half)](/blog/2025-12-30-TutorialPart2-1)
+- [POJO-actor Documentation](/docs/pojo-actor/introduction)
 

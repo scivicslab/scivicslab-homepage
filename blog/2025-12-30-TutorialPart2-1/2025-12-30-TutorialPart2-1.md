@@ -403,7 +403,8 @@ actor-WF is based on the same design philosophy as Turing machines. Any complexi
 
 To create your own workflows, you need to implement an adapter (IIActorRef) to call POJOs from workflows. See the following for details:
 
-- [IIActorRef Implementation Guide](../../020_specs/020_workflow/025_IIActorRefSpecs_251231_oo01/)
+- [Tutorial Part 2 (Second Half)](/blog/2025-12-31-TutorialPart2-2)
+- [POJO-actor Documentation](/docs/pojo-actor/introduction)
 
 ---
 
