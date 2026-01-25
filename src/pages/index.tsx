@@ -186,7 +186,7 @@ function WorkflowSection() {
           <div className={styles.workflowText}>
             <span className={styles.sectionBadge}>Built on POJO-actor</span>
             <Heading as="h2" className={styles.sectionTitle}>
-              actor-IaC: Infrastructure Automation
+              actor-IaC: Actor-Based Parallel Infrastructure Automation
             </Heading>
             <p className={styles.workflowDesc}>
               Apply POJO-actor's workflow engine to infrastructure automation.

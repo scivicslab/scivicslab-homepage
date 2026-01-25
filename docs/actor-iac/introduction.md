@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
-title: "actor-IaC: AI-Native Infrastructure as Code Tool"
-description: "actor-IaC is an AI-native infrastructure automation tool using state machine-based YAML workflows. Execute SSH commands across multiple nodes with full traceability via H2 database logging. Built on POJO-actor framework."
+title: "actor-IaC: Actor-Based Parallel Infrastructure Automation"
+description: "actor-IaC is an actor-based infrastructure automation tool using state machine-based YAML workflows. Execute SSH commands across multiple nodes in parallel with full traceability via H2 database logging. Built on POJO-actor framework."
 keywords:
   - actor-IaC
   - infrastructure as code
@@ -10,13 +10,15 @@ keywords:
   - SSH automation
   - YAML workflow
   - state machine
-  - AI-native
+  - actor model
+  - parallel execution
   - DevOps
   - configuration management
   - server automation
+  - traceability
 ---
 
-# actor-IaC: AI-Native Infrastructure Automation
+# actor-IaC: Actor-Based Parallel Infrastructure Automation with Full Traceability
 
 This document is the official manual and reference for **actor-IaC**.
 It currently documents version 2.13.0.
@@ -81,4 +83,4 @@ Remote nodes do not need any agent or special software installed. They only need
 
 ## Next Steps
 
-To get started with actor-IaC, proceed to the [Installation Guide](./tutorials/getting-started) in the Tutorials section, which walks you through installation and your first workflow execution. If you want to understand the internal architecture in more detail, see the [Architecture](./architecture) page.
+To get started with actor-IaC, proceed to the [Installation Guide](./tutorials/005-installation) in the Tutorials section, which walks you through installation and your first workflow execution. If you want to understand the internal architecture in more detail, see the [Architecture](./architecture) page.
