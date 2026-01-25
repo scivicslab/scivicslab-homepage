@@ -1,5 +1,6 @@
 ---
 id: 12-30-TutorialPart2-1
+slug: 2025-12-30-TutorialPart2-1
 title: "POJO-actor Tutorial Part 2 (First Half): Workflow Language Basics"
 authors: [devteam]
 date: 2025-12-30
