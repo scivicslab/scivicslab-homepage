@@ -219,11 +219,27 @@ const articles = [
     isInternal: true,
   },
   {
+    title: 'actor-IaC v2.13.0 Released',
+    url: '/blog/actor-iac-v2.13.0',
+    date: 'Jan 26, 2026',
+    description: 'WorkflowReporter, Java plugin support, and AptLockChecker plugin.',
+    pattern: 'grid',
+    isInternal: true,
+  },
+  {
+    title: 'POJO-actor Tutorial Part 2 (Second Half): Creating Workflows',
+    url: 'https://coderlegion.com/9132/pojo-actor-tutorial-part-2-second-half-creating-workflows',
+    date: 'Dec 31, 2025',
+    description: 'Learn how to create and execute workflows using POJO-actor.',
+    pattern: 'waves',
+    isInternal: false,
+  },
+  {
     title: 'POJO-actor Tutorial Part 2 (First Half): Workflow Language Basics',
     url: 'https://coderlegion.com/9131/pojo-actor-tutorial-part-2-first-half-workflow-language-basics',
-    date: 'Dec 31, 2025',
+    date: 'Dec 30, 2025',
     description: 'Introduction to the workflow language and its core concepts.',
-    pattern: 'grid',
+    pattern: 'nodes',
     isInternal: false,
   },
   {
@@ -231,7 +247,7 @@ const articles = [
     url: 'https://coderlegion.com/8748/pojo-actor-v1-0-a-lightweight-actor-model-library-for-java',
     date: 'Dec 22, 2025',
     description: 'Announcing POJO-actor v1.0 and its key features.',
-    pattern: 'waves',
+    pattern: 'grid',
     isInternal: false,
   },
 ];
