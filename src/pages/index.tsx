@@ -227,11 +227,19 @@ const articles = [
     isInternal: true,
   },
   {
+    title: 'The actor-IaC Journey: v2.6.0 to v2.12.0',
+    url: '/blog/actor-iac-journey-v2.6-to-v2.12',
+    date: 'Jan 26, 2026',
+    description: 'A retrospective on the evolution of actor-IaC from initial release through v2.12.0.',
+    pattern: 'waves',
+    isInternal: true,
+  },
+  {
     title: 'POJO-actor Tutorial Part 2 (Second Half): Creating Workflows',
     url: 'https://coderlegion.com/9132/pojo-actor-tutorial-part-2-second-half-creating-workflows',
     date: 'Dec 31, 2025',
     description: 'Learn how to create and execute workflows using POJO-actor.',
-    pattern: 'waves',
+    pattern: 'nodes',
     isInternal: false,
   },
   {
@@ -239,7 +247,7 @@ const articles = [
     url: 'https://coderlegion.com/9131/pojo-actor-tutorial-part-2-first-half-workflow-language-basics',
     date: 'Dec 30, 2025',
     description: 'Introduction to the workflow language and its core concepts.',
-    pattern: 'nodes',
+    pattern: 'grid',
     isInternal: false,
   },
   {
@@ -247,7 +255,7 @@ const articles = [
     url: 'https://coderlegion.com/8748/pojo-actor-v1-0-a-lightweight-actor-model-library-for-java',
     date: 'Dec 22, 2025',
     description: 'Announcing POJO-actor v1.0 and its key features.',
-    pattern: 'grid',
+    pattern: 'waves',
     isInternal: false,
   },
 ];
