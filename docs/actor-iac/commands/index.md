@@ -15,6 +15,7 @@ actor-IaC provides the following CLI commands:
 | [log-search](./log-search) | Search and query workflow execution logs |
 | [log-serve](./log-serve) | Start a centralized log server |
 | [log-merge](./log-merge) | Merge multiple log databases into one |
+| [db-clear](./db-clear) | Delete log database files |
 
 ## Basic Usage
 

@@ -10,12 +10,12 @@ The `run` command executes a workflow against target nodes. This is the primary 
 ## Synopsis
 
 ```bash
-actor-iac run -d <directory> -w <workflow> [options]
+actor-iac run -w <workflow> [options]
 ```
 
 ## Description
 
-The `run` command loads a workflow definition from the specified directory, optionally applies an overlay for environment-specific customization, and executes the workflow. When an inventory file is provided, the workflow runs against remote nodes via SSH. Without an inventory, the workflow runs locally.
+The `run` command loads a workflow definition from the specified directory (defaults to current directory), optionally applies an overlay for environment-specific customization, and executes the workflow. When an inventory file is provided, the workflow runs against remote nodes via SSH. Without an inventory, the workflow runs locally.
 
 During execution, all actions and their results are logged to an H2 database. The command exits with code 0 on success and non-zero on failure.
 
@@ -23,8 +23,13 @@ During execution, all actions and their results are logged to an H2 database. Th
 
 | Option | Description |
 |--------|-------------|
-| `-d, --dir <directory>` | Directory containing workflow files. This directory is scanned recursively for YAML, JSON, and XML files. |
-| `-w, --workflow <name>` | Name of the workflow to execute. You can specify the name with or without the file extension. |
+| `-w, --workflow <name>` | Workflow file path relative to the base directory (required). You can specify the name with or without the file extension. |
+
+## Base Directory
+
+| Option | Description |
+|--------|-------------|
+| `-d, --dir <directory>` | Base directory containing workflow files. Defaults to the current directory. Logs are created in this directory. |
 
 ## Optional Options
 
@@ -64,23 +69,23 @@ actor-IaC supports three independent log outputs. Each can be enabled/disabled s
 
 | Option | Description |
 |--------|-------------|
-| `-q, --quiet, --no-console-log` | Suppress all console output (stdout/stderr). Useful for high-performance batch execution where console output would slow down execution. |
+| `-q, --quiet` | Suppress all console output (stdout/stderr). Logs are still written to the database. Useful for high-performance batch execution. |
 
 #### Text File Logging
 
 | Option | Description |
 |--------|-------------|
-| `--file-log, -l, --log <file>` | Enable text file logging and specify output path. Text logging is **disabled by default**; only database logging is used unless this option is specified. |
-| `--no-file-log, --no-log` | Explicitly disable text file logging. (Since text logging is disabled by default, this option is mainly useful for clarity in scripts.) |
+| `-l, --log, --file-log <file>` | Enable text file logging and specify output path. Text logging is **disabled by default**; only database logging is used unless this option is specified. |
+| `--no-log, --no-file-log` | Explicitly disable text file logging. (Since text logging is disabled by default, this option is mainly useful for clarity in scripts.) |
 
 #### Database Logging (H2)
 
 | Option | Description |
 |--------|-------------|
-| `--db-log, --log-db <path>` | H2 database path for structured logging. Defaults to `actor-iac-logs` in the **current directory** (where the command is executed). |
-| `--no-db-log, --no-log-db` | Disable H2 database logging. |
-| `--db-log-server, --log-serve <host:port>` | Connect to an H2 log server at the specified address. Enables multiple workflow processes to share a single log database. Falls back to embedded mode if the server is unreachable. |
-| `--embedded` | Force embedded H2 database mode instead of auto-detecting or starting a TCP server. |
+| `--log-db <path>` | H2 database path for structured logging. Defaults to `actor-iac-logs` in the current directory. |
+| `--no-log-db` | Disable H2 database logging. |
+| `--log-serve <host:port>` | Connect to an H2 log server at the specified address. Enables multiple workflow processes to share a single log database. Falls back to embedded mode if the server is unreachable. |
+| `--embedded` | Use embedded H2 database mode. Default behavior is to auto-start a TCP server with auto-shutdown. |
 
 ### Display
 
@@ -149,7 +154,7 @@ Enable detailed logging for troubleshooting:
 Connect to a shared log server for centralized logging:
 
 ```bash
-./actor_iac.java run -d ./workflows -w deploy -i inventory.ini --db-log-server=localhost:29090
+./actor_iac.java run -d ./workflows -w deploy -i inventory.ini --log-serve=localhost:29090
 ```
 
 ### High-Performance Execution
@@ -157,7 +162,7 @@ Connect to a shared log server for centralized logging:
 Disable console output for maximum performance (text file logging is disabled by default):
 
 ```bash
-./actor_iac.java run -d ./workflows -w deploy -i inventory.ini --no-console-log
+./actor_iac.java run -d ./workflows -w deploy -i inventory.ini --quiet
 ```
 
 ### Minimal Logging
@@ -165,7 +170,7 @@ Disable console output for maximum performance (text file logging is disabled by
 Disable all logging outputs (console, text file, and database):
 
 ```bash
-./actor_iac.java run -d ./workflows -w deploy -i inventory.ini --no-console-log --no-file-log --no-db-log
+./actor_iac.java run -d ./workflows -w deploy -i inventory.ini --quiet --no-log-db
 ```
 
 ### Preview Merged Workflow
@@ -202,8 +207,8 @@ List available cowsay characters:
 
 By default, the `run` command outputs to two destinations:
 
-1. **Console**: Real-time output to stdout/stderr (disable with `--no-console-log` or `-q`)
-2. **H2 database**: Structured logs in the current directory (e.g., `./actor-iac-logs.mv.db`). Disable with `--no-db-log`.
+1. **Console**: Real-time output to stdout/stderr (disable with `-q, --quiet`)
+2. **H2 database**: Structured logs in the current directory (e.g., `./actor-iac-logs.mv.db`). Disable with `--no-log-db`.
 
 Optionally, you can enable text file logging:
 
@@ -216,7 +221,7 @@ The database log enables structured querying with the `log-search` command. Each
 For high-performance batch execution, disable console output which can significantly slow down execution:
 
 ```bash
-./actor_iac.java run -d ./workflows -w deploy -i inventory.ini --no-console-log
+./actor_iac.java run -d ./workflows -w deploy -i inventory.ini --quiet
 ```
 
 ## See Also
@@ -225,3 +230,4 @@ For high-performance batch execution, disable console output which can significa
 - [describe](./describe) - Display workflow description
 - [log-search](./log-search) - Query execution logs
 - [log-serve](./log-serve) - Start a centralized log server
+- [db-clear](./db-clear) - Delete log database files

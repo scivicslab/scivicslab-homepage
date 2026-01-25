@@ -10,7 +10,7 @@ The `describe` command displays the description and structure of a workflow. Thi
 ## Synopsis
 
 ```bash
-actor-iac describe -d <directory> -w <workflow> [options]
+actor-iac describe -w <workflow> [options]
 ```
 
 ## Description
@@ -23,15 +23,20 @@ Workflows can include a top-level `description` field and per-step `description`
 
 | Option | Description |
 |--------|-------------|
-| `-d, --dir <directory>` | Directory containing workflow files. |
-| `-w, --workflow <name>` | Name of the workflow to describe. |
+| `-w, --workflow <name>` | Workflow file path relative to base directory (required). |
+
+## Base Directory
+
+| Option | Description |
+|--------|-------------|
+| `-d, --dir <directory>` | Base directory containing workflow files. Defaults to current directory. |
 
 ## Optional Options
 
 | Option | Description |
 |--------|-------------|
-| `-o, --overlay <directory>` | Overlay directory to apply. The merged workflow is described after patches and variable substitutions. |
-| `--steps` | Also display descriptions for each step in the workflow. |
+| `-o, --overlay <directory>` | Overlay directory containing `overlay-conf.yaml` to apply. The merged workflow is described after patches and variable substitutions. |
+| `--steps, --notes` | Also display the note/description of each step in the workflow. |
 
 ## Output Format
 

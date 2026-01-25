@@ -204,3 +204,4 @@ actor-IaC reserves TCP ports 29090-29100 for log servers. The `--find` option sc
 - [run](./run) - Execute a workflow (can connect to log server)
 - [log-search](./log-search) - Query logs from the database
 - [log-merge](./log-merge) - Merge scattered log databases
+- [db-clear](./db-clear) - Delete log database files

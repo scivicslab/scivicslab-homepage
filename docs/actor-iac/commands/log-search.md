@@ -52,7 +52,7 @@ Each workflow execution creates a session record with metadata like the workflow
 | `--after <datetime>` | Filter sessions started after this time. Format: `YYYY-MM-DDTHH:mm:ss`. |
 | `--since <duration>` | Filter sessions started within the specified duration. Format: `12h`, `1d`, `3d`, `1w`. |
 | `--ended-since <duration>` | Filter sessions ended within the specified duration. |
-| `--limit <count>` | Maximum number of entries to show. Defaults to 100. |
+| `--limit <count>` | Maximum number of lines to show. Defaults to unlimited. |
 
 ### Output Mode
 
@@ -218,3 +218,4 @@ When displaying logs in a terminal that supports ANSI colors, entries are color-
 - [run](./run) - Execute a workflow (creates log entries)
 - [log-serve](./log-serve) - Start a centralized log server
 - [log-merge](./log-merge) - Merge multiple log databases
+- [db-clear](./db-clear) - Delete log database files

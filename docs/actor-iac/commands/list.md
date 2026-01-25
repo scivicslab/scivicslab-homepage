@@ -10,12 +10,12 @@ The `list` command displays all workflow files discovered in a directory. This h
 ## Synopsis
 
 ```bash
-actor-iac list -d <directory>
+actor-iac list -w <workflow-directory> [-d <base-directory>]
 ```
 
 ## Description
 
-The `list` command recursively scans the specified directory for workflow files (YAML, JSON, and XML). For each file found, it displays the file name that can be used with the `-w` option of the `run` command, the relative path within the directory, and the workflow name as defined in the file itself.
+The `list` command recursively scans the specified workflow directory for workflow files (YAML, JSON, and XML). For each file found, it displays the file name that can be used with the `-w` option of the `run` command, the relative path within the directory, and the workflow name as defined in the file itself.
 
 The workflow name is extracted from the `name` field at the top of the YAML or JSON file. This name appears in log entries and session records, making it useful for identifying workflows when querying logs.
 
@@ -23,7 +23,13 @@ The workflow name is extracted from the `name` field at the top of the YAML or J
 
 | Option | Description |
 |--------|-------------|
-| `-d, --dir <directory>` | Directory to scan for workflow files. The scan is recursive, so workflows in subdirectories are also discovered. |
+| `-w, --workflow <directory>` | Workflow directory path (relative to base directory) to scan for workflow files. The scan is recursive, so workflows in subdirectories are also discovered. |
+
+## Optional Options
+
+| Option | Description |
+|--------|-------------|
+| `-d, --dir <directory>` | Base directory. Defaults to the current directory. |
 
 ## Output Format
 
@@ -41,7 +47,7 @@ The command produces a table with four columns:
 ### List Workflows in a Directory
 
 ```bash
-./actor_iac.java list -d ./workflows
+./actor_iac.java list -w ./workflows
 ```
 
 Example output:
@@ -56,15 +62,15 @@ Available workflows (directory: /home/user/project/workflows)
  3.  health-check              health/health-check.yaml            health-check
  4.  maintenance               maintenance/cleanup.yaml            weekly-maintenance
 ------------------------------------------------------------------------------------------
-Use 'actor-iac run -d ./workflows -w <File>' to execute a workflow.
+Use 'actor-iac run -w <File>' to execute a workflow.
 ```
 
-### Scanning a Subdirectory
+### Scanning with a Base Directory
 
-You can point to any directory that contains workflow files:
+You can specify a base directory and scan a subdirectory within it:
 
 ```bash
-./actor_iac.java list -d ./config/workflows/production
+./actor_iac.java list -d /home/user/projects -w ./config/workflows/production
 ```
 
 ## Notes
