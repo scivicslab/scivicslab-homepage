@@ -211,10 +211,10 @@ function WorkflowSection() {
 
 const articles = [
   {
-    title: 'POJO-actor and actor-IaC v2.13.0 Released',
-    url: '/blog/release-v2.13.0',
+    title: 'POJO-actor v2.13.0 Released',
+    url: '/blog/pojo-actor-v2.13.0',
     date: 'Jan 26, 2026',
-    description: 'Java plugin support, JSON State variable expansion fixes, and WorkflowReporter.',
+    description: 'JSON State variable expansion fix, Java plugin support, and CallableByActionName interface.',
     pattern: 'nodes',
     isInternal: true,
   },
