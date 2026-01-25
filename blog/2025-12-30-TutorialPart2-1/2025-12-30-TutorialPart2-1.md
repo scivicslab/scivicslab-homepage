@@ -7,6 +7,13 @@ tags: [pojo-actor, tutorial]
 image: /img/blog-pojo-actor-workflow.svg
 ---
 
+:::info[Links]
+- **Original**: [scivicslab.com](https://scivicslab.com/blog/2025-12-30-TutorialPart2-1)
+- **Documentation**: [POJO-actor Docs](https://scivicslab.com/docs/pojo-actor/introduction)
+- **GitHub**: [scivicslab/POJO-actor](https://github.com/scivicslab/POJO-actor)
+- **Javadoc**: [API Reference](https://scivicslab.github.io/POJO-actor/)
+:::
+
 POJO-actor v1.x delivers a complete actor model foundation—ActorSystem, ActorRef with tell()/ask() messaging, virtual thread-based concurrency, and work-stealing pools—all in under 800 lines of code. Virtual threads enable even an ordinary laptop to handle tens of thousands of actors effortlessly. With no reflection and full GraalVM Native Image support, it turns any POJO into an actor without modification. 
  
  Version 2.x introduces a workflow engine that enables actors to become autonomous agents --- entities that observe their environment and act according to their state.

@@ -6,6 +6,14 @@ date: 2026-01-26T08:00:00
 tags: [release, actor-iac, retrospective]
 ---
 
+:::info[Links]
+- **Original**: [scivicslab.com](https://scivicslab.com/blog/actor-iac-journey-v2.6-to-v2.12)
+- **Documentation**: [actor-IaC Docs](https://scivicslab.com/docs/actor-iac/introduction)
+- **GitHub**: [scivicslab/actor-IaC](https://github.com/scivicslab/actor-IaC)
+- **Javadoc**: [API Reference](https://scivicslab.github.io/actor-IaC/)
+- **Maven Central**: [com.scivicslab:actor-IaC](https://central.sonatype.com/artifact/com.scivicslab/actor-IaC)
+:::
+
 A retrospective on the evolution of actor-IaC, the Infrastructure-as-Code tool built on POJO-actor. This post covers the major milestones from the initial release (v2.6.0) through v2.12.0.
 
 <!-- truncate -->

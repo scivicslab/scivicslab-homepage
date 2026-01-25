@@ -7,6 +7,12 @@ tags: [pojo-actor, tutorial]
 image: /img/blog-pojo-actor-workflow.svg
 ---
 
+:::info[Links]
+- **Original**: [scivicslab.com](https://scivicslab.com/blog/2025-12-31-TutorialPart2-2)
+- **Documentation**: [POJO-actor Docs](https://scivicslab.com/docs/pojo-actor/introduction)
+- **GitHub**: [scivicslab/POJO-actor](https://github.com/scivicslab/POJO-actor)
+- **Javadoc**: [API Reference](https://scivicslab.github.io/POJO-actor/)
+:::
 
 This tutorial explains the complete process of making ordinary Java classes (POJOs) callable from workflows.
 

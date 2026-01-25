@@ -6,6 +6,14 @@ date: 2026-01-26
 tags: [release, pojo-actor]
 ---
 
+:::info[Links]
+- **Original**: [scivicslab.com](https://scivicslab.com/blog/pojo-actor-v2.13.0)
+- **Documentation**: [POJO-actor Docs](https://scivicslab.com/docs/pojo-actor/introduction)
+- **GitHub**: [scivicslab/POJO-actor](https://github.com/scivicslab/POJO-actor)
+- **Javadoc**: [API Reference](https://scivicslab.github.io/POJO-actor/)
+- **Maven Central**: [com.scivicslab:pojo-actor](https://central.sonatype.com/artifact/com.scivicslab/pojo-actor)
+:::
+
 We are pleased to announce the release of **POJO-actor v2.13.0**.
 
 This release brings JSON State variable expansion fixes and Java plugin support enhancements.
