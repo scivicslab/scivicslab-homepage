@@ -171,7 +171,11 @@ const config: Config = {
             },
             {
               label: 'CoderLegion',
-              href: 'https://coderlegion.com',
+              href: 'https://coderlegion.com/search?q=POJO-actor',
+            },
+            {
+              label: 'DEV',
+              href: 'https://dev.to/search?utf8=%E2%9C%93&q=POJO-actor',
             },
           ],
         },
