@@ -2,7 +2,7 @@
   "label": "Utilizing Results",
   "position": 35,
   "link": {
-    "type": "generated-index",
-    "description": "Work with execution logs, console output, and the log database."
+    "type": "doc",
+    "id": "actor-iac/other-versions/2.14.0/tutorials/utilizing-results"
   }
 }
