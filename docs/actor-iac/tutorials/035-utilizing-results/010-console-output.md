@@ -43,7 +43,7 @@ To view only the output from a specific node, filter with `grep`.
 ./actor_iac.java run -w sysinfo/main-collect-sysinfo.yaml -i inventory.ini -g compute | grep "^\[node-node13\]"
 ```
 
-For more detailed searches or later reference, use the log database (see log-info command).
+For more detailed searches or later reference, use the log database (see [Log Database](./025-database-location.md)).
 
 
 ### Cowsay (Step Markers)
@@ -64,7 +64,7 @@ Cowsay-format ASCII art is displayed at the beginning of each step. This allows 
 [nodeGroup]                 ||     ||
 ```
 
-The cowsay character can be changed with the `--cowfile` option (see cowsay characters tutorial).
+The cowsay character can be changed with the `--cowfile` option (see [Cowsay Characters](./012-cowsay-character.md)).
 
 
 ## Under the hood

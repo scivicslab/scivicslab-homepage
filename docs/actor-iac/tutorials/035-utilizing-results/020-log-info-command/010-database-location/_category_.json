@@ -1,8 +1,0 @@
-{
-  "label": "Database Location",
-  "position": 10,
-  "link": {
-    "type": "generated-index",
-    "description": "Configure and understand log database storage."
-  }
-}
