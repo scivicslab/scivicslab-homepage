@@ -1,8 +1,4 @@
 {
   "label": "First Workflow",
-  "position": 10,
-  "link": {
-    "type": "generated-index",
-    "description": "Learn about actor-IaC's workflow system and architecture."
-  }
+  "position": 10
 }

@@ -1,8 +1,4 @@
 {
   "label": "System Inventory",
-  "position": 30,
-  "link": {
-    "type": "generated-index",
-    "description": "Configure SSH authentication and collect system information from clusters."
-  }
+  "position": 30
 }

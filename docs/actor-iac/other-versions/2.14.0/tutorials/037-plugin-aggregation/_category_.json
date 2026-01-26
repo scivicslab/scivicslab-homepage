@@ -1,8 +1,4 @@
 {
   "label": "Plugin Aggregation",
-  "position": 37,
-  "link": {
-    "type": "generated-index",
-    "description": "Extend actor-IaC with plugins for custom aggregation and analysis."
-  }
+  "position": 037
 }
