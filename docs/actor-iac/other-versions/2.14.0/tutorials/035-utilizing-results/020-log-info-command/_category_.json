@@ -1,0 +1,8 @@
+{
+  "label": "Log Info Command",
+  "position": 20,
+  "link": {
+    "type": "generated-index",
+    "description": "Query and analyze execution logs from the database."
+  }
+}
