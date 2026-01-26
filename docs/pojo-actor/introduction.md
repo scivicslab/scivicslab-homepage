@@ -18,7 +18,7 @@ keywords:
 # POJO-actor: A Lightweight Actor Model for Java Using Virtual Threads
 
 This document is the official manual and reference for **POJO-actor**.
-It currently documents version 2.13.0.
+It currently documents version 2.13.1.
 
 
 ---

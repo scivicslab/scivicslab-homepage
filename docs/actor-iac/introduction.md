@@ -21,7 +21,7 @@ keywords:
 # actor-IaC: Actor-Based Parallel Infrastructure Automation with Full Traceability
 
 This document is the official manual and reference for **actor-IaC**.
-It currently documents version 2.13.0.
+It currently documents version 2.13.1.
 
 ---
 
