@@ -1,8 +1,0 @@
-{
-  "label": "Actor Logs",
-  "position": 40,
-  "link": {
-    "type": "generated-index",
-    "description": "Display and filter logs for specific actors."
-  }
-}
