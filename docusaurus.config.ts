@@ -101,6 +101,18 @@ const config: Config = {
         sidebarPath: './sidebars-actor-iac.ts',
       },
     ],
+    // Redirects for old URLs
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            from: '/blog/pojo-actor-v1-introduction',
+            to: '/blog/2025-12-22-pojo-actor-v1-introduction',
+          },
+        ],
+      },
+    ],
   ],
 
   themeConfig: {
