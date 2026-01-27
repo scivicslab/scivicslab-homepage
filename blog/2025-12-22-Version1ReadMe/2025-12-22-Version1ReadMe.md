@@ -7,13 +7,6 @@ tags: [pojo-actor, announcement, release]
 image: /img/blog-pojo-actor.svg
 ---
 
-:::info[Links]
-- **Original**: [scivicslab.com](https://scivicslab.com/blog/2025-12-22-pojo-actor-v1-introduction)
-- **Documentation**: [POJO-actor Docs](https://scivicslab.com/docs/pojo-actor/introduction)
-- **GitHub**: [scivicslab/POJO-actor](https://github.com/scivicslab/POJO-actor)
-- **Javadoc**: [API Reference](https://scivicslab.github.io/POJO-actor/)
-:::
-
 This is the README.md from POJO-actor version 1.0.0. With its core implementation in under 800 lines of code,   
   version 1 presents the fundamental ideas in their clearest form—preserved here for reference.                   
 
@@ -351,6 +344,14 @@ POJO-actor was inspired by Alexander Zakusylo’s [actr](https://medium.com/@zak
 We acknowledge the foundational work done by the actr library team in making actor model programming more accessible to Java developers.
 
 We also acknowledge [Comedy.js](https://github.com/untu/comedy), a Node.js actor framework, which inspired POJO-actor's basic architecture design, particularly the ActorSystem and ActorRef concepts. While Comedy.js uses one process or one real thread per actor, POJO-actor leverages Java's virtual threads to enable thousands of lightweight actors.
+
+---
+
+## References
+
+- **Documentation**: [POJO-actor Docs](https://scivicslab.com/docs/pojo-actor/introduction)
+- **GitHub**: [scivicslab/POJO-actor](https://github.com/scivicslab/POJO-actor)
+- **Javadoc**: [API Reference](https://scivicslab.github.io/POJO-actor/)
 
 
 

@@ -199,6 +199,10 @@ const config: Config = {
               to: '/blog',
             },
             {
+              label: 'Maven Repository',
+              href: 'https://mvnrepository.com/search?q=com.scivicslab',
+            },
+            {
               label: 'Medium',
               href: 'https://medium.com',
             },

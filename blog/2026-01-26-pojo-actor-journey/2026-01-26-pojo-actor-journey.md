@@ -6,14 +6,6 @@ date: 2026-01-26T07:00:00
 tags: [release, pojo-actor, retrospective]
 ---
 
-:::info[Links]
-- **Original**: [scivicslab.com](https://scivicslab.com/blog/pojo-actor-journey-v1.0-to-v2.12)
-- **Documentation**: [POJO-actor Docs](https://scivicslab.com/docs/pojo-actor/introduction)
-- **GitHub**: [scivicslab/POJO-actor](https://github.com/scivicslab/POJO-actor)
-- **Javadoc**: [API Reference](https://scivicslab.github.io/POJO-actor/)
-- **Maven Central**: [com.scivicslab:pojo-actor](https://central.sonatype.com/artifact/com.scivicslab/pojo-actor)
-:::
-
 A retrospective on the evolution of POJO-actor, the lightweight actor model library for Java. This post covers the major milestones from the initial release (v1.0.0) through v2.12.0.
 
 <!-- truncate -->
@@ -414,8 +406,10 @@ transitions:  # Also valid
 
 Check out [POJO-actor v2.13.0](/blog/pojo-actor-v2.13.0) for the latest features including JSON State variable expansion fixes, Java plugin support, and the CallableByActionName interface.
 
-## Links
+## References
 
-- [GitHub Repository](https://github.com/scivicslab/POJO-actor)
-- [Maven Central](https://central.sonatype.com/artifact/com.scivicslab/pojo-actor)
-- [actor-IaC](https://github.com/scivicslab/actor-IaC) - Infrastructure automation built on POJO-actor
+- **Documentation**: [POJO-actor Docs](https://scivicslab.com/docs/pojo-actor/introduction)
+- **GitHub**: [scivicslab/POJO-actor](https://github.com/scivicslab/POJO-actor)
+- **Javadoc**: [API Reference](https://scivicslab.github.io/POJO-actor/)
+- **Maven Central**: [com.scivicslab:pojo-actor](https://central.sonatype.com/artifact/com.scivicslab/pojo-actor)
+- **actor-IaC**: [Infrastructure automation built on POJO-actor](https://github.com/scivicslab/actor-IaC)

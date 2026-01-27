@@ -8,13 +8,6 @@ tags: [pojo-actor, tutorial]
 image: /img/blog-pojo-actor-workflow.svg
 ---
 
-:::info[Links]
-- **Original**: [scivicslab.com](https://scivicslab.com/blog/2025-12-31-TutorialPart2-2)
-- **Documentation**: [POJO-actor Docs](https://scivicslab.com/docs/pojo-actor/introduction)
-- **GitHub**: [scivicslab/POJO-actor](https://github.com/scivicslab/POJO-actor)
-- **Javadoc**: [API Reference](https://scivicslab.github.io/POJO-actor/)
-:::
-
 This tutorial explains the complete process of making ordinary Java classes (POJOs) callable from workflows.
 
 Using turing83 (a Turing machine that outputs the binary representation of 1/3) as an example, we proceed through the following four steps:
@@ -338,8 +331,11 @@ This structure separates business logic (POJO) from workflow control (YAML), all
 
 ---
 
-**Last updated**: 2025-12-31
-**Related documents**:
-- [Tutorial Part 2 (First Half)](/blog/2025-12-30-TutorialPart2-1)
-- [POJO-actor Documentation](/docs/pojo-actor/introduction)
+## References
+
+- **Documentation**: [POJO-actor Docs](https://scivicslab.com/docs/pojo-actor/introduction)
+- **GitHub**: [scivicslab/POJO-actor](https://github.com/scivicslab/POJO-actor)
+- **Javadoc**: [API Reference](https://scivicslab.github.io/POJO-actor/)
+- **actor-WF-examples**: [https://github.com/scivicslab/actor-WF-examples](https://github.com/scivicslab/actor-WF-examples)
+- **Tutorial Part 2-1**: [Workflow Language Basics](/blog/2025-12-30-TutorialPart2-1)
 
