@@ -407,5 +407,5 @@ To create your own workflows, you need to implement an adapter (IIActorRef) to c
 - **GitHub**: [scivicslab/POJO-actor](https://github.com/scivicslab/POJO-actor)
 - **Javadoc**: [API Reference](https://scivicslab.github.io/POJO-actor/)
 - **actor-WF-examples**: [https://github.com/scivicslab/actor-WF-examples](https://github.com/scivicslab/actor-WF-examples)
-- **POJO-actor v1.0 Introduction**: [A Lightweight Actor Model Library for Java](/blog/2025-12-22-pojo-actor-v1-introduction)
+- **POJO-actor v1.0 Introduction (blog)**: [A Lightweight Actor Model Library for Java](/blog/2025-12-22-pojo-actor-v1-introduction)
 
