@@ -500,5 +500,6 @@ Less boilerplate means cleaner, more readable code.
 - **GitHub (POJO-actor)**: [https://github.com/scivicslab/POJO-actor](https://github.com/scivicslab/POJO-actor)
 - **GitHub (Workflow examples)**: [https://github.com/scivicslab/actor-WF-examples](https://github.com/scivicslab/actor-WF-examples)
 - **Maven Repository**: [https://mvnrepository.com/search?q=com.scivicslab](https://mvnrepository.com/search?q=com.scivicslab)
+- **POJO-actor v1.0 Introduction**: [A Lightweight Actor Model Library for Java](/blog/2025-12-22-pojo-actor-v1-introduction)
 - **Tutorial Part 2-1**: [Workflow Language Basics](/blog/2025-12-30-TutorialPart2-1)
 - **Tutorial Part 2-2**: [Creating Workflows](/blog/2025-12-31-TutorialPart2-2)

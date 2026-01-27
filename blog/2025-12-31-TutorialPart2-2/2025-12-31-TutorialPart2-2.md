@@ -337,5 +337,6 @@ This structure separates business logic (POJO) from workflow control (YAML), all
 - **GitHub**: [scivicslab/POJO-actor](https://github.com/scivicslab/POJO-actor)
 - **Javadoc**: [API Reference](https://scivicslab.github.io/POJO-actor/)
 - **actor-WF-examples**: [https://github.com/scivicslab/actor-WF-examples](https://github.com/scivicslab/actor-WF-examples)
+- **POJO-actor v1.0 Introduction**: [A Lightweight Actor Model Library for Java](/blog/2025-12-22-pojo-actor-v1-introduction)
 - **Tutorial Part 2-1**: [Workflow Language Basics](/blog/2025-12-30-TutorialPart2-1)
 
