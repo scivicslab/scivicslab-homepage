@@ -211,6 +211,14 @@ function WorkflowSection() {
 
 const articles = [
   {
+    title: 'POJO-actor Tutorial Part 2-3: Introducing the @Action Annotation',
+    url: '/blog/2026-01-27-TutorialPart2-3',
+    date: 'Jan 27, 2026',
+    description: 'Define workflow actions declaratively without overriding callByActionName().',
+    pattern: 'waves',
+    isInternal: true,
+  },
+  {
     title: 'POJO-actor v2.13.0 Released',
     url: '/blog/pojo-actor-v2.13.0',
     date: 'Jan 26, 2026',
@@ -227,7 +235,7 @@ const articles = [
     isInternal: true,
   },
   {
-    title: 'POJO-actor Tutorial Part 2 (Second Half): Creating Workflows',
+    title: 'POJO-actor Tutorial Part 2-2: Creating Workflows',
     url: '/blog/2025-12-31-TutorialPart2-2',
     date: 'Dec 31, 2025',
     description: 'Learn how to create and execute workflows using POJO-actor.',
@@ -235,7 +243,7 @@ const articles = [
     isInternal: true,
   },
   {
-    title: 'POJO-actor Tutorial Part 2 (First Half): Workflow Language Basics',
+    title: 'POJO-actor Tutorial Part 2-1: Workflow Language Basics',
     url: '/blog/2025-12-30-TutorialPart2-1',
     date: 'Dec 30, 2025',
     description: 'Introduction to the workflow language and its core concepts.',
