@@ -111,6 +111,10 @@ const config: Config = {
             from: '/blog/pojo-actor-v1-introduction',
             to: '/blog/2025-12-22-pojo-actor-v1-introduction',
           },
+          {
+            from: '/blog/actor-iac-cluster-inventory',
+            to: '/blog/2026-01-28-actor-iac-cluster-inventory',
+          },
         ],
       },
     ],

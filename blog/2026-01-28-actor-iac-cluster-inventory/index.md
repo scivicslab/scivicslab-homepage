@@ -1,5 +1,5 @@
 ---
-slug: actor-iac-cluster-inventory
+slug: 2026-01-28-actor-iac-cluster-inventory
 title: "actor-IaC: POJO-actor Workflow Based Infrastructure as Code for Cluster Management (Part 1)"
 authors: [devteam]
 date: 2026-01-28
