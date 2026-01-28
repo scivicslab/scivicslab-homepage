@@ -287,6 +287,29 @@ actor-IaC is the answer to "Can POJO-actor Workflow express complex workflows?"
 
 In Part 2, we'll introduce how to format and analyze the collected information.
 
+
+## Try It Yourself
+
+You don't need a cluster to try actor-IaC. The [actor-IaC-examples](https://github.com/scivicslab/actor-IaC-examples) repository includes examples that run on localhost:
+
+```bash
+# Install dependencies
+git clone https://github.com/scivicslab/POJO-actor && cd POJO-actor && mvn install && cd ..
+git clone https://github.com/scivicslab/actor-IaC && cd actor-IaC && mvn install && cd ..
+
+# Clone examples and run
+git clone https://github.com/scivicslab/actor-IaC-examples
+cd actor-IaC-examples
+
+# Hello World example
+./actor_iac.java run -d ./hello -w main-hello -i localhost.ini -g all
+
+# Collect system info from localhost
+./actor_iac.java run -d ./sysinfo -w main-collect-sysinfo -i localhost.ini -g all
+```
+
+See the repository's README for more examples and detailed instructions.
+
 ---
 
 ## References
@@ -294,7 +317,7 @@ In Part 2, we'll introduce how to format and analyze the collected information.
 This article is part of the official actor-IaC documentation and tutorial series.
 
 - **Official Website**: https://scivicslab.com
-- **Original Article**: https://scivicslab.com/blog/actor-iac-cluster-inventory
+- **Original Article**: https://scivicslab.com/blog/2026-01-28-actor-iac-cluster-inventory
 - **Documentation**: https://scivicslab.com/docs/actor-iac/introduction
 - **GitHub Repository**: https://github.com/scivicslab/actor-iac
 - **API Reference (Javadoc)**: https://scivicslab.github.io/actor-IaC/
