@@ -211,6 +211,14 @@ function WorkflowSection() {
 
 const articles = [
   {
+    title: 'actor-IaC: Workflow Based Infrastructure as Code for Cluster Management',
+    url: '/blog/actor-iac-cluster-inventory',
+    date: 'Jan 28, 2026',
+    description: 'Collecting system information from multiple compute nodes in parallel.',
+    pattern: 'grid',
+    isInternal: true,
+  },
+  {
     title: 'POJO-actor Tutorial Part 2-3: Introducing the @Action Annotation',
     url: '/blog/2026-01-27-TutorialPart2-3',
     date: 'Jan 27, 2026',
@@ -231,14 +239,6 @@ const articles = [
     url: '/blog/actor-iac-v2.13.0',
     date: 'Jan 26, 2026',
     description: 'WorkflowReporter, Java plugin support, and AptLockChecker plugin.',
-    pattern: 'grid',
-    isInternal: true,
-  },
-  {
-    title: 'POJO-actor Tutorial Part 2-2: Creating Workflows',
-    url: '/blog/2025-12-31-TutorialPart2-2',
-    date: 'Dec 31, 2025',
-    description: 'Learn how to create and execute workflows using POJO-actor.',
     pattern: 'waves',
     isInternal: true,
   },
@@ -248,14 +248,6 @@ const articles = [
     date: 'Dec 30, 2025',
     description: 'Introduction to the workflow language and its core concepts.',
     pattern: 'nodes',
-    isInternal: true,
-  },
-  {
-    title: 'POJO-actor v1.0: A Lightweight Actor Model Library for Java',
-    url: '/blog/2025-12-22-pojo-actor-v1-introduction',
-    date: 'Dec 22, 2025',
-    description: 'Announcing POJO-actor v1.0 and its key features.',
-    pattern: 'grid',
     isInternal: true,
   },
 ];
