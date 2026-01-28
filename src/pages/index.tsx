@@ -250,6 +250,14 @@ const articles = [
     pattern: 'nodes',
     isInternal: true,
   },
+  {
+    title: 'POJO-actor v1.0: A Lightweight Actor Model Library for Java',
+    url: '/blog/2025-12-22-pojo-actor-v1-introduction',
+    date: 'Dec 22, 2025',
+    description: 'Announcing POJO-actor v1.0 and its key features.',
+    pattern: 'grid',
+    isInternal: true,
+  },
 ];
 
 function ArticlePattern({ pattern }: { pattern: string }) {
