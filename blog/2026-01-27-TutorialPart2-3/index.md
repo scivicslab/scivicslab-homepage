@@ -492,6 +492,24 @@ With the `@Action` annotation:
 
 Less boilerplate means cleaner, more readable code.
 
+## Try It Yourself
+
+All examples in this tutorial are available in the [actor-WF-examples](https://github.com/scivicslab/actor-WF-examples) repository. To run the `@Action` annotation version:
+
+```bash
+git clone https://github.com/scivicslab/POJO-actor
+cd POJO-actor
+mvn install
+
+cd ..
+git clone https://github.com/scivicslab/actor-WF-examples
+cd actor-WF-examples
+mvn compile
+mvn exec:java -Dexec.mainClass="com.scivicslab.turing.TuringWorkflowApp" -Dexec.args="turing87-array --action"
+```
+
+See the repository's README for detailed setup instructions and project structure.
+
 ---
 
 ## References

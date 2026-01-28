@@ -392,6 +392,10 @@ What we covered in this tutorial:
 
 actor-WF is based on the same design philosophy as Turing machines. Any complexity of processing can be expressed through combinations of state transitions and actions.
 
+## Try It Yourself
+
+All examples in this tutorial are available in the [actor-WF-examples](https://github.com/scivicslab/actor-WF-examples) repository. See the repository's README for detailed setup instructions and project structure.
+
 ## Next Steps
 
 To create your own workflows, you need to implement an adapter (IIActorRef) to call POJOs from workflows. See the following for details:
