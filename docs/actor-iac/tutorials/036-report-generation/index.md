@@ -113,7 +113,7 @@ All classes are in the `com.scivicslab.actoriac.report.sections.basic` package.
 
 **actor-IaC-plugins (optional):**
 
-Currently, no SectionBuilder plugins are provided. For creating custom sections, refer to [Plugin Development](../037-plugin-development/).
+Currently, no SectionBuilder plugins are provided. For creating custom sections, refer to [Plugin Development](../plugin-development/).
 
 ### Purpose-Specific Report Examples
 

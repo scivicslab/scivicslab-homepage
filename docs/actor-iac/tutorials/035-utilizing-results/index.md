@@ -21,32 +21,32 @@ This section contains the following related documents:
 
 | Document | Description |
 |----------|-------------|
-| [Console Output](./010-console-output) | Understanding real-time console output format |
-| [Cowsay Character](./012-cowsay-character) | Customizing cowsay ASCII art characters |
-| [Log File Output](./015-log-file-output) | Saving logs to files |
-| [Database Location](./025-database-location) | Configuring the H2 log database location |
-| [Output Multiplexer](./027-output-multiplexer) | How output is delivered to multiple destinations |
+| [Console Output](./console-output) | Understanding real-time console output format |
+| [Cowsay Character](./cowsay-character) | Customizing cowsay ASCII art characters |
+| [Log File Output](./log-file-output) | Saving logs to files |
+| [Database Location](./database-location) | Configuring the H2 log database location |
+| [Output Multiplexer](./output-multiplexer) | How output is delivered to multiple destinations |
 
 ### Database Operations
 
 | Document | Description |
 |----------|-------------|
-| [Multi-Process Write](./030-multi-process-write) | How multiple processes write to the same database |
-| [Database Write](./035-database-write) | Internal details of database writing |
-| [Database Read](./040-database-read) | Querying the log database |
+| [Multi-Process Write](./multi-process-write) | How multiple processes write to the same database |
+| [Database Write](./database-write) | Internal details of database writing |
+| [Database Read](./database-read) | Querying the log database |
 
 ### Debugging and Troubleshooting
 
 | Document | Description |
 |----------|-------------|
-| [Troubleshooting](./045-troubleshooting) | Common issues and solutions |
-| [Sub-workflow Debugging](./046-subworkflow-debugging) | Debugging sub-workflow execution |
+| [Troubleshooting](./troubleshooting) | Common issues and solutions |
+| [Sub-workflow Debugging](./subworkflow-debugging) | Debugging sub-workflow execution |
 
 ### Log Analysis
 
 | Document | Description |
 |----------|-------------|
-| [Extract Node Logs](./050-extract-node-logs) | Extracting logs for specific nodes |
-| [Compare with Past](./052-compare-with-past) | Comparing with past execution results |
-| [Check Error Logs](./054-check-error-logs) | Filtering and analyzing error logs |
-| [DB Clear Command](./055-db-clear-command) | Clearing the log database |
+| [Extract Node Logs](./extract-node-logs) | Extracting logs for specific nodes |
+| [Compare with Past](./compare-with-past) | Comparing with past execution results |
+| [Check Error Logs](./check-error-logs) | Filtering and analyzing error logs |
+| [DB Clear Command](./db-clear-command) | Clearing the log database |

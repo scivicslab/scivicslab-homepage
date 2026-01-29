@@ -53,17 +53,17 @@ This tutorial proceeds in the following order.
 
 For actor-IaC to connect to remote nodes, SSH authentication must be configured. Choose either public key authentication or password authentication.
 
-- [SSH Connection with Public Key Authentication](./010-ssh-setup): Configure authentication using SSH key pairs. Recommended for security and convenience.
-- [SSH Password Authentication](./020-ssh-password-auth): Configure password-based authentication when key pairs cannot be used.
-- [Sudo Execution](./030-sudo-execution): Configure sudo for commands requiring elevated privileges.
-- [SSH Non-Interactive Mode](./040-ssh-non-interactive): Handle non-interactive SSH sessions.
-- [Login Configuration Reference](./050-logging-in): Detailed reference for inventory file login settings.
+- [SSH Connection with Public Key Authentication](./ssh-setup): Configure authentication using SSH key pairs. Recommended for security and convenience.
+- [SSH Password Authentication](./ssh-password-auth): Configure password-based authentication when key pairs cannot be used.
+- [Sudo Execution](./sudo-execution): Configure sudo for commands requiring elevated privileges.
+- [SSH Non-Interactive Mode](./ssh-non-interactive): Handle non-interactive SSH sessions.
+- [Login Configuration Reference](./logging-in): Detailed reference for inventory file login settings.
 
 ### Main Topic
 
 Once prerequisites are met, create and execute a workflow.
 
-- [System Information Collection Workflow](./200-collect-sysinfo): Complete example of creating and executing a workflow to collect system information from multiple nodes.
+- [System Information Collection Workflow](./collect-sysinfo): Complete example of creating and executing a workflow to collect system information from multiple nodes.
 
 
 ## How to do it
