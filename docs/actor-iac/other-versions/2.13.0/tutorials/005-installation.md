@@ -52,7 +52,7 @@ cd actor-IaC
 mvn clean install
 ```
 
-After the build completes, Maven generates `target/actor-IaC-2.14.0.jar`.
+After the build completes, Maven generates `target/actor-IaC-2.12.0.jar`.
 
 ### Startup Methods
 
@@ -60,19 +60,19 @@ actor-IaC has three startup methods.
 
 | Method | Command | Features |
 |--------|---------|----------|
-| Direct JAR execution | `java -jar target/actor-IaC-2.14.0.jar` | Works with JDK only |
+| Direct JAR execution | `java -jar target/actor-IaC-2.12.0.jar` | Works with JDK only |
 | JBang launcher | `./actor_iac.java` | Automatically resolves JAR path |
 | Native binary | `./actor-iac` | Fast startup, no JDK required |
 
 First, verify operation with direct JAR execution.
 
 ```bash
-java -jar target/actor-IaC-2.14.0.jar --help
+java -jar target/actor-IaC-2.12.0.jar --help
 ```
 
 ```
-actor-IaC 2.14.0
-Usage: java -jar actor-IaC-2.14.0.jar [COMMAND]
+actor-IaC 2.12.0
+Usage: java -jar actor-IaC-2.12.0.jar [COMMAND]
 Commands:
   run         Execute actor-IaC workflows
   list        List workflows
@@ -109,7 +109,7 @@ steps:
 Execute the workflow.
 
 ```bash
-java -jar ~/actor-IaC/target/actor-IaC-2.14.0.jar run -w hello-world.yaml
+java -jar ~/actor-IaC/target/actor-IaC-2.12.0.jar run -w hello-world.yaml
 ```
 
 ```

@@ -151,15 +151,3 @@ Hello from actor-IaC!
 ```
 
 actor-IaC displays each step of the workflow in cowsay format. Execution logs are saved to `actor-iac-logs.mv.db` (H2 database) in the current directory.
-
-
-## Related Documents
-
-This section contains the following related documents:
-
-| Document | Description |
-|----------|-------------|
-| [Actor Layers](./010-actor-layers) | Explains the hierarchy of actor layers: `this`, `nodeGroup`, `node-*` |
-| [Workflow Interpreter](./020-workflow-interpreter) | Explains how the workflow interpreter processes YAML and executes actions |
-| [Argument Formats](./030-argument-formats) | Explains JSON argument formats for `@Action` methods |
-| [Action Implementation](./040-action-implementation) | Explains `@Action` vs `CallableByActionName` implementation patterns |

@@ -34,22 +34,24 @@ Simply adding the `--report-only` option displays only the report.
 Output example:
 
 ```
-[report-builder] === Workflow Execution Report ===
-[report-builder]
-[report-builder] --- Workflow Info ---
-[report-builder] Path: main-collect-and-report.yaml
-[report-builder] Name: main-collect-and-report
-[report-builder]
-[report-builder] --- Node States ---
-[report-builder] node-stonefly514:
-[report-builder]   hostname: stonefly514
-[report-builder]   os: Ubuntu 24.04.3 LTS
-[report-builder]   cpu: AMD Ryzen 7 7700 8-Core Processor (16 cores)
-[report-builder]   memory: 62Gi
-[report-builder]   gpu: NVIDIA GeForce RTX 4080 (NVIDIA)
+[workflow-reporter] === Workflow Execution Report ===
+[workflow-reporter] Session #4 | Workflow: main-collect-and-report.yaml | Status: RUNNING
+[workflow-reporter] Started: 2026-01-25T15:50:28.572603
+[workflow-reporter]
+[workflow-reporter] --- Check Results ---
+[workflow-reporter] --------------------
+[workflow-reporter] [INFO] Hostname: stonefly514
+[workflow-reporter] [INFO] OS: Ubuntu 24.04.3 LTS
+[workflow-reporter] [INFO] CPU: AMD Ryzen 7 7700 8-Core Processor (16 cores)
+[workflow-reporter] [INFO] Memory: 62Gi
+[workflow-reporter] [INFO] Disk: sda 1.9T TS2TSSD230S
+[workflow-reporter] [INFO] Disk: nvme0n1 931.5G CSSD-M2B1TPG3NF2
+[workflow-reporter] [INFO] GPU: NVIDIA GeForce RTX 4080 (NVIDIA)
+[workflow-reporter] [INFO] Network: 192.168.5.14
+[workflow-reporter]
 ```
 
-All the large amount of logs from normal execution (cowsay, INFO messages, output from each node, etc.) are suppressed, and only `ReportBuilder` output is displayed.
+All the large amount of logs from normal execution (cowsay, INFO messages, output from each node, etc.) are suppressed, and only WorkflowReporter output is displayed.
 
 
 ### Logs Are Saved to Database
@@ -106,7 +108,7 @@ echo "$REPORT" | grep "GPU:"
 2. **Suppress log server connection messages** - Status messages at startup are hidden
 3. **Set ConsoleAccumulator filter mode to REPORT_ONLY** - Only messages with `type: report` are output
 
-`ReportBuilder` specifies `type: "report"` when outputting, so it is displayed even in `--report-only` mode.
+WorkflowReporter specifies `type: report` when outputting, so it is displayed even in `--report-only` mode.
 
 
 ## Under the hood
