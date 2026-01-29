@@ -115,7 +115,56 @@ cd ~/works/project-B && ./actor_iac.java run -w workflow.yaml --log-db ~/logs/sh
 
 In `AUTO_SERVER` mode, the TCP server port is automatically selected. actor-IaC does not specify a port number, leaving it to H2's default behavior.
 
-The selected port number is recorded in the lock file (`.lock.db`). Subsequent processes read this lock file when opening the database and connect to the specified IP address and port.
+```java
+// H2LogStore.java:83 - No port specified
+String url = "jdbc:h2:" + dbPath.toAbsolutePath().toString() + ";AUTO_SERVER=TRUE";
+```
+
+#### Port Selection Mechanism
+
+When the first process opens the database, H2 uses the OS's ephemeral port (dynamic port). The ephemeral port range varies by OS, but on Linux it is typically 32768-60999. When H2 binds a socket to port 0 with the OS, the OS automatically assigns an available port from this range.
+
+The selected port number is recorded in the lock file (`.lock.db`).
+
+```
+~/works/testcluster-iac/
+├── actor-iac-logs.mv.db       ← Database file
+└── actor-iac-logs.lock.db     ← Lock file (contains port number)
+```
+
+The lock file contains the following information:
+- TCP server IP address
+- TCP server port number (ephemeral port assigned by OS)
+- Random key (for verifying connection to correct DB)
+
+Subsequent processes read this lock file when opening the database and connect to the specified IP address and port.
+
+#### Multiple Databases Case
+
+When using different databases simultaneously, separate TCP servers start for each database, and the OS assigns different ephemeral ports to each.
+
+```
+~/works/project-A/
+├── actor-iac-logs.mv.db       ← DB-A
+└── actor-iac-logs.lock.db     ← Port 54321 (OS assigned)
+
+~/works/project-B/
+├── actor-iac-logs.mv.db       ← DB-B
+└── actor-iac-logs.lock.db     ← Port 54322 (OS assigned)
+```
+
+Different port numbers are recorded in each database's lock file, so no conflicts occur when using multiple databases simultaneously.
+
+#### Explicit Port Specification
+
+If needed, you can fix the port number by specifying the `AUTO_SERVER_PORT` parameter in the JDBC URL. However, actor-IaC does not use this and always relies on automatic selection.
+
+```
+jdbc:h2:/path/to/db;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9090
+```
+
+Users do not need to be aware of port numbers.
+
 
 ### Notes
 

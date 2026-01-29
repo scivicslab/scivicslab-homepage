@@ -44,7 +44,7 @@ Build the native binary with native-image.
 
 ```bash
 native-image \
-  -jar target/actor-IaC-2.12.0.jar \
+  -jar target/actor-IaC-2.14.0.jar \
   -o actor-iac \
   --no-fallback \
   -H:+ReportExceptionStackTraces \
