@@ -4,6 +4,10 @@ title: Clearing the Log Database
 sidebar_position: 55
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.13.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 # Clearing the Log Database
 
 When the log database becomes too large or you want to clean up after testing, you can delete the database file with the `db-clear` command.

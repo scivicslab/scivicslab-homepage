@@ -4,6 +4,10 @@ title: "Tutorial: Utilizing System Information Collection Results"
 sidebar_position: 35
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.12.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 This tutorial explains how to verify execution results of the system information collection workflow created in the System Inventory tutorial and how to utilize the log database.
 
 

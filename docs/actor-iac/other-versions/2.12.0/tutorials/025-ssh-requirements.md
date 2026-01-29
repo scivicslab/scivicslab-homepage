@@ -4,6 +4,10 @@ title: "Tutorial: SSH Connection Requirements"
 sidebar_position: 25
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.12.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 actor-IaC sends commands to remote nodes via SSH. The SSH Connection Requirements tutorial explains the requirements and configuration methods for actor-IaC to connect to remote nodes.
 
 

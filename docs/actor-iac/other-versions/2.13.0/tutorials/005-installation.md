@@ -4,6 +4,10 @@ title: Installing actor-IaC
 sidebar_position: 5
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.13.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 ## Problem Definition
 
 Build actor-IaC from source code and complete verification of operation.

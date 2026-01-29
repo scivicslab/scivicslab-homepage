@@ -4,6 +4,10 @@ title: Displaying Only the Report on Console
 sidebar_position: 38
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.13.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 # Displaying Only the Report on Console
 
 ## Problem Definition

@@ -4,6 +4,10 @@ title: "Under the hood (1): Three-Layer Structure of POJO, ActorRef, and IIActor
 sidebar_position: 10
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.13.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 ## Overview of the Three-Layer Structure
 
 actor-IaC is implemented using the POJO-actor workflow framework.

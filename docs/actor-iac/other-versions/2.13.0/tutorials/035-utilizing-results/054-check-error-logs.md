@@ -4,6 +4,10 @@ title: Checking Error Logs in Bulk
 sidebar_position: 54
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.13.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 # Checking Error Logs in Bulk
 
 ## Problem Definition

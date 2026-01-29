@@ -3,6 +3,10 @@ sidebar_position: 20
 title: Cowsay Characters
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.12.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 # Cowsay Characters
 
 actor-IaC displays workflow step execution status using cowsay-style ASCII art. The cowsay output marks the beginning of each step in the logs, making it easy for users to identify where each step starts when reviewing log output. Users can change the display character by specifying the `--cowfile` option.

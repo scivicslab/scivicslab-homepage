@@ -4,6 +4,10 @@ title: Configuring sudo Execution
 sidebar_position: 30
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.13.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 ## Problem Definition
 
 **Goal:** Enable execution of commands requiring root privileges within actor-IaC workflows.

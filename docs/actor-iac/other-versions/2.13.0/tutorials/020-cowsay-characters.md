@@ -4,6 +4,10 @@ title: Cowsay Characters
 sidebar_position: 20
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.13.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 actor-IaC displays cowsay-format ASCII art in log output to clearly mark the beginning of each step.
 You can change the character with the `--cowfile` option.
 

@@ -4,6 +4,10 @@ title: Outputting to Log Files
 sidebar_position: 15
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.13.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 ## Problem Definition
 
 Console output flows by and cannot be referenced later. You want to save logs to files and search with familiar tools like grep.

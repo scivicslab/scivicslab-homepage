@@ -4,6 +4,10 @@ title: "Tutorial: Collecting System Information from Clusters"
 sidebar_position: 30
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.12.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 This tutorial creates a workflow using actor-IaC to collect system information from multiple compute nodes. In cluster management, understanding CPU, memory, disk, GPU, OS, and network information for each node is a basic and important task.
 
 

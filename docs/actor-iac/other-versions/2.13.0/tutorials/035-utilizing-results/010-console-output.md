@@ -4,6 +4,10 @@ title: Verifying Execution Results on Console
 sidebar_position: 10
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.13.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 ## Problem Definition
 
 When a workflow is executed, information collected from each node is output to the console. However, in parallel execution to multiple nodes, outputs are mixed, so it is necessary to identify which node the output came from.

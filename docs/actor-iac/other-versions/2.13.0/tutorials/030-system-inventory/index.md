@@ -4,6 +4,10 @@ title: Collecting System Information from a Cluster
 sidebar_position: 30
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.13.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 ## Problem Definition
 
 **Goal:** Use actor-IaC to collect system information (CPU, memory, disk, GPU, OS, network) from multiple compute nodes in a cluster.

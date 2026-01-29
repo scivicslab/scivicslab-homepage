@@ -4,6 +4,10 @@ title: "Tutorial: Installing actor-IaC"
 sidebar_position: 5
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.12.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 This tutorial explains the steps for users to install actor-IaC and make it ready for use.
 
 ## Prerequisites

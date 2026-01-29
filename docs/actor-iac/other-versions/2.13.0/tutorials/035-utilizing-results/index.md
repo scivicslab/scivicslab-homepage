@@ -4,6 +4,10 @@ title: Utilizing Workflow Result Logs
 sidebar_position: 35
 ---
 
+:::caution Newer Version Available
+This is documentation for version 2.13.0. [See the latest version](/docs/actor-iac/introduction).
+:::
+
 # Utilizing Workflow Result Logs
 
 When you execute a workflow, each node's output is displayed on the console in real-time. Output lines are prefixed with `[node-name]` to identify which node generated them. Step boundaries are marked with cowsay-style ASCII art.
