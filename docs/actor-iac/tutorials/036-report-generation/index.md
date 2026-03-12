@@ -281,10 +281,11 @@ public String build() {
 
 ## Related Documents
 
-This section contains detailed documentation for each SectionBuilder:
+This section contains detailed documentation for ReportBuilder and each SectionBuilder:
 
 | Document | Description |
 |----------|-------------|
+| [ReportBuilder Basics](./005-report-builder-basics) | Basic usage of loader, ReportBuilder, and SectionBuilder |
 | [WorkflowNameSection](./010-workflow-name-section) | Outputs workflow name |
 | [WorkflowDescriptionSection](./020-workflow-description-section) | Outputs workflow description |
 | [WorkflowFileSection](./030-workflow-file-section) | Outputs workflow file path |
