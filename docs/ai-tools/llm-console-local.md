@@ -58,14 +58,22 @@ java -jar target/quarkus-app/quarkus-run.jar
 
 Open `http://localhost:8090` in your browser.
 
-## Ollama Example
+## Example: vLLM
+
+Operation has been confirmed with vLLM. Point the console at your vLLM server:
 
 ```bash
-# Start Ollama with a model
-ollama serve
-ollama pull llama3.2
+java -Dllm-chat.servers=http://192.168.5.15:8000 \
+     -jar target/quarkus-app/quarkus-run.jar
+```
 
-# Start the console pointing at Ollama
+## Other OpenAI-compatible Servers
+
+Any server that exposes `/v1/chat/completions` should work in principle. For example, with Ollama:
+
+```bash
 java -Dllm-chat.servers=http://localhost:11434/v1 \
      -jar target/quarkus-app/quarkus-run.jar
 ```
+
+> **Note:** Only vLLM has been verified by the author. Other servers (Ollama, LM Studio, etc.) follow the same OpenAI-compatible API, but compatibility is not guaranteed — please test with your own setup.
