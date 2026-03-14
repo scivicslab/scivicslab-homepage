@@ -1,9 +1,0 @@
-{
-  "label": "Commands",
-  "position": 4,
-  "collapsed": false,
-  "link": {
-    "type": "generated-index",
-    "description": "Reference documentation for all actor-IaC CLI commands."
-  }
-}

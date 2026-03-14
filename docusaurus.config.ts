@@ -102,6 +102,16 @@ const config: Config = {
         sidebarPath: './sidebars-actor-iac.ts',
       },
     ],
+    // Turing-workflow docs (separate plugin instance)
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'turing-workflow',
+        path: 'docs/turing-workflow',
+        routeBasePath: 'docs/turing-workflow',
+        sidebarPath: './sidebars-turing-workflow.ts',
+      },
+    ],
     // Redirects for old URLs
     [
       '@docusaurus/plugin-client-redirects',
@@ -143,6 +153,13 @@ const config: Config = {
         {
           type: 'doc',
           docId: 'introduction',
+          docsPluginId: 'turing-workflow',
+          position: 'left',
+          label: 'Turing-workflow',
+        },
+        {
+          type: 'doc',
+          docId: 'introduction',
           docsPluginId: 'actor-iac',
           position: 'left',
           label: 'actor-IaC',
@@ -168,6 +185,10 @@ const config: Config = {
             {
               label: 'actor-IaC',
               to: '/docs/actor-iac/introduction',
+            },
+            {
+              label: 'Turing-workflow',
+              to: '/docs/turing-workflow/introduction',
             },
             {
               label: 'POJO-actor Javadoc',
