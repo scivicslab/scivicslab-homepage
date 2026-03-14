@@ -37,7 +37,7 @@ All MCP clients → localhost:8888/mcp/{serverName}
 ```bash
 git clone https://github.com/scivicslab/quarkus-mcp-gateway
 cd quarkus-mcp-gateway
-mvn package -DskipTests
+mvn package
 java -jar target/quarkus-app/quarkus-run.jar
 ```
 

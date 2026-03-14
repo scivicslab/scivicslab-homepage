@@ -36,7 +36,7 @@ Three implementations are provided â€” Python, TypeScript, and Java (Quarkus) â€
 
 ```bash
 cd java-quarkus
-mvn package -DskipTests
+mvn package
 java -jar target/quarkus-app/quarkus-run.jar
 ```
 

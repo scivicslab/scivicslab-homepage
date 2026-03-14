@@ -52,7 +52,7 @@ java -Dllm-chat.servers=http://localhost:11434/v1 \
 ```bash
 git clone https://github.com/scivicslab/quarkus-llm-console
 cd quarkus-llm-console
-mvn package -DskipTests
+mvn package
 java -jar target/quarkus-app/quarkus-run.jar
 ```
 

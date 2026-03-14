@@ -51,7 +51,7 @@ chmod +x quarkus-llm-console-codex-*
 ```bash
 git clone https://github.com/scivicslab/quarkus-llm-console-codex
 cd quarkus-llm-console-codex
-mvn package -DskipTests
+mvn package
 java -jar target/quarkus-app/quarkus-run.jar
 ```
 
