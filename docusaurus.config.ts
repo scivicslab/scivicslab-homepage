@@ -112,6 +112,16 @@ const config: Config = {
         sidebarPath: './sidebars-turing-workflow.ts',
       },
     ],
+    // AI Tools docs (separate plugin instance)
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'ai-tools',
+        path: 'docs/ai-tools',
+        routeBasePath: 'docs/ai-tools',
+        sidebarPath: './sidebars-ai-tools.ts',
+      },
+    ],
     // Redirects for old URLs
     [
       '@docusaurus/plugin-client-redirects',
@@ -164,6 +174,13 @@ const config: Config = {
           position: 'left',
           label: 'actor-IaC',
         },
+        {
+          type: 'doc',
+          docId: 'introduction',
+          docsPluginId: 'ai-tools',
+          position: 'left',
+          label: 'AI Tools',
+        },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/scivicslab',
@@ -189,6 +206,10 @@ const config: Config = {
             {
               label: 'Turing-workflow',
               to: '/docs/turing-workflow/introduction',
+            },
+            {
+              label: 'AI Tools',
+              to: '/docs/ai-tools/introduction',
             },
             {
               label: 'POJO-actor Javadoc',
