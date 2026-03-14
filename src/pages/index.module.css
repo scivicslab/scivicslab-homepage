@@ -164,6 +164,56 @@
   background: transparent !important;
 }
 
+/* Hero Features (merged into hero section) */
+.heroFeatures {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 3rem 0 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.heroFeatureGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.heroFeatureItem {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.heroFeatureItem:hover {
+  background: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.25);
+  transform: translateY(-3px);
+}
+
+.heroFeatureIcon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.heroFeatureItem h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 0.5rem 0;
+}
+
+.heroFeatureItem p {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  line-height: 1.55;
+  margin: 0;
+}
+
 /* Docs Section */
 .docs {
   padding: 6rem 0;
@@ -736,6 +786,10 @@
     display: none;
   }
 
+  .heroFeatureGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .docsGrid {
     grid-template-columns: 1fr;
     max-width: 500px;
@@ -787,6 +841,10 @@
   .docCard {
     flex-direction: column;
     text-align: center;
+  }
+
+  .heroFeatureGrid {
+    grid-template-columns: 1fr;
   }
 
   .featureGrid {

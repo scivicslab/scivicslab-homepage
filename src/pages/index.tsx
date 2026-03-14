@@ -71,6 +71,32 @@ function HeroSection() {
           </div>
         </div>
       </div>
+      <div className={styles.heroFeatures}>
+        <div className={styles.container}>
+          <div className={styles.heroFeatureGrid}>
+            <div className={styles.heroFeatureItem}>
+              <div className={styles.heroFeatureIcon}>📦</div>
+              <h3>Zero Dependencies</h3>
+              <p>Use any POJO as an actor. No base classes to extend, no interfaces to implement.</p>
+            </div>
+            <div className={styles.heroFeatureItem}>
+              <div className={styles.heroFeatureIcon}>⚡</div>
+              <h3>Virtual Thread Native</h3>
+              <p>Built for Java 21+. Each actor runs on its own virtual thread for massive concurrency.</p>
+            </div>
+            <div className={styles.heroFeatureItem}>
+              <div className={styles.heroFeatureIcon}>🤖</div>
+              <h3>Automaton-Based Workflows</h3>
+              <p>Simple enough to get right the first time—by humans or AI agents.</p>
+            </div>
+            <div className={styles.heroFeatureItem}>
+              <div className={styles.heroFeatureIcon}>🌐</div>
+              <h3>Distributed Actor System</h3>
+              <p>Scale across multiple nodes with location-transparent messaging.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
@@ -521,7 +547,6 @@ export default function Home(): ReactNode {
       description="Scivics Lab - Actor-based Infrastructure as Code. Build concurrent, distributed applications with POJO-actor and automate infrastructure with actor-IaC.">
       <main>
         <HeroSection />
-        <FeaturesSection />
         <AiToolsSection />
         <WorkflowSection />
         <ArticlesSection />
