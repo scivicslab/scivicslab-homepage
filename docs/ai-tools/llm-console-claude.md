@@ -46,8 +46,12 @@ Download the binary for your platform from the [Releases](https://github.com/sci
 
 ```bash
 chmod +x quarkus-llm-console-claude-*
-./quarkus-llm-console-claude-v1.0.0-linux-x86_64
+
+# Start on a specific port (recommended)
+./quarkus-llm-console-claude-v1.0.0-linux-x86_64 -Dquarkus.http.port=8080
 ```
+
+Open `http://localhost:8080` in your browser.
 
 ### Build from Source
 
@@ -55,7 +59,9 @@ chmod +x quarkus-llm-console-claude-*
 git clone https://github.com/scivicslab/quarkus-llm-console-claude
 cd quarkus-llm-console-claude
 mvn package
-java -jar target/quarkus-app/quarkus-run.jar
+
+# Start on a specific port (recommended)
+java -Dquarkus.http.port=8080 -jar target/quarkus-app/quarkus-run.jar
 ```
 
 Open `http://localhost:8080` in your browser.
@@ -67,5 +73,5 @@ The console exposes an MCP endpoint at `/mcp`. Register it with the [MCP Gateway
 ```bash
 curl -X POST http://localhost:8888/api/servers \
   -H 'Content-Type: application/json' \
-  -d '{"name": "llm-console-claude", "url": "http://localhost:8080"}'
+  -d '{"name": "llm-console-claude", "url": "http://localhost:8080", "description": "LLM Console (Claude)"}'
 ```

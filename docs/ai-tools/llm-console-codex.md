@@ -43,8 +43,12 @@ Download from [Releases](https://github.com/scivicslab/quarkus-llm-console-codex
 
 ```bash
 chmod +x quarkus-llm-console-codex-*
-./quarkus-llm-console-codex-v1.0.0-linux-x86_64
+
+# Start on a specific port (recommended)
+./quarkus-llm-console-codex-v1.0.0-linux-x86_64 -Dquarkus.http.port=8081
 ```
+
+Open `http://localhost:8081` in your browser.
 
 ### Build from Source
 
@@ -52,7 +56,9 @@ chmod +x quarkus-llm-console-codex-*
 git clone https://github.com/scivicslab/quarkus-llm-console-codex
 cd quarkus-llm-console-codex
 mvn package
-java -jar target/quarkus-app/quarkus-run.jar
+
+# Start on a specific port (recommended)
+java -Dquarkus.http.port=8081 -jar target/quarkus-app/quarkus-run.jar
 ```
 
-Open `http://localhost:8080` in your browser.
+Open `http://localhost:8081` in your browser.

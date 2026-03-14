@@ -53,17 +53,30 @@ java -Dllm-chat.servers=http://localhost:11434/v1 \
 git clone https://github.com/scivicslab/quarkus-llm-console
 cd quarkus-llm-console
 mvn package
-java -jar target/quarkus-app/quarkus-run.jar
+
+# Start on a specific port and point at your LLM server (recommended)
+java -Dquarkus.http.port=8082 \
+     -Dllm-chat.servers=http://192.168.5.15:8000 \
+     -jar target/quarkus-app/quarkus-run.jar
 ```
 
-Open `http://localhost:8090` in your browser.
+Open `http://localhost:8082` in your browser.
 
 ## Example: vLLM
 
-Operation has been confirmed with vLLM. Point the console at your vLLM server:
+Operation has been confirmed with vLLM:
 
 ```bash
-java -Dllm-chat.servers=http://192.168.5.15:8000 \
+java -Dquarkus.http.port=8082 \
+     -Dllm-chat.servers=http://192.168.5.15:8000 \
+     -jar target/quarkus-app/quarkus-run.jar
+```
+
+Multiple vLLM servers can be specified as a comma-separated list:
+
+```bash
+java -Dquarkus.http.port=8082 \
+     -Dllm-chat.servers=http://192.168.5.15:8000,http://192.168.5.13:8000 \
      -jar target/quarkus-app/quarkus-run.jar
 ```
 
@@ -72,7 +85,8 @@ java -Dllm-chat.servers=http://192.168.5.15:8000 \
 Any server that exposes `/v1/chat/completions` should work in principle. For example, with Ollama:
 
 ```bash
-java -Dllm-chat.servers=http://localhost:11434/v1 \
+java -Dquarkus.http.port=8082 \
+     -Dllm-chat.servers=http://localhost:11434/v1 \
      -jar target/quarkus-app/quarkus-run.jar
 ```
 

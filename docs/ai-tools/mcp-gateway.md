@@ -38,10 +38,12 @@ All MCP clients → localhost:8888/mcp/{serverName}
 git clone https://github.com/scivicslab/quarkus-mcp-gateway
 cd quarkus-mcp-gateway
 mvn package
-java -jar target/quarkus-app/quarkus-run.jar
+
+# Start on a specific port (recommended)
+java -Dquarkus.http.port=8888 -jar target/quarkus-app/quarkus-run.jar
 ```
 
-The gateway starts on port **8888**.
+Open `http://localhost:8888` for the server dashboard.
 
 ## Pre-configuring Servers
 

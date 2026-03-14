@@ -37,13 +37,16 @@ Three implementations are provided â€” Python, TypeScript, and Java (Quarkus) â€
 ```bash
 cd java-quarkus
 mvn package
-java -jar target/quarkus-app/quarkus-run.jar
+
+# Start on a specific port (recommended)
+java -Dquarkus.http.port=8092 -jar target/quarkus-app/quarkus-run.jar
 ```
 
 Register with Claude CLI:
 
 ```bash
-claude mcp add emacs -- java -jar /path/to/java-quarkus/target/quarkus-app/quarkus-run.jar
+claude mcp add emacs -- java -Dquarkus.http.port=8092 \
+  -jar /path/to/java-quarkus/target/quarkus-app/quarkus-run.jar
 ```
 
 Or register with the [MCP Gateway](./mcp-gateway):
