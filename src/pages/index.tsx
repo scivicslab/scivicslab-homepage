@@ -165,6 +165,80 @@ function FeaturesSection() {
   );
 }
 
+function AiToolsSection() {
+  const tools = [
+    {
+      icon: '🤖',
+      title: 'LLM Console (Claude)',
+      tagline: 'Chat with Claude AI',
+      desc: 'Browser-based Web UI for Claude models. Real-time SSE streaming, prompt queue, and tool execution via Claude Code CLI.',
+      to: '/docs/ai-tools/llm-console-claude',
+    },
+    {
+      icon: '✨',
+      title: 'LLM Console (Codex)',
+      tagline: 'Chat with OpenAI Codex / GPT',
+      desc: 'Same UX as the Claude console — queue prompts, execute tools — targeting OpenAI Codex and GPT models.',
+      to: '/docs/ai-tools/llm-console-codex',
+    },
+    {
+      icon: '⚙️',
+      title: 'LLM Console (Local)',
+      tagline: 'vLLM, Ollama, OpenAI-compatible',
+      desc: 'Multi-tenant UI for local LLM servers. Connect to vLLM or Ollama, fetch URLs as context, and analyse images.',
+      to: '/docs/ai-tools/llm-console-local',
+    },
+    {
+      icon: '🔀',
+      title: 'MCP Gateway',
+      tagline: 'Name-based MCP reverse proxy',
+      desc: 'Register MCP servers by name. Route all clients through one gateway instead of tracking individual ports.',
+      to: '/docs/ai-tools/mcp-gateway',
+    },
+    {
+      icon: '📝',
+      title: 'Emacs MCP Server',
+      tagline: 'Control Emacs from Claude',
+      desc: 'Let Claude open files, evaluate Lisp, and navigate definitions in your running Emacs instance via emacsclient.',
+      to: '/docs/ai-tools/emacs-mcp-server',
+    },
+  ];
+
+  return (
+    <section className={styles.aiTools}>
+      <div className={styles.container}>
+        <div className={styles.sectionHeader}>
+          <span className={styles.aiToolsBadge}>Built on POJO-actor</span>
+          <Heading as="h2" className={styles.aiToolsTitle}>
+            AI Tools
+          </Heading>
+          <p className={styles.aiToolsDesc}>
+            LLM consoles, MCP infrastructure, and editor integration — all built with Java and Quarkus on top of the POJO-actor stack.
+          </p>
+        </div>
+        <div className={styles.aiToolsGrid}>
+          {tools.map((tool, idx) => (
+            <Link key={idx} to={tool.to} className={styles.aiToolCard}>
+              <div className={styles.aiToolIcon}>{tool.icon}</div>
+              <div>
+                <h3 className={styles.aiToolName}>{tool.title}</h3>
+                <p className={styles.aiToolTagline}>{tool.tagline}</p>
+                <p className={styles.aiToolDesc}>{tool.desc}</p>
+                <span className={styles.aiToolLink}>Learn more →</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+        <div className={styles.featureCta}>
+          <Link className={styles.aiToolsBtn} to="/docs/ai-tools/introduction">
+            Explore AI Tools
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function WorkflowSection() {
   return (
     <section className={styles.workflow}>
@@ -448,6 +522,7 @@ export default function Home(): ReactNode {
       <main>
         <HeroSection />
         <FeaturesSection />
+        <AiToolsSection />
         <WorkflowSection />
         <ArticlesSection />
         <SupportSection />
