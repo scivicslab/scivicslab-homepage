@@ -22,22 +22,21 @@ Browser-based chat interfaces for different LLM providers. All share the same UX
 
 | Tool | Description | GitHub |
 |------|-------------|--------|
-| [MCP Gateway](./mcp-gateway) | Name-based reverse proxy for MCP servers — register once, reach by name | [quarkus-mcp-gateway](https://github.com/scivicslab/quarkus-mcp-gateway) |
+| [MCP Gateway](./mcp-gateway) | Name-based reverse proxy with caller identification and session metadata | [quarkus-mcp-gateway](https://github.com/scivicslab/quarkus-mcp-gateway) |
 | [Emacs MCP Server](./emacs-mcp-server) | MCP server that controls Emacs via `emacsclient` (Python / TypeScript / Java) | [emacs-mcp-server](https://github.com/scivicslab/emacs-mcp-server) |
 
 ## How They Fit Together
 
 ```
-Claude Desktop / Claude Code
+Claude Code / LLM Console / Workflow Editor
         │  MCP
         ▼
 quarkus-mcp-gateway  (:8888)
-  ├── /mcp/workflow-editor  →  quarkus-workflow-editor  (:8081)
-  ├── /mcp/coder-agent      →  quarkus-coder-agent      (:8090)
-  └── /mcp/emacs            →  emacs-mcp-server         (:8092)
-
-Browser
-  ├── quarkus-llm-console-claude  (:8080)  — chat with Claude
-  ├── quarkus-llm-console-codex   (:8080)  — chat with Codex/GPT
-  └── quarkus-llm-console         (:8090)  — chat with local LLMs
+  ├── /mcp/llm-console-claude →  llm-console-claude   (:8090)
+  ├── /mcp/workflow-editor    →  workflow-editor       (:8091)
+  └── /mcp/emacs              →  emacs-mcp-server     (:8092)
 ```
+
+The gateway provides **name-based routing** (no need to remember port numbers), **caller identification** (each request carries metadata about who sent it), and a **session metadata API** for on-demand introspection.
+
+Each service is both an MCP server and an MCP client. The Workflow Editor can call the LLM Console to run AI prompts, and the LLM Console can call the Workflow Editor to trigger workflows — all routed through the gateway with full caller traceability.
