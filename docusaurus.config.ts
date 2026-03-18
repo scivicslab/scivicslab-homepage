@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Scivics Lab',
-  tagline: 'POJO-actor - Lightweight Actor Model for Java | actor-IaC - Infrastructure Automation',
+  tagline: 'A lightweight actor model and workflow engine for Java — powering AI agents, infrastructure automation, and container orchestration.',
   favicon: 'img/favicon.png',
 
   headTags: [

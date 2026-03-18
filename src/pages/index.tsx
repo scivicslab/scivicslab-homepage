@@ -7,14 +7,14 @@ import CodeBlock from '@theme/CodeBlock';
 
 import styles from './index.module.css';
 
-const exampleCode = `// Define any POJO as an actor
+const actorCode = `// Any POJO becomes an actor
 public class TaskRunner {
     public String execute(String command) {
         return Runtime.exec(command);
     }
 }
 
-// Use it with the actor system
+// Wrap it with the actor system
 IIActorRef<TaskRunner> runner =
     new IIActorRef<>("runner", new TaskRunner(), system);
 
@@ -33,27 +33,24 @@ steps:
           arguments: ["./deploy.sh"]`;
 
 function HeroSection() {
-  const {siteConfig} = useDocusaurusContext();
   return (
     <section className={styles.hero}>
       <div className={styles.heroContent}>
         <div className={styles.heroText}>
           <span className={styles.badge}>Open Source</span>
           <Heading as="h1" className={styles.heroTitle}>
-            POJO-actor:{' '}
-            <span className={styles.gradient}>Lightweight Actor Model for Java</span>
+            <span className={styles.gradient}>From Actors to Applications</span>
           </Heading>
           <p className={styles.heroSubtitle}>
-            Turn any Plain Old Java Object into a concurrent actor.
-            Define workflows in minimal YAML with natural conditional branching—simple
-            enough that AI agents generate correct code on the first try.
+            A lightweight actor model and workflow engine for Java — powering
+            AI agent platforms, infrastructure automation, and container orchestration.
           </p>
           <div className={styles.heroCta}>
             <Link className={styles.primaryBtn} to="/docs/pojo-actor/introduction">
               Get Started
             </Link>
-            <Link className={styles.secondaryBtn} to="https://github.com/scivicslab/POJO-actor">
-              View on GitHub
+            <Link className={styles.secondaryBtn} to="https://github.com/scivicslab">
+              GitHub
             </Link>
           </div>
         </div>
@@ -66,7 +63,7 @@ function HeroSection() {
               <span className={styles.codeTitle}>TaskRunner.java</span>
             </div>
             <CodeBlock language="java" className={styles.codeBlock}>
-              {exampleCode}
+              {actorCode}
             </CodeBlock>
           </div>
           <div className={styles.heroFeatureGrid}>
@@ -97,45 +94,123 @@ function HeroSection() {
   );
 }
 
-function DocsSection() {
+function StackSection() {
   return (
-    <section className={styles.docs}>
+    <section className={styles.stack}>
       <div className={styles.container}>
         <div className={styles.sectionHeader}>
-          <span className={styles.sectionBadge}>Documentation</span>
+          <span className={styles.sectionBadge}>The Stack</span>
           <Heading as="h2" className={styles.sectionTitle}>
-            Complete Guides & References
+            Two building blocks, many applications
           </Heading>
           <p className={styles.sectionDesc}>
-            Everything you need to get started and master our tools.
+            POJO-actor is a minimal actor model library for Java virtual threads.
+            Turing-workflow is a YAML workflow engine and visual editor built on it.
+            Together, they are the foundation for everything we build.
           </p>
         </div>
-        <div className={styles.docsGrid}>
-          <Link to="/docs/pojo-actor/introduction" className={styles.docCard}>
-            <div className={styles.docIcon}>📦</div>
-            <div className={styles.docContent}>
+        <div className={styles.stackGrid}>
+          <Link to="/docs/pojo-actor/introduction" className={styles.stackCard}>
+            <div className={styles.stackIcon}>&#x1F4E6;</div>
+            <div className={styles.stackContent}>
               <h3>POJO-actor</h3>
-              <p className={styles.docTagline}>Actor Model for Java</p>
-              <p className={styles.docDesc}>
+              <p className={styles.stackTagline}>Actor Model for Java</p>
+              <p className={styles.stackDesc}>
                 Turn any Plain Old Java Object into a concurrent actor.
-                No base classes, no annotations—just your code with built-in
-                thread safety and async messaging.
+                No base classes, no annotations — just your code with built-in
+                thread safety and async messaging on virtual threads.
               </p>
-              <span className={styles.docLink}>Read the docs →</span>
+              <span className={styles.stackLink}>Read the docs &rarr;</span>
             </div>
           </Link>
-          <Link to="/docs/actor-iac/introduction" className={styles.docCard}>
-            <div className={styles.docIcon}>🔧</div>
-            <div className={styles.docContent}>
-              <h3>actor-IaC</h3>
-              <p className={styles.docTagline}>Infrastructure as Code</p>
-              <p className={styles.docDesc}>
-                Define infrastructure workflows in YAML with state machine semantics.
-                Execute commands across distributed nodes with automatic error handling.
+          <Link to="https://github.com/scivicslab/Turing-workflow" className={styles.stackCard}>
+            <div className={styles.stackIcon}>&#x2699;</div>
+            <div className={styles.stackContent}>
+              <h3>Turing-workflow</h3>
+              <p className={styles.stackTagline}>YAML Workflow Engine</p>
+              <p className={styles.stackDesc}>
+                Define, inspect, and execute complex pipelines in YAML with
+                automaton-based state transitions. Simple enough that
+                AI agents generate correct workflows on the first try.
               </p>
-              <span className={styles.docLink}>Read the docs →</span>
+              <span className={styles.stackLink}>View on GitHub &rarr;</span>
             </div>
           </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const applications = [
+  {
+    icon: '\u{1F916}',
+    title: 'OpenClaw + LangGraph',
+    status: 'Actively developing',
+    description:
+      'An AI agent platform built on Turing-workflow. LLM tool-calling, MCP gateway integration, and multi-step reasoning chains — all orchestrated as actor workflows.',
+    links: [
+      { label: 'MCP Gateway', url: 'https://github.com/scivicslab/quarkus-mcp-gateway' },
+      { label: 'LLM Console', url: 'https://github.com/scivicslab/quarkus-llm-console' },
+      { label: 'Workflow Editor', url: 'https://github.com/scivicslab/Turing-workflow-editor' },
+    ],
+  },
+  {
+    icon: '\u{1F527}',
+    title: 'actor-IaC',
+    status: 'Production',
+    description:
+      'Infrastructure as Code as a Turing-workflow plugin. State-machine-driven node management across clusters, with SSH execution and full audit trails.',
+    links: [
+      { label: 'Documentation', url: '/docs/actor-iac/introduction' },
+      { label: 'Plugins', url: 'https://github.com/scivicslab/actor-IaC-plugins' },
+    ],
+  },
+  {
+    icon: '\u{1F433}',
+    title: 'k8s-pups / LXD-pups',
+    status: 'Production / In development',
+    description:
+      'Container orchestration portals built on POJO-actor. k8s-pups for multi-user Kubernetes environments, LXD-pups for single-user local AI development setups.',
+    links: [],
+  },
+];
+
+function ApplicationsSection() {
+  return (
+    <section className={styles.applications}>
+      <div className={styles.container}>
+        <div className={styles.sectionHeader}>
+          <span className={styles.sectionBadge}>Built With the Stack</span>
+          <Heading as="h2" className={styles.sectionTitle}>
+            Applications
+          </Heading>
+          <p className={styles.sectionDesc}>
+            Real systems built on POJO-actor and Turing-workflow.
+          </p>
+        </div>
+        <div className={styles.appGrid}>
+          {applications.map((app, index) => (
+            <div key={index} className={styles.appCard}>
+              <div className={styles.appHeader}>
+                <span className={styles.appIcon}>{app.icon}</span>
+                <div>
+                  <h3 className={styles.appTitle}>{app.title}</h3>
+                  <span className={styles.appStatus}>{app.status}</span>
+                </div>
+              </div>
+              <p className={styles.appDesc}>{app.description}</p>
+              {app.links.length > 0 && (
+                <div className={styles.appLinks}>
+                  {app.links.map((link, i) => (
+                    <Link key={i} to={link.url} className={styles.appLink}>
+                      {link.label} &rarr;
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -168,19 +243,14 @@ function FeaturesSection() {
           </div>
           <div className={styles.featureItem}>
             <div className={styles.featureIcon}>&#x1F916;</div>
-            <h3>Automaton-Based Workflows</h3>
-            <p>Simple enough to get right the first time—by humans or AI agents.</p>
+            <h3>AI-Friendly Workflows</h3>
+            <p>Automaton-based YAML workflows simple enough that AI agents generate correct code on the first try.</p>
           </div>
           <div className={styles.featureItem}>
-            <div className={styles.featureIcon}>&#x1F310;</div>
-            <h3>Distributed Actor System</h3>
-            <p>Scale across multiple nodes with location-transparent messaging. (Coming Soon)</p>
+            <div className={styles.featureIcon}>&#x1F9E9;</div>
+            <h3>Pluggable Architecture</h3>
+            <p>ServiceLoader-based plugins for workflows, IaC, and AI agent tools. Extend without modifying core.</p>
           </div>
-        </div>
-        <div className={styles.featureCta}>
-          <Link className={styles.primaryBtn} to="/docs/pojo-actor/introduction">
-            Learn POJO-actor
-          </Link>
         </div>
       </div>
     </section>
@@ -280,23 +350,23 @@ function WorkflowSection() {
             </div>
           </div>
           <div className={styles.workflowText}>
-            <span className={styles.sectionBadge}>Built on POJO-actor</span>
+            <span className={styles.sectionBadge}>Turing-workflow in Action</span>
             <Heading as="h2" className={styles.sectionTitle}>
-              actor-IaC: Actor-Based Parallel Infrastructure Automation
+              Define workflows in YAML, execute anywhere
             </Heading>
             <p className={styles.workflowDesc}>
-              Apply POJO-actor's workflow engine to infrastructure automation.
-              Execute commands across distributed nodes via SSH, with every action
-              logged to an H2 database for full traceability.
+              Turing-workflow turns YAML definitions into executable pipelines.
+              Combined with actor-IaC, it orchestrates commands across distributed
+              nodes via SSH with full traceability.
             </p>
             <ul className={styles.workflowList}>
-              <li>SSH-based remote execution with Ansible-compatible inventory</li>
+              <li>Automaton-based state transitions with conditional branching</li>
               <li>Parallel execution across node groups</li>
-              <li>Overlay system for environment customization</li>
-              <li>Full audit trail with structured logging</li>
+              <li>Visual workflow editor for browser-based design</li>
+              <li>Plugin system for custom actions and integrations</li>
             </ul>
             <Link className={styles.primaryBtn} to="/docs/actor-iac/introduction">
-              Learn actor-IaC
+              See actor-IaC Example
             </Link>
           </div>
         </div>
@@ -429,7 +499,7 @@ function ArticlesSection() {
             From Our Blog
           </Heading>
           <p className={styles.sectionDesc}>
-            Tutorials, announcements, and insights from the team.
+            Tutorials, announcements, and insights.
           </p>
         </div>
         <div className={styles.articlesGrid}>
@@ -445,7 +515,7 @@ function ArticlesSection() {
                   <span className={styles.articleDate}>{article.date}</span>
                   <h3 className={styles.articleTitle}>{article.title}</h3>
                   <p className={styles.articleDesc}>{article.description}</p>
-                  <span className={styles.articleLink}>Read more →</span>
+                  <span className={styles.articleLink}>Read more &rarr;</span>
                 </div>
               </Link>
             ) : (
@@ -461,7 +531,7 @@ function ArticlesSection() {
                   <span className={styles.articleDate}>{article.date}</span>
                   <h3 className={styles.articleTitle}>{article.title}</h3>
                   <p className={styles.articleDesc}>{article.description}</p>
-                  <span className={styles.articleLink}>Read on CoderLegion →</span>
+                  <span className={styles.articleLink}>Read on CoderLegion &rarr;</span>
                 </div>
               </a>
             )
@@ -477,35 +547,44 @@ function SupportSection() {
     <section className={styles.support}>
       <div className={styles.container}>
         <div className={styles.sectionHeader}>
-          <span className={styles.sectionBadge}>Support the Project</span>
+          <span className={styles.sectionBadge}>Support &amp; Sponsorship</span>
           <Heading as="h2" className={styles.sectionTitle}>
-            Help us build better tools
+            Open source, with professional support
           </Heading>
           <p className={styles.sectionDesc}>
-            Your support helps us maintain and improve these open source tools.
+            All projects are free and open source. Sponsors get dedicated support.
           </p>
         </div>
         <div className={styles.supportGrid}>
           <div className={styles.supportItem}>
-            <div className={styles.supportIcon}>⭐</div>
-            <h3>Star on GitHub</h3>
-            <p>Show your support and help others discover the project.</p>
+            <div className={styles.supportIcon}>&#x2615;</div>
+            <h3>$2/mo</h3>
+            <p className={styles.supportTier}>Coffee Supporter</p>
+            <p>Our thanks and a GitHub Sponsor badge.</p>
           </div>
           <div className={styles.supportItem}>
-            <div className={styles.supportIcon}>💬</div>
-            <h3>Enterprise Support</h3>
-            <p>Priority assistance and dedicated support for your team.</p>
+            <div className={styles.supportIcon}>&#x1F4AC;</div>
+            <h3>$10/mo</h3>
+            <p className={styles.supportTier}>Support</p>
+            <p>Priority issue response and setup guidance.</p>
           </div>
           <div className={styles.supportItem}>
-            <div className={styles.supportIcon}>🛠️</div>
-            <h3>Custom Development</h3>
-            <p>Tailored solutions and workflow development for your needs.</p>
+            <div className={styles.supportIcon}>&#x1F680;</div>
+            <h3>$50/mo</h3>
+            <p className={styles.supportTier}>Pro Support</p>
+            <p>Direct support channel, architecture consultation, bug-fix priority.</p>
           </div>
           <div className={styles.supportItem}>
-            <div className={styles.supportIcon}>❤️</div>
-            <h3>Sponsor</h3>
-            <p>Help fund ongoing development and new features.</p>
+            <div className={styles.supportIcon}>&#x1F3E2;</div>
+            <h3>$200/mo</h3>
+            <p className={styles.supportTier}>Organization</p>
+            <p>Team support, logo on scivicslab.com.</p>
           </div>
+        </div>
+        <div className={styles.supportCta}>
+          <Link className={styles.primaryBtn} to="https://github.com/sponsors/scivicslab">
+            Become a Sponsor
+          </Link>
         </div>
       </div>
     </section>
@@ -517,10 +596,10 @@ function CtaSection() {
     <section className={styles.cta}>
       <div className={styles.container}>
         <Heading as="h2" className={styles.ctaTitle}>
-          Ready to simplify your infrastructure?
+          Ready to build with actors?
         </Heading>
         <p className={styles.ctaDesc}>
-          Get started with POJO-actor and actor-IaC today.
+          Start with POJO-actor, define workflows in YAML, and scale to AI agents and infrastructure.
         </p>
         <div className={styles.ctaButtons}>
           <Link className={styles.primaryBtn} to="/docs/pojo-actor/getting-started">
@@ -536,14 +615,16 @@ function CtaSection() {
 }
 
 export default function Home(): ReactNode {
-  const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
       title="Home"
-      description="Scivics Lab - Actor-based Infrastructure as Code. Build concurrent, distributed applications with POJO-actor and automate infrastructure with actor-IaC.">
+      description="Scivics Lab — A lightweight actor model and workflow engine for Java, powering AI agent platforms, infrastructure automation, and container orchestration.">
       <main>
         <HeroSection />
+        <StackSection />
+        <ApplicationsSection />
         <AiToolsSection />
+        <FeaturesSection />
         <WorkflowSection />
         <ArticlesSection />
         <SupportSection />

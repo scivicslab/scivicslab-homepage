@@ -164,7 +164,7 @@
   background: transparent !important;
 }
 
-/* Hero Features — 2×2 grid inside the right column */
+/* Hero Features — 2x2 grid inside the right column */
 .heroFeatureGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -204,17 +204,17 @@
   margin: 0;
 }
 
-/* Docs Section */
-.docs {
+/* Stack Section (The Stack — POJO-actor + Turing-workflow) */
+.stack {
   padding: 6rem 0;
   background: white;
 }
 
-:global([data-theme='dark']) .docs {
+:global([data-theme='dark']) .stack {
   background: #1e293b;
 }
 
-.docsGrid {
+.stackGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
@@ -222,7 +222,7 @@
   margin: 0 auto;
 }
 
-.docCard {
+.stackCard {
   display: flex;
   gap: 1.5rem;
   padding: 2rem;
@@ -234,35 +234,35 @@
   transition: all 0.3s ease;
 }
 
-:global([data-theme='dark']) .docCard {
+:global([data-theme='dark']) .stackCard {
   background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
   border-color: #334155;
 }
 
-.docCard:hover {
+.stackCard:hover {
   transform: translateY(-4px);
   border-color: #3b82f6;
   box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
   color: inherit;
 }
 
-.docIcon {
+.stackIcon {
   font-size: 3rem;
   flex-shrink: 0;
 }
 
-.docContent h3 {
+.stackContent h3 {
   font-size: 1.5rem;
   font-weight: 700;
   margin: 0 0 0.25rem 0;
   color: #1e293b;
 }
 
-:global([data-theme='dark']) .docContent h3 {
+:global([data-theme='dark']) .stackContent h3 {
   color: white;
 }
 
-.docTagline {
+.stackTagline {
   font-size: 0.875rem;
   font-weight: 600;
   color: #3b82f6;
@@ -271,33 +271,117 @@
   letter-spacing: 0.05em;
 }
 
-.docDesc {
+.stackDesc {
   font-size: 0.95rem;
   color: #64748b;
   line-height: 1.6;
   margin: 0 0 1rem 0;
 }
 
-.docLink {
+.stackLink {
   font-size: 0.875rem;
   font-weight: 600;
   color: #3b82f6;
 }
 
-.docCard:hover .docLink {
+.stackCard:hover .stackLink {
   color: #2563eb;
 }
 
-/* Features Section */
-.features {
+/* Applications Section */
+.applications {
   padding: 6rem 0;
   background: #f8fafc;
 }
 
-:global([data-theme='dark']) .features {
+:global([data-theme='dark']) .applications {
   background: #0f172a;
 }
 
+.appGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.appCard {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+:global([data-theme='dark']) .appCard {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.appCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.appHeader {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.appIcon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.appTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  color: #1e293b;
+}
+
+:global([data-theme='dark']) .appTitle {
+  color: white;
+}
+
+.appStatus {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  margin-top: 0.25rem;
+}
+
+.appDesc {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+}
+
+.appLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.appLink {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.appLink:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+/* Section common styles */
 .sectionHeader {
   text-align: center;
   max-width: 600px;
@@ -331,6 +415,16 @@
   color: #64748b;
 }
 
+/* Features Section */
+.features {
+  padding: 6rem 0;
+  background: white;
+}
+
+:global([data-theme='dark']) .features {
+  background: #1e293b;
+}
+
 .featureGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -338,7 +432,7 @@
 }
 
 .featureItem {
-  background: white;
+  background: #f8fafc;
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -347,7 +441,7 @@
 }
 
 :global([data-theme='dark']) .featureItem {
-  background: #1e293b;
+  background: #0f172a;
   border-color: #334155;
 }
 
@@ -512,11 +606,11 @@
 /* Workflow Section */
 .workflow {
   padding: 6rem 0;
-  background: white;
+  background: #f8fafc;
 }
 
 :global([data-theme='dark']) .workflow {
-  background: #1e293b;
+  background: #0f172a;
 }
 
 .workflowGrid {
@@ -559,7 +653,7 @@
 }
 
 .workflowList li::before {
-  content: '✓';
+  content: '\2713';
   position: absolute;
   left: 0;
   color: #10b981;
@@ -699,9 +793,19 @@
 }
 
 .supportItem h3 {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: #3b82f6;
+}
+
+.supportTier {
+  font-size: 0.875rem;
   font-weight: 600;
-  margin-bottom: 0.75rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.75rem 0;
 }
 
 .supportItem p {
@@ -709,6 +813,11 @@
   font-size: 0.95rem;
   line-height: 1.6;
   margin: 0;
+}
+
+.supportCta {
+  text-align: center;
+  margin-top: 3rem;
 }
 
 /* CTA Section */
@@ -776,9 +885,15 @@
     display: none;
   }
 
-  .docsGrid {
+  .stackGrid {
     grid-template-columns: 1fr;
     max-width: 500px;
+  }
+
+  .appGrid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
   }
 
   .featureGrid {
@@ -824,7 +939,7 @@
     font-size: 2rem;
   }
 
-  .docCard {
+  .stackCard {
     flex-direction: column;
     text-align: center;
   }
