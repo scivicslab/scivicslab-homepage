@@ -145,10 +145,10 @@ function StackSection() {
 const applications = [
   {
     icon: '\u{1F916}',
-    title: 'OpenClaw + LangGraph',
+    title: 'AI Agent Platform',
     status: 'Actively developing',
     description:
-      'An AI agent platform built on Turing-workflow. LLM tool-calling, MCP gateway integration, and multi-step reasoning chains — all orchestrated as actor workflows.',
+      'Our own take on OpenClaw + LangGraph, built on Turing-workflow. LLM tool-calling, MCP gateway integration, and multi-step reasoning chains — all orchestrated as actor workflows.',
     links: [
       { label: 'MCP Gateway', url: 'https://github.com/scivicslab/quarkus-mcp-gateway' },
       { label: 'LLM Console', url: 'https://github.com/scivicslab/quarkus-llm-console' },
