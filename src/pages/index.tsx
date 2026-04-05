@@ -7,48 +7,58 @@ import CodeBlock from '@theme/CodeBlock';
 
 import styles from './index.module.css';
 
-function StackSection() {
+function HeroStackSection() {
   return (
-    <section className={styles.stack}>
-      <div className={styles.container}>
-        <div className={styles.sectionHeader}>
-          <span className={styles.sectionBadge}>The Stack</span>
-          <Heading as="h2" className={styles.sectionTitle}>
-            Two building blocks, many applications
+    <section className={styles.hero}>
+      <div className={styles.heroContent}>
+        <div className={styles.heroText}>
+          <span className={styles.badge}>Open Source</span>
+          <Heading as="h1" className={styles.heroTitle}>
+            <span className={styles.gradient}>Two building blocks, many applications</span>
           </Heading>
-          <p className={styles.sectionDesc}>
+          <p className={styles.heroSubtitle}>
             POJO-actor is a minimal actor model library for Java virtual threads.
             Turing-workflow is a YAML workflow engine and visual editor built on it.
             Together, they are the foundation for everything we build.
           </p>
+          <div className={styles.heroCta}>
+            <Link className={styles.primaryBtn} to="/docs/pojo-actor/introduction">
+              Get Started
+            </Link>
+            <Link className={styles.secondaryBtn} to="https://github.com/scivicslab">
+              GitHub
+            </Link>
+          </div>
         </div>
-        <div className={styles.stackGrid}>
-          <Link to="/docs/pojo-actor/introduction" className={styles.stackCard}>
-            <div className={styles.stackIcon}>&#x1F4E6;</div>
-            <div className={styles.stackContent}>
-              <h3>POJO-actor</h3>
-              <p className={styles.stackTagline}>Actor Model for Java</p>
-              <p className={styles.stackDesc}>
-                Turn any Plain Old Java Object into a concurrent actor.
-                No base classes, no annotations — just your code with built-in
-                thread safety and async messaging on virtual threads.
-              </p>
-              <span className={styles.stackLink}>Read the docs &rarr;</span>
-            </div>
-          </Link>
-          <Link to="https://github.com/scivicslab/Turing-workflow" className={styles.stackCard}>
-            <div className={styles.stackIcon}>&#x2699;</div>
-            <div className={styles.stackContent}>
-              <h3>Turing-workflow</h3>
-              <p className={styles.stackTagline}>YAML Workflow Engine</p>
-              <p className={styles.stackDesc}>
-                Define, inspect, and execute complex pipelines in YAML with
-                automaton-based state transitions. Simple enough that
-                AI agents generate correct workflows on the first try.
-              </p>
-              <span className={styles.stackLink}>View on GitHub &rarr;</span>
-            </div>
-          </Link>
+        <div className={styles.heroCode}>
+          <div className={styles.stackGrid}>
+            <Link to="/docs/pojo-actor/introduction" className={styles.stackCard}>
+              <div className={styles.stackIcon}>&#x1F4E6;</div>
+              <div className={styles.stackContent}>
+                <h3>POJO-actor</h3>
+                <p className={styles.stackTagline}>Actor Model for Java</p>
+                <p className={styles.stackDesc}>
+                  Turn any Plain Old Java Object into a concurrent actor.
+                  No base classes, no annotations — just your code with built-in
+                  thread safety and async messaging on virtual threads.
+                </p>
+                <span className={styles.stackLink}>Read the docs &rarr;</span>
+              </div>
+            </Link>
+            <Link to="https://github.com/scivicslab/Turing-workflow" className={styles.stackCard}>
+              <div className={styles.stackIcon}>&#x2699;</div>
+              <div className={styles.stackContent}>
+                <h3>Turing-workflow</h3>
+                <p className={styles.stackTagline}>YAML Workflow Engine</p>
+                <p className={styles.stackDesc}>
+                  Define, inspect, and execute complex pipelines in YAML with
+                  automaton-based state transitions. Simple enough that
+                  AI agents generate correct workflows on the first try.
+                </p>
+                <span className={styles.stackLink}>View on GitHub &rarr;</span>
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
     </section>
@@ -420,7 +430,7 @@ export default function Home(): ReactNode {
       title="Home"
       description="Scivics Lab — A lightweight actor model and workflow engine for Java, powering AI agent platforms, infrastructure automation, and container orchestration.">
       <main>
-        <StackSection />
+        <HeroStackSection />
         <ApplicationsSection />
         <AiToolsSection />
         <ArticlesSection />
