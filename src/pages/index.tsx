@@ -7,82 +7,6 @@ import CodeBlock from '@theme/CodeBlock';
 
 import styles from './index.module.css';
 
-const actorCode = `// Any POJO becomes an actor
-public class TaskRunner {
-    public String execute(String command) {
-        return Runtime.exec(command);
-    }
-}
-
-// Wrap it with the actor system
-IIActorRef<TaskRunner> runner =
-    new IIActorRef<>("runner", new TaskRunner(), system);
-
-// Call methods asynchronously
-String result = runner.ask(r -> r.execute("deploy")).get();`;
-
-function HeroSection() {
-  return (
-    <section className={styles.hero}>
-      <div className={styles.heroContent}>
-        <div className={styles.heroText}>
-          <span className={styles.badge}>Open Source</span>
-          <Heading as="h1" className={styles.heroTitle}>
-            <span className={styles.gradient}>From Actors to Applications</span>
-          </Heading>
-          <p className={styles.heroSubtitle}>
-            A lightweight actor model and workflow engine for Java — powering
-            AI agent platforms, infrastructure automation, and container orchestration.
-          </p>
-          <div className={styles.heroCta}>
-            <Link className={styles.primaryBtn} to="/docs/pojo-actor/introduction">
-              Get Started
-            </Link>
-            <Link className={styles.secondaryBtn} to="https://github.com/scivicslab">
-              GitHub
-            </Link>
-          </div>
-        </div>
-        <div className={styles.heroCode}>
-          <div className={styles.codeWindow}>
-            <div className={styles.codeHeader}>
-              <span className={styles.dot} style={{background: '#ff5f56'}}></span>
-              <span className={styles.dot} style={{background: '#ffbd2e'}}></span>
-              <span className={styles.dot} style={{background: '#27ca40'}}></span>
-              <span className={styles.codeTitle}>TaskRunner.java</span>
-            </div>
-            <CodeBlock language="java" className={styles.codeBlock}>
-              {actorCode}
-            </CodeBlock>
-          </div>
-          <div className={styles.heroFeatureGrid}>
-            <div className={styles.heroFeatureItem}>
-              <div className={styles.heroFeatureIcon}>📦</div>
-              <h3>Zero Dependencies</h3>
-              <p>Use any POJO as an actor. No base classes, no interfaces.</p>
-            </div>
-            <div className={styles.heroFeatureItem}>
-              <div className={styles.heroFeatureIcon}>⚡</div>
-              <h3>Virtual Thread Native</h3>
-              <p>Java 21+. Each actor on its own virtual thread.</p>
-            </div>
-            <div className={styles.heroFeatureItem}>
-              <div className={styles.heroFeatureIcon}>🤖</div>
-              <h3>Automaton-Based Workflows</h3>
-              <p>Simple enough for humans and AI agents alike.</p>
-            </div>
-            <div className={styles.heroFeatureItem}>
-              <div className={styles.heroFeatureIcon}>🌐</div>
-              <h3>Distributed Actor System</h3>
-              <p>Scale across multiple nodes transparently.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function StackSection() {
   return (
     <section className={styles.stack}>
@@ -497,7 +421,6 @@ export default function Home(): ReactNode {
       description="Scivics Lab — A lightweight actor model and workflow engine for Java, powering AI agent platforms, infrastructure automation, and container orchestration.">
       <main>
         <StackSection />
-        <HeroSection />
         <ApplicationsSection />
         <AiToolsSection />
         <ArticlesSection />
