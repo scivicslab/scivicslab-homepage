@@ -113,7 +113,7 @@ Each instance exposes itself as an HTTP MCP server at `/mcp`. Available tools:
 | `getStatus` | Current model, session ID, and busy state |
 | `listModels` | Available model names |
 
-Register with Claude Code:
+Register with Claude Code CLI:
 
 ```bash
 claude mcp add --transport http chat-ui-28010 http://localhost:28010/mcp
@@ -153,3 +153,15 @@ The LLM reads this, formulates a reply, and calls `submitPrompt` on Instance A. 
 Built on [POJO-actor](https://github.com/scivicslab/pojo-actor), a lightweight actor-model library for Java 21. Each concern — chat session, side questions, queue management, stall detection — runs in its own actor. Blocking I/O runs on virtual threads. There are no `synchronized` blocks in the application code.
 
 See the blog post: [quarkus-chat-ui: A Web Front-End for LLMs, and a Real-World Case for POJO-actor](/blog/2026-04-05-quarkus-chat-ui-intro)
+
+## Multi-Agent Setup Tutorials
+
+Step-by-step guides for setting up multi-agent communication:
+
+| Tutorial | Description |
+|----------|-------------|
+| [Two Claude Code CLI Agents](./multi-agent-claude-cli) | Two instances both using Claude Code CLI |
+| [Claude Code CLI + Codex](./multi-agent-claude-codex) | Heterogeneous setup with Anthropic and OpenAI |
+| [Claude Code CLI + Local LLM](./multi-agent-claude-local) | Using claw-code-local with Ollama |
+
+For three or more agents, see [MCP Gateway](./mcp-gateway) for name-based routing.

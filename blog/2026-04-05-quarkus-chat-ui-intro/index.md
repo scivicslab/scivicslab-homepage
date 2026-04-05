@@ -8,15 +8,17 @@ tags: [quarkus-chat-ui, pojo-actor, llm, mcp, quarkus]
 
 quarkus-chat-ui is a web UI for LLMs where multiple instances can talk to each other — built as a real-world use case for [POJO-actor](https://github.com/scivicslab/pojo-actor).
 
-Claude Code is an MCP server as well as an MCP client — it can expose its own tools to the outside world via `claude mcp serve`. So in principle, Instance A could call a tool on Instance B, and Instance B could reply by calling a tool back on A. The question was how to wire that up over HTTP, and how to handle the fact that LLM responses take tens of seconds and arrive as a stream.
+Each quarkus-chat-ui instance exposes an HTTP MCP server at `/mcp`, so Instance A can call tools on Instance B, and Instance B can reply by calling tools back on A. The LLM backend — Claude Code CLI, Codex, or a local model via claw-code-local — acts as an MCP client that can reach these endpoints. The question was how to wire that up over HTTP, and how to handle the fact that LLM responses take tens of seconds and arrive as a stream.
 
-[quarkus-chat-ui](https://github.com/scivicslab/quarkus-chat-ui) is the bridge that makes this work. Each instance wraps one LLM backend — Claude Code CLI, vLLM, Ollama, any OpenAI-compatible server — and exposes it as an HTTP MCP server at `/mcp`. Agents call each other by name. Humans can watch both sides of the conversation in their browsers.
+[quarkus-chat-ui](https://github.com/scivicslab/quarkus-chat-ui) is the bridge that makes this work. Each instance wraps one LLM backend and exposes it as an HTTP MCP server at `/mcp`. For multi-agent communication, use a backend with MCP client capability: Claude Code CLI, Codex, or claw-code-local (which brings MCP support to Ollama, vLLM, and other local models). The `openai-compat` provider works for single-agent use but cannot call other MCP servers. Agents call each other by name. Humans can watch both sides of the conversation in their browsers.
 
 <!-- truncate -->
 
 Once the async communication layer was in place, a capable web UI and a prompt queue came along naturally. The browser gives you a stable place to type — your input won't vanish when the AI responds, and paste and multi-line just work. If you need an LLM front-end and happen to be a Java developer, those turn out to be useful in their own right.
 
-This post is about quarkus-chat-ui as a tool you can use. A companion post covers the internal design — how [POJO-actor](https://github.com/scivicslab/pojo-actor), a lightweight actor-model library for Java 21, keeps the concurrency clean despite all the moving parts. → quarkus-chat-ui (2): The Actor Design Behind LLM-to-LLM Communication (coming soon)
+This post is about quarkus-chat-ui as a tool you can use. Companion posts cover:
+- The internal design — how [POJO-actor](https://github.com/scivicslab/pojo-actor) keeps the concurrency clean → quarkus-chat-ui (2): The Actor Design Behind LLM-to-LLM Communication (coming soon)
+- Scaling beyond two agents — why quarkus-mcp-gateway becomes necessary → quarkus-chat-ui (3): Scaling Multi-Agent Communication with MCP Gateway (coming soon)
 
 ---
 
@@ -216,6 +218,123 @@ java -Dchat-ui.provider=openai-compat \
 Open `http://localhost:28010` in a browser.
 
 For all providers (`claude`, `codex`, `openai-compat`) and configuration options, see the [README](https://github.com/scivicslab/quarkus-chat-ui#configuration).
+
+---
+
+## Setting up two agents to talk (Claude Code CLI)
+
+This section walks through the exact steps to make two quarkus-chat-ui instances communicate with each other. Both use Claude Code CLI as the LLM backend.
+
+### Understanding the architecture
+
+Two separate systems are involved:
+
+1. **MCP server** — quarkus-chat-ui exposes tools at `/mcp` (e.g., `submitPrompt`). External callers can invoke these tools via HTTP.
+2. **LLM tools** — Claude Code CLI has its own tool system (`Read`, `Write`, `Bash`, etc.). It can also call registered MCP servers using tools like `mcp__servername__toolname`.
+
+For Alice's LLM to call Bob's `submitPrompt`, Alice's Claude Code CLI must have Bob's MCP endpoint registered. This is done with `claude mcp add`.
+
+### Step 1: Start two instances
+
+Open two terminals.
+
+**Terminal 1 (Alice on port 28010):**
+
+```bash
+export ANTHROPIC_API_KEY=sk-ant-...
+java -Dchat-ui.provider=claude \
+     -Dquarkus.http.port=28010 \
+     -jar app/target/quarkus-app/quarkus-run.jar
+```
+
+**Terminal 2 (Bob on port 28020):**
+
+```bash
+export ANTHROPIC_API_KEY=sk-ant-...
+java -Dchat-ui.provider=claude \
+     -Dquarkus.http.port=28020 \
+     -jar app/target/quarkus-app/quarkus-run.jar
+```
+
+At this point, both instances are running, but their LLMs cannot call each other's MCP endpoints.
+
+### Step 2: Register MCP endpoints
+
+Claude Code CLI's MCP registration is user-level (stored in `~/.claude.json`). Register each instance's MCP endpoint:
+
+```bash
+# Register Bob's MCP endpoint (so Alice can call Bob)
+claude mcp add bob --transport http http://localhost:28020/mcp
+
+# Register Alice's MCP endpoint (so Bob can call Alice)
+claude mcp add alice --transport http http://localhost:28010/mcp
+```
+
+Verify the registration:
+
+```bash
+claude mcp list
+```
+
+You should see both `alice` and `bob` in the list.
+
+### Step 3: Restart the instances
+
+The Claude Code CLI subprocess reads `~/.claude.json` at startup. Restart both quarkus-chat-ui instances so they pick up the new MCP registrations.
+
+### Step 4: Test the communication
+
+Open two browser windows:
+- Alice: `http://localhost:28010`
+- Bob: `http://localhost:28020`
+
+In Alice's browser, type:
+
+```
+Send a greeting to bob using the mcp__bob__submitPrompt tool. Include _caller parameter set to http://localhost:28010 so bob knows where to reply.
+```
+
+Alice's Claude Code CLI will call:
+
+```
+mcp__bob__submitPrompt(prompt="Hello Bob!", _caller="http://localhost:28010")
+```
+
+In Bob's browser, you should see:
+
+```
+[MCP from localhost:28010] Hello Bob!
+```
+
+Bob's LLM receives the enriched prompt with reply instructions and can respond using `mcp__alice__submitPrompt`.
+
+### What can go wrong
+
+| Symptom | Cause | Fix |
+|---------|-------|-----|
+| "I don't have access to mcp__bob__submitPrompt" | MCP endpoint not registered | Run `claude mcp add bob ...` |
+| MCP registered but LLM doesn't see it | Instance started before registration | Restart the instance |
+| Bob receives message but can't reply | Alice's endpoint not registered with Bob | Run `claude mcp add alice ...` |
+| Connection refused | Wrong port or instance not running | Check port numbers |
+
+### The `_caller` parameter
+
+When calling `submitPrompt`, always include `_caller` with the sender's URL:
+
+```
+mcp__bob__submitPrompt(
+  prompt="Hello!",
+  _caller="http://localhost:28010"  ← tells Bob where to reply
+)
+```
+
+quarkus-chat-ui enriches the prompt with this information, so Bob's LLM knows where to send replies.
+
+### Beyond two agents
+
+With two agents, you register two endpoints. With three, you need six registrations. With *n* agents, you need *n(n-1)* registrations — quadratic growth.
+
+For three or more agents, use [quarkus-mcp-gateway](https://github.com/scivicslab/quarkus-mcp-gateway). Agents register once with the gateway; the gateway routes by name.
 
 ---
 

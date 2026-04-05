@@ -90,4 +90,4 @@ User: Open the ActorSystem.java file in Emacs at line 42.
 Claude: [calls open_file("src/main/java/.../ActorSystem.java", 42)]
 ```
 
-This is particularly useful when Claude Code is navigating large codebases — you can ask it to open any file it references and jump to the relevant line in your running Emacs instance.
+This is particularly useful when Claude Code CLI is navigating large codebases — you can ask it to open any file it references and jump to the relevant line in your running Emacs instance.

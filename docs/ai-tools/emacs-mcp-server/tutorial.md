@@ -215,7 +215,7 @@ The Java version uses HTTP transport (MCP Streamable HTTP) and can be registered
 claude mcp add emacs -- python /path/to/emacs-mcp-server/python/emacs_mcp_server.py
 ```
 
-When you start Claude Code, the `emacs` MCP server will be loaded automatically.
+When you start Claude Code CLI, the `emacs` MCP server will be loaded automatically.
 
 ### Option B: Register via MCP Gateway (Java — recommended)
 
@@ -247,7 +247,7 @@ claude mcp add emacs --transport http --url http://localhost:8092/mcp
 
 ## 5. Trying It Out
 
-Talk to Claude Code (or quarkus-chat-ui) and it will control Emacs on your behalf.
+Talk to Claude Code CLI (or quarkus-chat-ui) and it will control Emacs on your behalf.
 
 ### Open a file
 

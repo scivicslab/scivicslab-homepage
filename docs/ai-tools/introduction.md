@@ -38,3 +38,15 @@ quarkus-mcp-gateway  (:8888)
 The gateway provides **name-based routing** (no need to remember port numbers), **caller identification** (each request carries metadata about who sent it), and a **session metadata API** for on-demand introspection.
 
 Multiple quarkus-chat-ui instances can talk to each other via MCP. When Instance B receives a prompt with `_caller` pointing back to Instance A, it can reply by calling `submitPrompt` back on A. The conversation continues autonomously while humans watch from their browsers.
+
+## Multi-Agent Tutorials
+
+Step-by-step guides for setting up agent-to-agent communication:
+
+| Tutorial | Description |
+|----------|-------------|
+| [Two Claude Code CLI Agents](./multi-agent-claude-cli) | Two instances both using Claude Code CLI |
+| [Claude Code CLI + Codex](./multi-agent-claude-codex) | Heterogeneous setup with Anthropic and OpenAI |
+| [Claude Code CLI + Local LLM](./multi-agent-claude-local) | Using claw-code-local with Ollama |
+
+For three or more agents, the [MCP Gateway](./mcp-gateway) provides name-based routing instead of direct peer-to-peer registration.
