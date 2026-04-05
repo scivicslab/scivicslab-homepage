@@ -136,6 +136,16 @@ const config: Config = {
             to: '/blog/2026-01-28-actor-iac-cluster-inventory',
           },
         ],
+        createRedirects(existingPath) {
+          // Redirect all /docs/actor-iac/* to /docs/pojo-actor/introduction
+          if (existingPath === '/docs/pojo-actor/introduction') {
+            return [
+              '/docs/actor-iac/introduction',
+              '/docs/actor-iac',
+            ];
+          }
+          return undefined;
+        },
       },
     ],
   ],
@@ -170,13 +180,6 @@ const config: Config = {
         {
           type: 'doc',
           docId: 'introduction',
-          docsPluginId: 'actor-iac',
-          position: 'left',
-          label: 'actor-IaC',
-        },
-        {
-          type: 'doc',
-          docId: 'introduction',
           docsPluginId: 'ai-tools',
           position: 'left',
           label: 'AI Tools',
@@ -198,10 +201,6 @@ const config: Config = {
             {
               label: 'POJO-actor',
               to: '/docs/pojo-actor/introduction',
-            },
-            {
-              label: 'actor-IaC',
-              to: '/docs/actor-iac/introduction',
             },
             {
               label: 'Turing-workflow',

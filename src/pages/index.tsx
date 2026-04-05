@@ -140,19 +140,19 @@ const applications = [
       'Our own take on OpenClaw + LangGraph, built on Turing-workflow. LLM tool-calling, MCP gateway integration, and multi-step reasoning chains — all orchestrated as actor workflows.',
     links: [
       { label: 'MCP Gateway', url: 'https://github.com/scivicslab/quarkus-mcp-gateway' },
-      { label: 'LLM Console', url: 'https://github.com/scivicslab/quarkus-llm-console' },
+      { label: 'Chat UI', url: 'https://github.com/scivicslab/quarkus-chat-ui' },
       { label: 'Workflow Editor', url: 'https://github.com/scivicslab/Turing-workflow-editor' },
     ],
   },
   {
-    icon: '\u{1F527}',
-    title: 'actor-IaC',
+    icon: '\u{2699}',
+    title: 'Turing-workflow',
     status: 'Production',
     description:
-      'Infrastructure as Code as a Turing-workflow plugin. State-machine-driven node management across clusters, with SSH execution and full audit trails.',
+      'YAML-based workflow engine built on POJO-actor. Automaton-based state transitions, parallel execution, and a plugin system for custom actions.',
     links: [
-      { label: 'Documentation', url: '/docs/actor-iac/introduction' },
-      { label: 'Plugins', url: 'https://github.com/scivicslab/actor-IaC-plugins' },
+      { label: 'GitHub', url: 'https://github.com/scivicslab/Turing-workflow' },
+      { label: 'Documentation', url: '/docs/pojo-actor/introduction' },
     ],
   },
   {
