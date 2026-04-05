@@ -6,80 +6,75 @@ description: "Step-by-step guide to set up two quarkus-chat-ui instances with Cl
 
 # Tutorial: Two Claude Code CLI Agents
 
-This tutorial walks through setting up two quarkus-chat-ui instances, both using Claude Code CLI, that can send messages to each other via MCP.
+Two quarkus-chat-ui instances, both using Claude Code CLI, talking to each other via MCP.
 
-## Prerequisites
+## 1. Install Claude Code CLI
 
-- `ANTHROPIC_API_KEY` environment variable set
-- quarkus-chat-ui JAR or native executable ([download](https://github.com/scivicslab/quarkus-chat-ui/releases))
-- Claude Code CLI installed (`npm install -g @anthropic-ai/claude-code`)
-
-## Architecture Overview
-
-```
-┌─────────────────────────┐          ┌─────────────────────────┐
-│  quarkus-chat-ui        │          │  quarkus-chat-ui        │
-│  (Alice, port 28010)    │          │  (Bob, port 28020)      │
-│                         │          │                         │
-│  ┌───────────────────┐  │          │  ┌───────────────────┐  │
-│  │ Claude Code CLI   │  │   MCP    │  │ Claude Code CLI   │  │
-│  │ (subprocess)      │◄─┼──────────┼─►│ (subprocess)      │  │
-│  └───────────────────┘  │          │  └───────────────────┘  │
-│           │             │          │           │             │
-│  ┌────────▼──────────┐  │          │  ┌────────▼──────────┐  │
-│  │ MCP Server /mcp   │  │          │  │ MCP Server /mcp   │  │
-│  └───────────────────┘  │          │  └───────────────────┘  │
-└─────────────────────────┘          └─────────────────────────┘
-         ▲                                      ▲
-         │        Browser (human watches)       │
-         └──────────────────────────────────────┘
+```bash
+npm install -g @anthropic-ai/claude-code
 ```
 
-Key insight: **MCP server** (what quarkus-chat-ui exposes) and **LLM tools** (what Claude Code CLI can use) are separate systems. For Alice's Claude Code CLI to call Bob's MCP endpoint, Bob must be registered as an MCP server in Claude Code CLI's configuration.
+Verify:
 
-## Step 1: Start Two Instances
+```bash
+claude --version
+```
 
-Open two terminals.
-
-**Terminal 1 (Alice):**
+## 2. Set API Key
 
 ```bash
 export ANTHROPIC_API_KEY=sk-ant-api03-...
-
-# Using JAR
-java -Dchat-ui.provider=claude \
-     -Dquarkus.http.port=28010 \
-     -jar quarkus-chat-ui.jar
-
-# Or using native executable
-./quarkus-chat-ui -Dchat-ui.provider=claude -Dquarkus.http.port=28010
 ```
 
-**Terminal 2 (Bob):**
+## 3. Download quarkus-chat-ui
+
+Download the native executable for your platform from [Releases](https://github.com/scivicslab/quarkus-chat-ui/releases):
+
+| Platform | Binary |
+|----------|--------|
+| Linux x86_64 | `quarkus-chat-ui-linux-amd64` |
+| Linux ARM64 | `quarkus-chat-ui-linux-arm64` |
+| macOS Intel | `quarkus-chat-ui-macos-amd64` |
+| macOS Apple Silicon | `quarkus-chat-ui-macos-arm64` |
+| Windows | `quarkus-chat-ui-windows-amd64.exe` |
 
 ```bash
-export ANTHROPIC_API_KEY=sk-ant-api03-...
-
-java -Dchat-ui.provider=claude \
-     -Dquarkus.http.port=28020 \
-     -jar quarkus-chat-ui.jar
+chmod +x quarkus-chat-ui-linux-amd64
 ```
 
-Verify both are running:
-- Alice: http://localhost:28010
-- Bob: http://localhost:28020
+## 4. Start Alice (port 28010)
 
-At this point, both instances expose MCP servers at `/mcp`, but their LLMs cannot call each other yet.
-
-## Step 2: Register MCP Endpoints
-
-Claude Code CLI stores MCP server registrations in `~/.claude.json`. Register each instance:
+Terminal 1:
 
 ```bash
-# Register Bob's MCP endpoint (so Alice's LLM can call Bob)
+./quarkus-chat-ui-linux-amd64 \
+  -Dchat-ui.provider=claude \
+  -Dquarkus.http.port=28010
+```
+
+Open http://localhost:28010 in a browser.
+
+## 5. Start Bob (port 28020)
+
+Terminal 2:
+
+```bash
+./quarkus-chat-ui-linux-amd64 \
+  -Dchat-ui.provider=claude \
+  -Dquarkus.http.port=28020
+```
+
+Open http://localhost:28020 in another browser window.
+
+## 6. Register MCP Endpoints
+
+Terminal 3:
+
+```bash
+# So Alice can call Bob
 claude mcp add bob --transport http http://localhost:28020/mcp
 
-# Register Alice's MCP endpoint (so Bob's LLM can call Alice)
+# So Bob can call Alice
 claude mcp add alice --transport http http://localhost:28010/mcp
 ```
 
@@ -89,105 +84,63 @@ Verify:
 claude mcp list
 ```
 
-Expected output:
+Output:
 
 ```
-bob: http://localhost:28020/mcp (http)
 alice: http://localhost:28010/mcp (http)
+bob: http://localhost:28020/mcp (http)
 ```
 
-## Step 3: Restart Both Instances
+## 7. Restart Both Instances
 
-Claude Code CLI reads `~/.claude.json` at startup. The running instances won't see the new registrations until restarted.
+Claude Code CLI reads MCP registrations at startup. Stop and restart both instances.
 
-**In both terminals, press Ctrl+C, then restart:**
+Terminal 1 (Ctrl+C, then):
 
 ```bash
-# Terminal 1 (Alice)
-java -Dchat-ui.provider=claude \
-     -Dquarkus.http.port=28010 \
-     -jar quarkus-chat-ui.jar
-
-# Terminal 2 (Bob)
-java -Dchat-ui.provider=claude \
-     -Dquarkus.http.port=28020 \
-     -jar quarkus-chat-ui.jar
+./quarkus-chat-ui-linux-amd64 \
+  -Dchat-ui.provider=claude \
+  -Dquarkus.http.port=28010
 ```
 
-## Step 4: Test Communication
+Terminal 2 (Ctrl+C, then):
 
-Open two browser windows side by side:
-- http://localhost:28010 (Alice)
-- http://localhost:28020 (Bob)
-
-### Alice sends a message to Bob
-
-In Alice's browser, type:
-
-```
-Use the mcp__bob__submitPrompt tool to send "Hello Bob! What's your favorite programming language?" to Bob. Set _caller to http://localhost:28010 so Bob knows where to reply.
+```bash
+./quarkus-chat-ui-linux-amd64 \
+  -Dchat-ui.provider=claude \
+  -Dquarkus.http.port=28020
 ```
 
-Alice's Claude Code CLI will execute:
+## 8. Test: Alice Sends to Bob
+
+In Alice's browser (http://localhost:28010), type:
 
 ```
-mcp__bob__submitPrompt(
-  prompt: "Hello Bob! What's your favorite programming language?",
-  _caller: "http://localhost:28010"
-)
+Use mcp__bob__submitPrompt to send "Hello Bob!" to Bob.
+Set _caller to http://localhost:28010
 ```
 
-### Bob receives and replies
+## 9. Verify: Bob Receives
 
-In Bob's browser, you should see:
-
-```
-[MCP from localhost:28010] Hello Bob! What's your favorite programming language?
-```
-
-Bob's LLM receives an enriched prompt:
+In Bob's browser (http://localhost:28020), you should see:
 
 ```
-[Context]
-You are running on: http://localhost:28020
-Received via MCP from: localhost:28010
-
-[Message]
-Hello Bob! What's your favorite programming language?
-
-[How to Reply]
-Use mcp__alice__submitPrompt tool with _caller=http://localhost:28020
+[MCP from localhost:28010] Hello Bob!
 ```
 
-Bob's LLM formulates a reply and calls `mcp__alice__submitPrompt`. Alice's browser shows:
+Bob can reply using `mcp__alice__submitPrompt`. The `_caller` parameter tells Bob where to send the reply.
 
-```
-[MCP from localhost:28020] I really enjoy Rust for its safety guarantees...
-```
+## Cleanup
 
-The conversation can continue back and forth.
+```bash
+claude mcp remove alice
+claude mcp remove bob
+```
 
 ## Troubleshooting
 
-| Symptom | Cause | Solution |
-|---------|-------|----------|
-| "I don't have access to mcp__bob__submitPrompt" | MCP not registered | Run `claude mcp add bob --transport http http://localhost:28020/mcp` |
-| MCP registered but tool not available | Instance started before registration | Restart the instance |
-| "Connection refused" | Target instance not running | Check port and restart if needed |
-| Bob can't reply to Alice | Alice's MCP not registered | Run `claude mcp add alice --transport http http://localhost:28010/mcp` |
-| Message received but no `[MCP from ...]` tag | `_caller` parameter missing | Include `_caller` in the tool call |
-
-## Cleaning Up
-
-To remove the MCP registrations:
-
-```bash
-claude mcp remove bob
-claude mcp remove alice
-```
-
-## Next Steps
-
-- [Tutorial: Claude Code CLI + Codex](./multi-agent-claude-codex.md) — heterogeneous agent setup
-- [Tutorial: Claude Code CLI + Local LLM](./multi-agent-claude-local.md) — using claw-code-local with Ollama
-- [MCP Gateway](./mcp-gateway.md) — for 3+ agents, use name-based routing instead of direct registration
+| Problem | Solution |
+|---------|----------|
+| `mcp__bob__submitPrompt` not found | Run `claude mcp add bob ...` and restart the instance |
+| Connection refused | Check the target instance is running on the correct port |
+| Bob can't reply | Run `claude mcp add alice ...` and restart Bob |
