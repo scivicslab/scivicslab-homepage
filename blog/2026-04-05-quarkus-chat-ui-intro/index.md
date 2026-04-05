@@ -12,6 +12,8 @@ Each quarkus-chat-ui instance exposes an HTTP MCP server at `/mcp`, so Instance 
 
 [quarkus-chat-ui](https://github.com/scivicslab/quarkus-chat-ui) is the bridge that makes this work. Each instance wraps one LLM backend and exposes it as an HTTP MCP server at `/mcp`. For multi-agent communication, use a backend with MCP client capability: Claude Code CLI, Codex, or claw-code-local (which brings MCP support to Ollama, vLLM, and other local models). The `openai-compat` provider works for single-agent use but cannot call other MCP servers. Agents call each other by name. Humans can watch both sides of the conversation in their browsers.
 
+![](chat_UI01.png)
+
 <!-- truncate -->
 
 Once the async communication layer was in place, a capable web UI and a prompt queue came along naturally. The browser gives you a stable place to type — your input won't vanish when the AI responds, and paste and multi-line just work. If you need an LLM front-end and happen to be a Java developer, those turn out to be useful in their own right.
