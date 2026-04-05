@@ -21,17 +21,6 @@ IIActorRef<TaskRunner> runner =
 // Call methods asynchronously
 String result = runner.ask(r -> r.execute("deploy")).get();`;
 
-const workflowYaml = `name: deploy-workflow
-steps:
-  - states: ["0", "1"]
-    actions:
-      - actor: nodeGroup
-        method: apply
-        arguments:
-          actor: "node-*"
-          method: executeCommand
-          arguments: ["./deploy.sh"]`;
-
 function HeroSection() {
   return (
     <section className={styles.hero}>
@@ -278,50 +267,6 @@ function AiToolsSection() {
   );
 }
 
-function WorkflowSection() {
-  return (
-    <section className={styles.workflow}>
-      <div className={styles.container}>
-        <div className={styles.workflowGrid}>
-          <div className={styles.workflowCode}>
-            <div className={styles.codeWindow}>
-              <div className={styles.codeHeader}>
-                <span className={styles.dot} style={{background: '#ff5f56'}}></span>
-                <span className={styles.dot} style={{background: '#ffbd2e'}}></span>
-                <span className={styles.dot} style={{background: '#27ca40'}}></span>
-                <span className={styles.codeTitle}>deploy.yaml</span>
-              </div>
-              <CodeBlock language="yaml" className={styles.codeBlock}>
-                {workflowYaml}
-              </CodeBlock>
-            </div>
-          </div>
-          <div className={styles.workflowText}>
-            <span className={styles.sectionBadge}>Turing-workflow in Action</span>
-            <Heading as="h2" className={styles.sectionTitle}>
-              Define workflows in YAML, execute anywhere
-            </Heading>
-            <p className={styles.workflowDesc}>
-              Turing-workflow turns YAML definitions into executable pipelines.
-              Combined with actor-IaC, it orchestrates commands across distributed
-              nodes via SSH with full traceability.
-            </p>
-            <ul className={styles.workflowList}>
-              <li>Automaton-based state transitions with conditional branching</li>
-              <li>Parallel execution across node groups</li>
-              <li>Visual workflow editor for browser-based design</li>
-              <li>Plugin system for custom actions and integrations</li>
-            </ul>
-            <Link className={styles.primaryBtn} to="/docs/actor-iac/introduction">
-              See actor-IaC Example
-            </Link>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 const articles = [
   {
     title: 'quarkus-chat-ui: A Web Front-End for LLMs, and a Real-World Case for POJO-actor',
@@ -555,7 +500,6 @@ export default function Home(): ReactNode {
         <StackSection />
         <ApplicationsSection />
         <AiToolsSection />
-        <WorkflowSection />
         <ArticlesSection />
         <SupportSection />
         <CtaSection />
