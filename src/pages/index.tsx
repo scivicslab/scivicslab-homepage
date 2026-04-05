@@ -217,82 +217,29 @@ function ApplicationsSection() {
   );
 }
 
-function FeaturesSection() {
-  return (
-    <section className={styles.features}>
-      <div className={styles.container}>
-        <div className={styles.sectionHeader}>
-          <span className={styles.sectionBadge}>Why POJO-actor?</span>
-          <Heading as="h2" className={styles.sectionTitle}>
-            Simple yet powerful actor model
-          </Heading>
-          <p className={styles.sectionDesc}>
-            No complex frameworks. No boilerplate. Just your Java classes with superpowers.
-          </p>
-        </div>
-        <div className={styles.featureGrid}>
-          <div className={styles.featureItem}>
-            <div className={styles.featureIcon}>&#x1F4E6;</div>
-            <h3>Zero Dependencies</h3>
-            <p>Use any POJO as an actor. No base classes to extend, no interfaces to implement.</p>
-          </div>
-          <div className={styles.featureItem}>
-            <div className={styles.featureIcon}>&#x26A1;</div>
-            <h3>Virtual Thread Native</h3>
-            <p>Built for Java 21+. Each actor runs on its own virtual thread for massive concurrency.</p>
-          </div>
-          <div className={styles.featureItem}>
-            <div className={styles.featureIcon}>&#x1F916;</div>
-            <h3>AI-Friendly Workflows</h3>
-            <p>Automaton-based YAML workflows simple enough that AI agents generate correct code on the first try.</p>
-          </div>
-          <div className={styles.featureItem}>
-            <div className={styles.featureIcon}>&#x1F9E9;</div>
-            <h3>Pluggable Architecture</h3>
-            <p>ServiceLoader-based plugins for workflows, IaC, and AI agent tools. Extend without modifying core.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function AiToolsSection() {
   const tools = [
     {
-      icon: '🤖',
-      title: 'LLM Console (Claude)',
-      tagline: 'Chat with Claude AI',
-      desc: 'Browser-based Web UI for Claude models. Real-time SSE streaming, prompt queue, and tool execution via Claude Code CLI.',
-      to: '/docs/ai-tools/llm-console-claude',
-    },
-    {
-      icon: '✨',
-      title: 'LLM Console (Codex)',
-      tagline: 'Chat with OpenAI Codex / GPT',
-      desc: 'Same UX as the Claude console — queue prompts, execute tools — targeting OpenAI Codex and GPT models.',
-      to: '/docs/ai-tools/llm-console-codex',
-    },
-    {
-      icon: '⚙️',
-      title: 'LLM Console (Local)',
-      tagline: 'vLLM, Ollama, OpenAI-compatible',
-      desc: 'Multi-tenant UI for local LLM servers. Connect to vLLM or Ollama, fetch URLs as context, and analyse images.',
-      to: '/docs/ai-tools/llm-console-local',
+      icon: '💬',
+      title: 'quarkus-chat-ui',
+      tagline: 'Web Front-End for LLMs',
+      desc: 'Browser-based UI for Claude Code, vLLM, Ollama, and any OpenAI-compatible server. Multi-instance conversations via MCP.',
+      to: 'https://github.com/scivicslab/quarkus-chat-ui',
     },
     {
       icon: '🔀',
       title: 'MCP Gateway',
       tagline: 'Name-based MCP reverse proxy',
       desc: 'Register MCP servers by name. Route all clients through one gateway instead of tracking individual ports.',
-      to: '/docs/ai-tools/mcp-gateway',
+      to: 'https://github.com/scivicslab/quarkus-mcp-gateway',
     },
     {
       icon: '📝',
       title: 'Emacs MCP Server',
       tagline: 'Control Emacs from Claude',
       desc: 'Let Claude open files, evaluate Lisp, and navigate definitions in your running Emacs instance via emacsclient.',
-      to: '/docs/ai-tools/emacs-mcp-server',
+      to: 'https://github.com/scivicslab/emacs-mcp-server',
     },
   ];
 
@@ -377,10 +324,10 @@ function WorkflowSection() {
 
 const articles = [
   {
-    title: 'actor-IaC: Workflow Based Infrastructure as Code for Cluster Management',
-    url: '/blog/actor-iac-cluster-inventory',
-    date: 'Jan 28, 2026',
-    description: 'Collecting system information from multiple compute nodes in parallel.',
+    title: 'quarkus-chat-ui: A Web Front-End for LLMs, and a Real-World Case for POJO-actor',
+    url: '/blog/2026-04-05-quarkus-chat-ui-intro',
+    date: 'Apr 5, 2026',
+    description: 'A web UI for LLMs where multiple instances can talk to each other via MCP.',
     pattern: 'grid',
     isInternal: true,
   },
@@ -389,22 +336,6 @@ const articles = [
     url: '/blog/2026-01-27-TutorialPart2-3',
     date: 'Jan 27, 2026',
     description: 'Define workflow actions declaratively without overriding callByActionName().',
-    pattern: 'waves',
-    isInternal: true,
-  },
-  {
-    title: 'POJO-actor v2.13.0 Released',
-    url: '/blog/pojo-actor-v2.13.0',
-    date: 'Jan 26, 2026',
-    description: 'JSON State variable expansion fix, Java plugin support, and CallableByActionName interface.',
-    pattern: 'nodes',
-    isInternal: true,
-  },
-  {
-    title: 'actor-IaC v2.13.0 Released',
-    url: '/blog/actor-iac-v2.13.0',
-    date: 'Jan 26, 2026',
-    description: 'WorkflowReporter, Java plugin support, and AptLockChecker plugin.',
     pattern: 'waves',
     isInternal: true,
   },
@@ -624,7 +555,6 @@ export default function Home(): ReactNode {
         <StackSection />
         <ApplicationsSection />
         <AiToolsSection />
-        <FeaturesSection />
         <WorkflowSection />
         <ArticlesSection />
         <SupportSection />

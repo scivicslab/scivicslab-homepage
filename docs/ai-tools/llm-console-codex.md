@@ -24,7 +24,7 @@ The interface is identical to [LLM Console (Claude)](./llm-console-claude) — p
 
 1. **Codex CLI** — if `codex` is on your PATH, it is used directly (recommended)
 2. **Environment variable** — `OPENAI_API_KEY`
-3. **Config property** — `-Dcoder-agent.api-key=sk-...`
+3. **Config property** — `-Dchat-ui.api-key=sk-...`
 4. **Web UI prompt** — API key dialog at startup
 
 ## Installation
