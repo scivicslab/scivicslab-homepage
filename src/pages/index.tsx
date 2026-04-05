@@ -496,8 +496,8 @@ export default function Home(): ReactNode {
       title="Home"
       description="Scivics Lab — A lightweight actor model and workflow engine for Java, powering AI agent platforms, infrastructure automation, and container orchestration.">
       <main>
-        <HeroSection />
         <StackSection />
+        <HeroSection />
         <ApplicationsSection />
         <AiToolsSection />
         <ArticlesSection />
