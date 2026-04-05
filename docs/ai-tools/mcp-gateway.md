@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 3
 title: "MCP Gateway"
 description: "quarkus-mcp-gateway: name-based reverse proxy for MCP servers with caller identification and session metadata"
 ---
@@ -13,7 +13,7 @@ description: "quarkus-mcp-gateway: name-based reverse proxy for MCP servers with
 When running multiple MCP servers locally, each listens on a different port:
 
 ```
-llm-console-claude       → localhost:8090/mcp
+chat-ui       → localhost:8090/mcp
 quarkus-workflow-editor  → localhost:8091/mcp
 emacs-mcp-server         → localhost:8092/mcp
 ```
@@ -55,7 +55,7 @@ Create `servers.yaml` in the working directory:
 
 ```yaml
 servers:
-  - name: llm-console-claude
+  - name: chat-ui
     url: http://localhost:8090
     description: LLM Console - Claude
 
@@ -118,7 +118,7 @@ When the receiver GETs that URL:
   "sessionId": "abc123",
   "caller": "workflow-editor",
   "remoteAddress": "127.0.0.1:45926",
-  "targetServer": "llm-console-claude",
+  "targetServer": "chat-ui",
   "registered": true,
   "callerUrl": "http://localhost:8091"
 }
@@ -184,10 +184,10 @@ Response:
 
 ```json
 {
-  "sessionId": "llm-console-claude:abc123",
+  "sessionId": "chat-ui:abc123",
   "caller": "workflow-editor",
   "remoteAddress": "127.0.0.1:45926",
-  "targetServer": "llm-console-claude",
+  "targetServer": "chat-ui",
   "registered": true,
   "callerUrl": "http://localhost:8091"
 }
@@ -203,7 +203,7 @@ Add a single entry to your Claude Desktop MCP configuration:
 {
   "mcpServers": {
     "gateway": {
-      "url": "http://localhost:8888/mcp/llm-console-claude"
+      "url": "http://localhost:8888/mcp/chat-ui"
     }
   }
 }
@@ -214,7 +214,7 @@ Or add each server by name:
 ```json
 {
   "mcpServers": {
-    "llm-console-claude": { "url": "http://localhost:8888/mcp/llm-console-claude" },
+    "chat-ui": { "url": "http://localhost:8888/mcp/chat-ui" },
     "workflow-editor": { "url": "http://localhost:8888/mcp/workflow-editor" },
     "emacs": { "url": "http://localhost:8888/mcp/emacs" }
   }
@@ -235,7 +235,7 @@ quarkus-mcp-gateway (:8888)
   ├── Session metadata management
   └── Proxy → registered backends
         │
-        ├── /mcp/llm-console-claude  →  :8090
+        ├── /mcp/chat-ui  →  :8090
         ├── /mcp/workflow-editor     →  :8091
         └── /mcp/emacs               →  :8092
 ```

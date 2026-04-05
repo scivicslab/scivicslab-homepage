@@ -247,7 +247,7 @@ claude mcp add emacs --transport http --url http://localhost:8092/mcp
 
 ## 5. Trying It Out
 
-Talk to Claude Code (or LLM Console) and it will control Emacs on your behalf.
+Talk to Claude Code (or quarkus-chat-ui) and it will control Emacs on your behalf.
 
 ### Open a file
 
@@ -314,13 +314,13 @@ During code review, Claude can open each file it references so you can follow al
 When the Java version is registered with the MCP Gateway, the architecture looks like this:
 
 ```
-Claude Code / LLM Console / Workflow Editor
+Claude Code / quarkus-chat-ui / Workflow Editor
         │  MCP
         ▼
 quarkus-mcp-gateway  (:8888)
-  ├── /mcp/emacs              →  emacs-mcp-server    (:8092)
-  ├── /mcp/workflow-editor    →  workflow-editor      (:8091)
-  └── /mcp/llm-console-claude →  llm-console         (:8090)
+  ├── /mcp/emacs       →  emacs-mcp-server    (:8092)
+  ├── /mcp/chat-ui     →  quarkus-chat-ui     (:28010)
+  └── /mcp/...
 ```
 
 In this setup, a workflow running in the Workflow Editor can open files in Emacs as part of its execution — for example, writing results to a file and then opening it in your editor automatically.
@@ -335,4 +335,4 @@ The Gateway's [caller identification](../mcp-gateway#caller-identification-hateo
 
 - [Emacs MCP Server Reference](./index.md) — tool list and implementation details
 - [MCP Gateway](../mcp-gateway) — registration, caller identification, and session metadata
-- [LLM Console (Claude)](../llm-console-claude) — browser-based Claude UI
+- [quarkus-chat-ui](../quarkus-chat-ui) — multi-provider browser-based LLM UI
