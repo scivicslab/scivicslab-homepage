@@ -223,118 +223,74 @@ For all providers (`claude`, `codex`, `openai-compat`) and configuration options
 
 ## Setting up two agents to talk (Claude Code CLI)
 
-This section walks through the exact steps to make two quarkus-chat-ui instances communicate with each other. Both use Claude Code CLI as the LLM backend.
+Two quarkus-chat-ui instances talking to each other via MCP.
 
-### Understanding the architecture
-
-Two separate systems are involved:
-
-1. **MCP server** — quarkus-chat-ui exposes tools at `/mcp` (e.g., `submitPrompt`). External callers can invoke these tools via HTTP.
-2. **LLM tools** — Claude Code CLI has its own tool system (`Read`, `Write`, `Bash`, etc.). It can also call registered MCP servers using tools like `mcp__servername__toolname`.
-
-For Alice's LLM to call Bob's `submitPrompt`, Alice's Claude Code CLI must have Bob's MCP endpoint registered. This is done with `claude mcp add`.
-
-### Step 1: Start two instances
-
-Open two terminals.
-
-**Terminal 1 (Alice on port 28010):**
+### 1. Install Claude Code CLI
 
 ```bash
-export ANTHROPIC_API_KEY=sk-ant-...
+npm install -g @anthropic-ai/claude-code
+```
+
+### 2. Set API Key
+
+```bash
+export ANTHROPIC_API_KEY=sk-ant-api03-...
+```
+
+### 3. Start Alice (port 28010)
+
+```bash
 java -Dchat-ui.provider=claude \
      -Dquarkus.http.port=28010 \
      -jar app/target/quarkus-app/quarkus-run.jar
 ```
 
-**Terminal 2 (Bob on port 28020):**
+### 4. Start Bob (port 28020)
 
 ```bash
-export ANTHROPIC_API_KEY=sk-ant-...
 java -Dchat-ui.provider=claude \
      -Dquarkus.http.port=28020 \
      -jar app/target/quarkus-app/quarkus-run.jar
 ```
 
-At this point, both instances are running, but their LLMs cannot call each other's MCP endpoints.
-
-### Step 2: Register MCP endpoints
-
-Claude Code CLI's MCP registration is user-level (stored in `~/.claude.json`). Register each instance's MCP endpoint:
+### 5. Register MCP Endpoints
 
 ```bash
-# Register Bob's MCP endpoint (so Alice can call Bob)
 claude mcp add bob --transport http http://localhost:28020/mcp
-
-# Register Alice's MCP endpoint (so Bob can call Alice)
 claude mcp add alice --transport http http://localhost:28010/mcp
 ```
 
-Verify the registration:
+### 6. Restart Both Instances
 
-```bash
-claude mcp list
-```
+Ctrl+C and restart both terminals.
 
-You should see both `alice` and `bob` in the list.
+### 7. Test: Alice Sends to Bob
 
-### Step 3: Restart the instances
-
-The Claude Code CLI subprocess reads `~/.claude.json` at startup. Restart both quarkus-chat-ui instances so they pick up the new MCP registrations.
-
-### Step 4: Test the communication
-
-Open two browser windows:
-- Alice: `http://localhost:28010`
-- Bob: `http://localhost:28020`
-
-In Alice's browser, type:
+In Alice's browser (http://localhost:28010):
 
 ```
-Send a greeting to bob using the mcp__bob__submitPrompt tool. Include _caller parameter set to http://localhost:28010 so bob knows where to reply.
+Use mcp__bob__submitPrompt to send "Hello Bob!" to Bob.
+Set _caller to http://localhost:28010
 ```
 
-Alice's Claude Code CLI will call:
+### 8. Verify: Bob Receives
 
-```
-mcp__bob__submitPrompt(prompt="Hello Bob!", _caller="http://localhost:28010")
-```
-
-In Bob's browser, you should see:
+In Bob's browser (http://localhost:28020):
 
 ```
 [MCP from localhost:28010] Hello Bob!
 ```
 
-Bob's LLM receives the enriched prompt with reply instructions and can respond using `mcp__alice__submitPrompt`.
+### Troubleshooting
 
-### What can go wrong
-
-| Symptom | Cause | Fix |
-|---------|-------|-----|
-| "I don't have access to mcp__bob__submitPrompt" | MCP endpoint not registered | Run `claude mcp add bob ...` |
-| MCP registered but LLM doesn't see it | Instance started before registration | Restart the instance |
-| Bob receives message but can't reply | Alice's endpoint not registered with Bob | Run `claude mcp add alice ...` |
-| Connection refused | Wrong port or instance not running | Check port numbers |
-
-### The `_caller` parameter
-
-When calling `submitPrompt`, always include `_caller` with the sender's URL:
-
-```
-mcp__bob__submitPrompt(
-  prompt="Hello!",
-  _caller="http://localhost:28010"  ← tells Bob where to reply
-)
-```
-
-quarkus-chat-ui enriches the prompt with this information, so Bob's LLM knows where to send replies.
+| Problem | Solution |
+|---------|----------|
+| `mcp__bob__submitPrompt` not found | `claude mcp add bob ...` and restart |
+| Connection refused | Check target instance is running |
 
 ### Beyond two agents
 
-With two agents, you register two endpoints. With three, you need six registrations. With *n* agents, you need *n(n-1)* registrations — quadratic growth.
-
-For three or more agents, use [quarkus-mcp-gateway](https://github.com/scivicslab/quarkus-mcp-gateway). Agents register once with the gateway; the gateway routes by name.
+For three or more agents, use [quarkus-mcp-gateway](https://github.com/scivicslab/quarkus-mcp-gateway).
 
 ---
 
