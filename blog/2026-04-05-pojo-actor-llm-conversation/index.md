@@ -1,7 +1,7 @@
 ---
 slug: pojo-actor-llm-conversation
 title: "quarkus-chat-ui (2): The Actor Design Behind LLM-to-LLM Conversation"
-authors: [oogasawa]
+authors: [devteam]
 tags: [java, pojo-actor, quarkus, llm, actor-model, concurrent-programming]
 ---
 
